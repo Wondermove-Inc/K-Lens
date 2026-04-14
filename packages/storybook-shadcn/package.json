@@ -99,7 +99,7 @@
     "@storybook/addon-themes": "^9.1.8",
     "@storybook/react-vite": "^9.1.8",
     "@tailwindcss/postcss": "^4.1.13",
-    "@types/node": "^24.5.2",
+    "@types/node": "^25.6.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.3",
     "postcss": "^8.5.6",

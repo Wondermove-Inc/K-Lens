@@ -295,7 +295,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.20",
     "@types/memorystream": "^0.3.4",
-    "@types/node": "~22.16.5",
+    "@types/node": "~25.6.0",
     "@types/proper-lockfile": "^4.1.4",
     "@types/randomcolor": "^0.5.9",
     "@types/react": "^18.3.3",
