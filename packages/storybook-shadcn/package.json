@@ -82,7 +82,7 @@
     "react": "workspace:*",
     "react-day-picker": "^9.11.0",
     "react-dom": "workspace:*",
-    "react-hook-form": "^7.63.0",
+    "react-hook-form": "^7.72.1",
     "react-resizable-panels": "^3.0.6",
     "react-router-dom": "^7.9.4",
     "recharts": "^3.2.1",
