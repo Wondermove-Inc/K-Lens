@@ -1,0 +1,34 @@
+title: "[Idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for Skuber+ Client? We'd love to hear it!
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: Describe your idea clearly.
+      placeholder: It would be great if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it Solves
+      description: What problem or gap does this idea address?
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Any alternative approaches you've considered?
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any references, screenshots, or examples.

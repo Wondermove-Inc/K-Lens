@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Skuber+ Client!
 
-> **[한국어 버전 (Korean)](CONTRIBUTING.ko.md)**
+> **[한국어 버전 (Korean)](.github/CONTRIBUTING.ko.md)**
 
 ---
 

@@ -1,0 +1,21 @@
+title: "[Show] "
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Built something cool with Skuber+ Client? Share it with the community!
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What I Built
+      description: Describe your project or how you're using Skuber+ Client.
+    validations:
+      required: true
+
+  - type: textarea
+    id: links
+    attributes:
+      label: Links & Screenshots
+      description: Share any links, screenshots, or demos.

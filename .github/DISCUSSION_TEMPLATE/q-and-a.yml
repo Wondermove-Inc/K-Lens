@@ -1,0 +1,32 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about Skuber+ Client? Ask here and the community will help!
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: How do I...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What I've Tried
+      description: Any steps you've already taken or docs you've checked.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: If relevant, share your OS, app version, or Kubernetes setup.
+      placeholder: |
+        - OS: macOS (Apple Silicon)
+        - App Version: 0.6.5
+        - Kubernetes: v1.30
