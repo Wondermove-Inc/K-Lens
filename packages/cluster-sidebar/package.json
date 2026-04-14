@@ -44,7 +44,7 @@
     "@types/lodash": "^4.17.20",
     "@types/webpack-env": "^1.18.8",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.7.0",
+    "jest": "^30.3.0",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
     "ts-jest": "^29.4.4",
