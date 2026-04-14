@@ -1,0 +1,1 @@
+{"root":["./index.ts","./dist/index.d.ts","./dist/src/as-global-function.d.ts","./dist/src/as-global-object.d.ts","./dist/src/global-di.d.ts","./src/as-global-function.ts","./src/as-global-object.ts","./src/global-di.ts"],"version":"5.9.3"}

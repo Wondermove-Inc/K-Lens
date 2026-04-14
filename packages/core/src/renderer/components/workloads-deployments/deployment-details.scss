@@ -1,0 +1,27 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+
+// 🔄 THEME-031: white → CSS 변수
+.DeploymentDetails {
+  .conditions {
+    .Available {
+      color: var(--status-badge-text, oklch(1 0 0));
+      background-color: workloads-mixins.$deployment-available;
+    }
+
+    .Progressing {
+      color: var(--status-badge-text, oklch(1 0 0));
+      background-color: workloads-mixins.$deployment-progressing;
+    }
+
+    .ReplicaFailure {
+      color: var(--status-badge-text, oklch(1 0 0));
+      background-color: workloads-mixins.$deployment-replicafailure;
+    }
+  }
+}

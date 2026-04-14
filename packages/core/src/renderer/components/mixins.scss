@@ -1,0 +1,74 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+//-- Mixins
+@use "workloads/workloads-mixins";
+@use "storage/storage-mixins";
+@use "nodes/nodes-mixins";
+@use "namespaces/namespaces-mixins";
+@use "table/table.mixins";
+@use "network/network-mixins";
+
+// Hide scrollbar but keep the element scrollable
+@mixin hidden-scrollbar {
+  overflow: auto;
+  // Chrome, Safari
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
+}
+
+// 🔄 THEME-040: HEX fallback 제거 (global.css에 정의됨)
+@mixin stripeLinesAnimation(
+  $color1: var(--stripes-color-1),
+  $color2: transparent,
+  $spacing: 1rem
+) {
+  background: repeating-linear-gradient(
+    -45deg,
+    $color2,
+    $color2,
+    $spacing,
+    $color1 $spacing,
+    $color1 $spacing * 2
+  );
+  background-size: 200% 200%;
+  animation: stripeLines 10s linear infinite;
+
+  @keyframes stripeLines {
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+}
+
+@mixin pseudo-link($color: var(--primary)) {
+  color: $color;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@mixin set-draggable($is-draggable: true) {
+  @if ($is-draggable) {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+  } @else {
+    -webkit-app-region: no-drag;
+  }
+}
+
+@mixin theme-light() {
+  $selector: "theme-light"; // keep in sync with class in `theme.store.ts`
+
+  body.#{$selector} {
+    @content;
+  }
+  :global(body.#{$selector}) {
+    @content; // css-modules (*.module.scss)
+  }
+}

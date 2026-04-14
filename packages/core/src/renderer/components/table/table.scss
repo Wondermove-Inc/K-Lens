@@ -1,0 +1,203 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.Table {
+  &.autoSize {
+    .TableCell {
+      // 🎯 JavaScript 제어 우선: flexbox 완전 비활성화 (autoSize에서도)
+      flex: none;
+      width: auto;
+      min-width: 50px;
+      box-sizing: border-box;
+    }
+  }
+
+  // ============================================
+  // 🎯 컬럼 리사이즈 레이아웃 최적화 (2024 최신 기법)
+  // ============================================
+  .TableHead,
+  .TableRow {
+    display: flex;
+    width: 100%;
+    gap: 0; // 🎯 리사이즈 정확성을 위해 간격 제거
+
+    // 🔧 컬럼 간격 제거
+    .TableCell {
+      box-sizing: border-box;
+
+      // 🎯 JavaScript 제어 우선: flexbox 완전 비활성화
+      flex: none;
+      width: auto; // 기본값, JavaScript가 오버라이드
+      min-width: 50px;
+      box-sizing: border-box;
+
+      // 🛡️ 헤더는 텍스트 표시, 데이터 행만 오버플로우 처리
+      &:not(.TableHead .TableCell) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      // 🎯 헤더 셀은 텍스트 완전 표시
+      .TableHead & {
+        overflow: visible;
+        white-space: normal;
+        text-overflow: unset;
+      }
+
+      // 🎯 모든 셀 높이 통일 (글자 수에 관계없이 동일한 높이 유지)
+      height: 32px;
+      display: flex;
+      align-items: center;
+
+      // 🎯 리사이즈된 컬럼은 고정 너비 사용 + 안정성 강화
+      &[style*="width"] {
+        flex: none !important;
+        flex-shrink: 0 !important;
+        flex-grow: 0 !important;
+      }
+
+      // 🔄 리사이즈 중 안정성 확보 (새로운 클래스)
+      &.resizing {
+        flex: none !important;
+        transition: none !important; // 리사이즈 중 애니메이션 비활성화
+        user-select: none;
+        pointer-events: none;
+      }
+
+      // ============================================
+      // 🎯 CSS 변수 기반 컬럼 너비 시스템 (가상화 호환)
+      // ============================================
+
+      // 🎯 CSS 변수를 사용하여 JavaScript에서 동적으로 너비 제어
+      &.name {
+        width: var(--column-name-width, 200px) !important;
+        min-width: var(--column-name-min-width, 150px) !important;
+        flex: none !important;
+      }
+
+      &.namespace {
+        width: var(--column-namespace-width, 120px) !important;
+        min-width: var(--column-namespace-min-width, 80px) !important;
+        flex: none !important;
+      }
+
+      &.age {
+        width: var(--column-age-width, 80px) !important;
+        min-width: var(--column-age-min-width, 60px) !important;
+        flex: none !important;
+      }
+
+      &.cpu-usage {
+        width: var(--column-cpu-usage-width, 100px) !important;
+        min-width: var(--column-cpu-usage-min-width, 70px) !important;
+        flex: none !important;
+      }
+
+      &.memory-usage {
+        width: var(--column-memory-usage-width, 100px) !important;
+        min-width: var(--column-memory-usage-min-width, 70px) !important;
+        flex: none !important;
+      }
+
+      &.containers {
+        width: var(--column-containers-width, 90px) !important;
+        min-width: var(--column-containers-min-width, 60px) !important;
+        flex: none !important;
+      }
+
+      &.restarts {
+        width: var(--column-restarts-width, 80px) !important;
+        min-width: var(--column-restarts-min-width, 50px) !important;
+        flex: none !important;
+      }
+
+      &.node {
+        width: var(--column-node-width, 150px) !important;
+        min-width: var(--column-node-min-width, 80px) !important;
+        flex: none !important;
+      }
+
+      &.ip {
+        width: var(--column-ip-width, 120px) !important;
+        min-width: var(--column-ip-min-width, 90px) !important;
+        flex: none !important;
+        font-family: monospace;
+      }
+
+      // 🔧 고정 너비 컬럼들 (리사이즈 불가)
+      &.warning {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+        flex: none !important;
+      }
+
+      &.ready {
+        width: 80px !important;
+        min-width: 80px !important;
+        max-width: 80px !important;
+        flex: none !important;
+      }
+
+      &.status {
+        width: 100px !important;
+        min-width: 100px !important;
+        max-width: 100px !important;
+        flex: none !important;
+      }
+    }
+  }
+
+  &.scrollable {
+    overflow: auto;
+  }
+
+  &.scrollable.virtual {
+    overflow: unset;
+  }
+
+  &.selectable {
+    .TableHead,
+    .TableRow {
+      padding: 0 $padding;
+    }
+
+    .TableRow {
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--tableBgcSelected) !important;
+      }
+
+
+      &.selected {
+        background-color: var(--tableBgcSelected);
+        color: var(--tableSelectedRowColor);
+
+        &:before {
+          content: "";
+          background: var(--primary);
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 4px;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &.striped {
+    .TableRow {
+      &:nth-child(odd) {
+        background-color: var(--tableBgcStripe);
+      }
+    }
+  }
+}

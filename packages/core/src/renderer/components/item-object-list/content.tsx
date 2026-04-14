@@ -1,0 +1,405 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import "./item-list-layout.scss";
+
+import { withInjectables } from "@ogre-tools/injectable-react";
+import { Spinner } from "@skuberplus/spinner";
+import { cssNames, isDefined, isReactNode, noop, prevDefault, stopPropagation } from "@skuberplus/utilities";
+import autoBindReact from "auto-bind/react";
+import { computed, makeObservable } from "mobx";
+import { Observer, observer } from "mobx-react";
+import React, { Component } from "react";
+import isTableColumnHiddenInjectable from "../../../features/user-preferences/common/is-table-column-hidden.injectable";
+import toggleTableColumnVisibilityInjectable from "../../../features/user-preferences/common/toggle-table-column-visibility.injectable";
+import activeThemeTypeInjectable from "../../themes/active-type.injectable";
+import { AddRemoveButtons } from "../add-remove-buttons";
+import { Checkbox } from "../checkbox";
+import openConfirmDialogInjectable from "../confirm-dialog/open.injectable";
+import { MenuItem } from "../menu";
+import { MenuActions } from "../menu/menu-actions";
+import { NoItems } from "../no-items";
+import { Table, TableCell, TableHead, TableRow } from "../table";
+import pageFiltersStoreInjectable from "./page-filters/store.injectable";
+
+import type { ItemObject, TableCellProps } from "@skuberplus/list-layout";
+import type { IClassName, StrictReactNode } from "@skuberplus/utilities";
+
+import type { IComputedValue } from "mobx";
+
+import type { IsTableColumnHidden } from "../../../features/user-preferences/common/is-table-column-hidden.injectable";
+import type { ToggleTableColumnVisibility } from "../../../features/user-preferences/common/toggle-table-column-visibility.injectable";
+import type { ThemeType } from "../../themes/lens-theme";
+import type { AddRemoveButtonsProps } from "../add-remove-buttons";
+import type { ConfirmDialogParams } from "../confirm-dialog";
+import type { OpenConfirmDialog } from "../confirm-dialog/open.injectable";
+import type { TableProps, TableRowProps, TableSortCallbacks } from "../table";
+import type { ItemListStore } from "./list-layout";
+import type { Filter, PageFiltersStore } from "./page-filters/store";
+
+export interface ItemListLayoutContentProps<Item extends ItemObject, PreLoadStores extends boolean> {
+  getFilters: () => Filter[];
+  tableId?: string;
+  className: IClassName;
+  getItems: () => Item[];
+  store: ItemListStore<Item, PreLoadStores>;
+  getIsReady: () => boolean; // show loading indicator while not ready
+  isSelectable?: boolean; // show checkbox in rows for selecting items
+  isConfigurable?: boolean;
+  copyClassNameFromHeadCells?: boolean;
+  sortingCallbacks?: TableSortCallbacks<Item>;
+  tableProps?: Partial<TableProps<Item>>; // low-level table configuration
+  renderTableHeader?: (TableCellProps | undefined | null)[];
+  renderTableContents: (item: Item) => (StrictReactNode | TableCellProps)[];
+  renderItemMenu?: (item: Item, store: ItemListStore<Item, PreLoadStores>) => StrictReactNode;
+  customizeTableRowProps?: (item: Item) => Partial<TableRowProps<Item>>;
+  addRemoveButtons?: Partial<AddRemoveButtonsProps>;
+  virtual?: boolean;
+
+  // item details view
+  hasDetailsView?: boolean;
+  detailsItem?: Item;
+  onDetails?: (item: Item) => void;
+
+  // other
+  customizeRemoveDialog?: (selectedItems: Item[]) => Partial<ConfirmDialogParams>;
+
+  spinnerTestId?: string;
+
+  /**
+   * Message to display when a store failed to load
+   *
+   * @default "Failed to load items"
+   */
+  failedToLoadMessage?: StrictReactNode;
+}
+
+interface Dependencies {
+  activeThemeType: IComputedValue<ThemeType>;
+  pageFiltersStore: PageFiltersStore;
+  openConfirmDialog: OpenConfirmDialog;
+  toggleTableColumnVisibility: ToggleTableColumnVisibility;
+  isTableColumnHidden: IsTableColumnHidden;
+}
+
+@observer
+class NonInjectedItemListLayoutContent<Item extends ItemObject, PreLoadStores extends boolean> extends Component<
+  ItemListLayoutContentProps<Item, PreLoadStores> & Dependencies
+> {
+  constructor(props: ItemListLayoutContentProps<Item, PreLoadStores> & Dependencies) {
+    super(props);
+    makeObservable(this);
+    autoBindReact(this);
+  }
+
+  @computed get failedToLoad() {
+    return this.props.store.failedLoading;
+  }
+
+  renderRow(item: Item) {
+    return this.getTableRow(item);
+  }
+
+  getTableRow(item: Item) {
+    const {
+      isSelectable,
+      renderTableHeader,
+      renderTableContents,
+      renderItemMenu,
+      store,
+      hasDetailsView,
+      onDetails,
+      copyClassNameFromHeadCells,
+      customizeTableRowProps = () => ({}),
+      detailsItem,
+    } = this.props;
+    const { isSelected } = store;
+
+    return (
+      <TableRow
+        nowrap
+        searchItem={item}
+        sortItem={item}
+        selected={detailsItem && detailsItem.getId() === item.getId()}
+        onClick={hasDetailsView ? prevDefault(() => onDetails?.(item)) : undefined}
+        {...customizeTableRowProps(item)}
+      >
+        {isSelectable && (
+          <TableCell checkbox isChecked={isSelected(item)} onClick={prevDefault(() => store.toggleSelection(item))} />
+        )}
+        {renderTableContents(item).map((content, index) => {
+          const cellProps: TableCellProps = isReactNode(content) ? { children: content } : content;
+          const headCell = renderTableHeader?.[index];
+
+          if (copyClassNameFromHeadCells && headCell) {
+            cellProps.className = cssNames(cellProps.className, headCell.className);
+          }
+
+          // 🎯 헤더와 데이터 행 컬럼 동기화 개선: data-column-id 전달
+          if (headCell) {
+            // data-column-id 속성 복사 (컬럼 리사이즈 동기화를 위해 필수)
+            const headCellWithDataId = headCell as any; // TypeScript 타입 에러 회피
+            if (headCellWithDataId["data-column-id"]) {
+              (cellProps as any)["data-column-id"] = headCellWithDataId["data-column-id"];
+            }
+            // 기본 컬럼 속성들 복사
+            if (headCell.id) {
+              cellProps.id = cellProps.id || headCell.id;
+            }
+          }
+
+          if (!headCell || this.showColumn(headCell)) {
+            return <TableCell key={index} {...cellProps} />;
+          }
+
+          return null;
+        })}
+        {renderItemMenu && (
+          <TableCell className="menu">
+            <div onClick={stopPropagation}>{renderItemMenu(item, store)}</div>
+          </TableCell>
+        )}
+      </TableRow>
+    );
+  }
+
+  getRow(uid: string) {
+    return (
+      <div key={uid}>
+        <Observer>
+          {() => {
+            const item = this.props.getItems().find((item) => item.getId() === uid);
+
+            if (!item) return null;
+
+            return this.getTableRow(item);
+          }}
+        </Observer>
+      </div>
+    );
+  }
+
+  removeItemsDialog(selectedItems: Item[]) {
+    const { customizeRemoveDialog, store, openConfirmDialog } = this.props;
+    const visibleMaxNamesCount = 5;
+    const selectedNames = selectedItems
+      .map((ns) => ns.getName())
+      .slice(0, visibleMaxNamesCount)
+      .join(", ");
+    const dialogCustomProps = customizeRemoveDialog ? customizeRemoveDialog(selectedItems) : {};
+    const selectedCount = selectedItems.length;
+    const tailCount = selectedCount > visibleMaxNamesCount ? selectedCount - visibleMaxNamesCount : 0;
+    const tail =
+      tailCount > 0 ? (
+        <>
+          {", and "}
+          <b>{tailCount}</b>
+          {" more"}
+        </>
+      ) : null;
+    const message =
+      selectedCount <= 1 ? (
+        <p>
+          {"Remove item "}
+          <b>{selectedNames}</b>?
+        </p>
+      ) : (
+        <p>
+          {"Remove "}
+          <b>{selectedCount}</b>
+          {" items "}
+          <b>{selectedNames}</b>
+          {tail}?
+        </p>
+      );
+    const { removeSelectedItems, removeItems } = store;
+    const onConfirm =
+      typeof removeItems === "function"
+        ? () => removeItems.apply(store, [selectedItems])
+        : typeof removeSelectedItems === "function"
+          ? removeSelectedItems.bind(store)
+          : noop;
+
+    openConfirmDialog({
+      ok: onConfirm,
+      labelOk: "Remove",
+      message,
+      ...dialogCustomProps,
+    });
+  }
+
+  renderNoItems() {
+    if (this.failedToLoad) {
+      return <NoItems>{this.props.failedToLoadMessage}</NoItems>;
+    }
+
+    if (!this.props.getIsReady()) {
+      return <Spinner center data-testid={this.props.spinnerTestId} />;
+    }
+
+    if (this.props.getFilters().length > 0) {
+      return (
+        <NoItems>
+          No items found.
+          <p>
+            <a onClick={() => this.props.pageFiltersStore.reset()} className="contrast">
+              Reset filters?
+            </a>
+          </p>
+        </NoItems>
+      );
+    }
+
+    return <NoItems />;
+  }
+
+  renderItems() {
+    if (this.props.virtual) {
+      return null;
+    }
+
+    return this.props.getItems().map((item) => this.getRow(item.getId()));
+  }
+
+  renderTableHeader() {
+    const { customizeTableRowProps, renderTableHeader, isSelectable, isConfigurable, store, tableId } = this.props;
+
+    if (!renderTableHeader) {
+      return null;
+    }
+
+    const enabledItems = this.props.getItems().filter((item) => !customizeTableRowProps?.(item).disabled);
+
+    return (
+      <TableHead showTopLine nowrap>
+        {isSelectable && (
+          <Observer>
+            {() => (
+              <TableCell
+                checkbox
+                isChecked={store.isSelectedAll(enabledItems)}
+                onClick={prevDefault(() => store.toggleSelectionAll(enabledItems))}
+              />
+            )}
+          </Observer>
+        )}
+        {renderTableHeader
+          .filter(isDefined)
+          .map(
+            (cellProps, index) =>
+              this.showColumn(cellProps) && <TableCell key={cellProps.id ?? index} {...cellProps} />,
+          )}
+        <TableCell className="menu">
+          {isConfigurable && tableId ? this.renderColumnVisibilityMenu(tableId) : undefined}
+        </TableCell>
+      </TableHead>
+    );
+  }
+
+  render() {
+    const {
+      store,
+      hasDetailsView,
+      addRemoveButtons = {},
+      virtual,
+      sortingCallbacks,
+      detailsItem,
+      className,
+      tableProps = {},
+      tableId,
+      getItems,
+      activeThemeType,
+    } = this.props;
+    const selectedItemId = detailsItem && detailsItem.getId();
+    const classNames = cssNames(className, "box", "grow", activeThemeType.get());
+    const items = getItems();
+    const selectedItems = store.pickOnlySelected(items);
+
+    return (
+      <div className="items box grow flex column">
+        <Table
+          tableId={tableId}
+          virtual={virtual}
+          selectable={hasDetailsView}
+          sortable={sortingCallbacks}
+          getTableRow={this.getRow}
+          renderRow={virtual ? undefined : this.renderRow}
+          items={items}
+          selectedItemId={selectedItemId}
+          noItems={this.renderNoItems()}
+          className={classNames}
+          {...tableProps}
+        >
+          {this.renderTableHeader()}
+          {this.renderItems()}
+        </Table>
+
+        <Observer>
+          {() => (
+            <AddRemoveButtons
+              onRemove={
+                (store.removeItems || store.removeSelectedItems) && selectedItems.length > 0
+                  ? () => this.removeItemsDialog(selectedItems)
+                  : undefined
+              }
+              removeTooltip={`Remove selected items (${selectedItems.length})`}
+              {...addRemoveButtons}
+            />
+          )}
+        </Observer>
+      </div>
+    );
+  }
+
+  showColumn({ id: columnId, showWithColumn }: TableCellProps): boolean {
+    const { tableId, isConfigurable } = this.props;
+
+    return !isConfigurable || !tableId || !this.props.isTableColumnHidden(tableId, columnId, showWithColumn);
+  }
+
+  renderColumnVisibilityMenu(tableId: string) {
+    const { renderTableHeader = [] } = this.props;
+
+    return (
+      <MenuActions
+        id="menu-actions-for-item-object-list-content"
+        className="ItemListLayoutVisibilityMenu"
+        toolbar={false}
+        autoCloseOnSelect={false}
+      >
+        {renderTableHeader
+          .filter(isDefined)
+          .filter((props): props is TableCellProps & { id: string } => !!props.id)
+          .filter((props) => !props.showWithColumn)
+          .map((cellProps) => (
+            <MenuItem key={cellProps.id} className="input">
+              <Checkbox
+                label={cellProps.title ?? `<${cellProps.className}>`}
+                value={this.showColumn(cellProps)}
+                onChange={() => this.props.toggleTableColumnVisibility(tableId, cellProps.id)}
+              />
+            </MenuItem>
+          ))}
+      </MenuActions>
+    );
+  }
+}
+
+export const ItemListLayoutContent = withInjectables<Dependencies, ItemListLayoutContentProps<ItemObject, boolean>>(
+  NonInjectedItemListLayoutContent,
+  {
+    getProps: (di, props) => ({
+      ...props,
+      activeThemeType: di.inject(activeThemeTypeInjectable),
+      pageFiltersStore: di.inject(pageFiltersStoreInjectable),
+      openConfirmDialog: di.inject(openConfirmDialogInjectable),
+      toggleTableColumnVisibility: di.inject(toggleTableColumnVisibilityInjectable),
+      isTableColumnHidden: di.inject(isTableColumnHiddenInjectable),
+    }),
+  },
+) as <Item extends ItemObject, PreLoadStores extends boolean>(
+  props: ItemListLayoutContentProps<Item, PreLoadStores>,
+) => React.ReactElement;

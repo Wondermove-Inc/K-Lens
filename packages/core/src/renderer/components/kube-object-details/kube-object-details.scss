@@ -1,0 +1,17 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.KubeObjectDetails {
+  z-index: $zIndex-drawer + 1 !important;
+
+  .drawer-title {
+    .Menu {
+      border: none;
+    }
+  }
+}

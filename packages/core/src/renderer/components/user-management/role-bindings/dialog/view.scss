@@ -1,0 +1,19 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../../../vars" as *;
+
+.AddRoleBindingDialog {
+  .Select + .Select {
+    margin-top: $margin * 0.5;
+  }
+  .Checkbox {
+    margin-top: $margin;
+  }
+  .name {
+    color: var(--muted-foreground);
+  }
+}

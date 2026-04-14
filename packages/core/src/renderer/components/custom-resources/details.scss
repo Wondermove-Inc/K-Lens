@@ -1,0 +1,25 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+$custom-resource-condition-colors: (
+  Accepted: var(--colorOk),
+  Available: var(--colorOk),
+  Succeeded: var(--colorOk),
+  Success: var(--colorOk),
+  Ready: var(--colorSuccess),
+);
+
+// 🔄 THEME-031: white → CSS 변수
+.CustomResourceDetails {
+  .conditions {
+    @each $status, $color in $custom-resource-condition-colors {
+      .#{$status} {
+        background: $color;
+        color: var(--status-badge-text, oklch(1 0 0));
+      }
+    }
+  }
+}

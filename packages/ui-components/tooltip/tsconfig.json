@@ -1,0 +1,4 @@
+{
+  "extends": "@skuberplus/typescript/config/base.json",
+  "include": ["**/*.ts", "**/*.tsx"]
+}

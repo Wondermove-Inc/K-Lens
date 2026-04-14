@@ -1,0 +1,23 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// App's common configuration for any process (main, renderer, build pipeline, etc.)
+import type { ThemeId } from "../renderer/themes/lens-theme";
+
+export const defaultThemeId: ThemeId = "lens-dark";
+export const defaultFontSize = 12;
+export const defaultTerminalFontFamily = "RobotoMono";
+export const defaultEditorFontFamily = "GeistMono";
+
+// Apis
+export const apiPrefix = "/api"; // local router apis
+export const apiKubePrefix = "/api-kube"; // k8s cluster apis
+
+// Links
+export const issuesTrackerUrl = "https://github.com/Wondermove-Inc/Skuberplus-Client-Community/issues" as string;
+export const supportUrl = "https://github.com/Wondermove-Inc/Skuberplus-Client-Community" as string;
+export const docsUrl = "https://github.com/Wondermove-Inc/Skuberplus-Client-Community/wiki" as string;
+export const forumsUrl = "https://github.com/Wondermove-Inc/Skuberplus-Client-Community/discussions" as string;

@@ -1,0 +1,83 @@
+# This file controls the behavior of Trunk: https://docs.trunk.io/cli
+# To learn more about the format of this file, see https://docs.trunk.io/reference/trunk-yaml
+version: 0.1
+cli:
+  version: 1.25.0
+# Trunk provides extensibility via plugins. (https://docs.trunk.io/plugins)
+plugins:
+  sources:
+    - id: trunk
+      ref: v1.7.2
+      uri: https://github.com/trunk-io/plugins
+# Many linters and tools depend on runtimes - configure them here. (https://docs.trunk.io/runtimes)
+runtimes:
+  enabled:
+    - go@1.21.0
+    - node@22.16.0! # datasource=node-version depName=node
+    - python@3.11.9
+# This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
+lint:
+  definitions:
+    # See https://github.com/trunk-io/plugins/pull/1063
+    - name: biome
+      files:
+        - astro
+        - css
+        - graphql
+        - html
+        - javascript
+        - json
+        - typescript
+      commands:
+        - output: regex
+          success_codes:
+            - 0
+            - 1
+          batch: true
+          cache_results: false
+          name: lint
+          parse_regex: ^::(?P<severity>.*) title=(?P<code>[^,]+),file=(?P<path>[^,]+),line=(?P<line>[^,]+),endLine=[^,]+,col=(?P<col>[^,]+),endColumn=[^:]+::(?P<message>.*)
+          read_output_from: stdout
+          run: biome check --config-path=${workspace}/biome.jsonc --reporter=github ${target}
+          run_from: ${root_or_parent_with(biome.jsonc)}
+        - output: regex
+          success_codes:
+            - 0
+          batch: true
+          cache_results: false
+          formatter: true
+          name: fmt
+          parse_regex: ^::(?P<severity>.*) title=(?P<code>[^,]+),file=(?P<path>[^,]+),line=(?P<line>[^,]+),endLine=[^,]+,col=(?P<col>[^,]+),endColumn=[^:]+::(?P<message>.*)
+          read_output_from: stdout
+          run: biome format --config-path=${workspace}/biome.jsonc --reporter=github --write ${target}
+          run_from: ${root_or_parent_with(biome.jsonc)}
+      run_timeout: 1m
+
+    # Prettier checks only *.scss files
+    - name: prettier
+      files:
+        - sass
+  enabled:
+    - shellcheck@0.11.0
+    - shfmt@3.6.0
+  disabled:
+    - actionlint
+    - biome
+    - stylelint
+    - git-diff-check
+    - markdownlint
+    - prettier
+    - yamlfmt
+    - yamllint
+    - checkov
+    - osv-scanner
+    - oxipng
+    - renovate
+    - svgo
+    - trufflehog
+actions:
+  enabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-fmt-pre-commit
+    - trunk-upgrade-available

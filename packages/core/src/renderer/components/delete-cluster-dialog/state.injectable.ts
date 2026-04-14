@@ -1,0 +1,26 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import { observable } from "mobx";
+
+import type { KubeConfig } from "@skuberplus/kubernetes-client-node";
+
+import type { Cluster } from "../../../common/cluster/cluster";
+
+export interface DeleteClusterDialogState {
+  config: KubeConfig;
+  cluster: Cluster;
+  showContextSwitch: boolean;
+  newCurrentContext: string;
+}
+
+const deleteClusterDialogStateInjectable = getInjectable({
+  id: "delete-cluster-dialog-state",
+  instantiate: () => observable.box<DeleteClusterDialogState | undefined>(),
+});
+
+export default deleteClusterDialogStateInjectable;

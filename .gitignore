@@ -1,0 +1,93 @@
+# Turborepo
+.turbo
+
+# 🔒 환경 변수 파일 (보안)
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+
+# 🍎 Apple 인증서 (보안)
+*.p8
+
+# 📦 일반 파일 패턴
+*.gz
+*.log
+logs/
+*.map
+*.out
+*.tgz
+*.tmp
+*~
+*.bak
+*.backup
+*.backup-*
+.backup/
+
+# 🎯 빌드 생성물
+coverage/
+dist/
+node_modules/
+out/
+icon.iconset/
+release/
+
+# 💿 Electron 빌드 산출물
+*.dmg
+*.exe
+*.app
+*.AppImage
+
+# 📦 pnpm 관련
+.pnpm-store/
+.pnpm-debug.log
+yarn.lock
+package-lock.json
+
+# 🗂️ 캐시 및 설정
+.cache/
+.npmrc
+.webpack/
+
+# 🤖 Claude Code 런타임 상태
+.claude-state/
+.claude/settings.local.json
+commands/
+
+# 📝 TypeScript 빌드 캐시
+*.tsbuildinfo
+
+# 🔧 TypeScript 컴파일 결과물 (src/ 디렉토리 내)
+# 주의: 설정 파일(*.config.js, jest.config.js 등)은 제외
+packages/*/src/**/*.js
+packages/*/*/src/**/*.js
+packages/*/*/*/src/**/*.js
+packages/*/src/**/*.d.ts
+packages/*/*/src/**/*.d.ts
+packages/*/*/*/src/**/*.d.ts
+# 설정 파일은 허용
+!packages/**/*.config.js
+!packages/**/jest.config.js
+!packages/**/webpack.config.js
+
+# 📁 로그 디렉토리 (런타임 로그만, 소스 코드 dock/logs 제외)
+/logs/
+*.log
+
+# 💻 IDE 및 OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 문서 (docs/는 Git 추적, scratch/는 일회성 문서 전용)
+# docs/
+docs/scratch/
+skuberplus/binaries/
+
+# 🔧 Serena 설정 (프로젝트별 로컬 설정)
+.serena/
+
+# 🔍 트러블슈팅 문서 (일회성)
+troubleshooting/

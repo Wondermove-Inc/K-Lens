@@ -1,0 +1,35 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.LineProgress {
+  position: relative;
+  border-radius: 2px;
+  // 🎯 Lens 테마의 CSS 변수 사용 (테마 전환 시 자동 업데이트)
+  background: var(--lineProgressBackground);
+  height: 3px;
+
+  // line indicator
+  .line {
+    background: currentColor;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    transition: 250ms width ease-in;
+
+    &:after {
+      $offset: $padding;
+      content: "";
+      position: absolute;
+      top: -$offset;
+      left: 0;
+      bottom: -$offset;
+      right: 0;
+    }
+  }
+}

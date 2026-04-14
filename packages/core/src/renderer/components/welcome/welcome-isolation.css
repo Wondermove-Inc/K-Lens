@@ -1,0 +1,36 @@
+/**
+ * 🎯 목적: app.scss 전역 리셋 무효화 (shadcn 스타일 보호)
+ * 📝 전략: all: initial 대신 전역 리셋 속성만 복원
+ *
+ * ⚠️ 주의: all: initial은 CSS variables까지 파괴하므로 사용 금지!
+ */
+
+.welcome-root {
+  /* 🎯 Tailwind CSS 기본값 복원 (app.scss 전역 리셋 무효화) */
+
+  /* ✅ box-sizing: Tailwind 기본값 유지 */
+  box-sizing: border-box;
+
+  /* ✅ 자식 요소들도 border-box 적용 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 🎯 Tailwind 기본 스타일 복원 */
+  font-family:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 🎯 기본 색상 (CSS variables 사용) */
+  color: var(--foreground);
+  background-color: var(--background);
+
+  /* 🎯 전체 화면 레이아웃 */
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}

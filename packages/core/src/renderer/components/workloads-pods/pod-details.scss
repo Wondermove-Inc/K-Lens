@@ -1,0 +1,39 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+@use "../vars" as *;
+
+$pod-condition-colors: (
+  ContainersReady: var(--colorOk),
+  DisruptionTarget: var(--colorError),
+  Initialized: var(--colorOk),
+  PodReadyToStartContainers: var(--colorOk),
+  PodResizeInProgress: var(--colorWarning),
+  PodResizePending: var(--colorWarning),
+  PodScheduled: var(--colorOk),
+  Ready: var(--colorSuccess),
+);
+
+.PodDetails {
+  // 🔄 THEME-031: white → CSS 변수
+  .conditions {
+    @each $status, $color in $pod-condition-colors {
+      .#{$status} {
+        background: $color;
+        color: var(--status-badge-text, oklch(1 0 0));
+      }
+    }
+  }
+
+  .volume {
+    .title {
+      margin-top: $margin * 2;
+      margin-bottom: $margin;
+      font-weight: bold;
+    }
+  }
+}

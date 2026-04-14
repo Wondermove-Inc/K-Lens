@@ -1,0 +1,59 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../../vars" as *;
+
+.ReplicaSetScaleDialog {
+  // 🔄 THEME-031: #a0a0a0 → CSS 변수
+  .Wizard {
+    .header {
+      span {
+        color: var(--wizard-subtitle-color, oklch(0.65 0 0));
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .WizardStep {
+      .step-content {
+        min-height: 90px;
+        overflow: hidden;
+      }
+    }
+
+    .current-scale {
+      font-weight: bold;
+    }
+
+    .desired-scale {
+      flex: 1.1 0;
+    }
+
+    .slider-container {
+      flex: 1 0;
+    }
+
+    // 🔄 THEME-031: black → CSS 변수
+    .plus-minus-container {
+      margin-left: $margin * 2;
+      .Icon {
+        --color-active: var(--icon-color-active, oklch(0.15 0 0));
+      }
+    }
+
+    .warning {
+      color: var(--colorSoftError);
+      font-size: small;
+      display: flex;
+      align-items: center;
+
+      .Icon {
+        margin: 0;
+        margin-right: $margin;
+      }
+    }
+  }
+}

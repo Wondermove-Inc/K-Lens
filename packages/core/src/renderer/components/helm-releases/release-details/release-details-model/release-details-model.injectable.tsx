@@ -1,0 +1,295 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { pipeline } from "@ogre-tools/fp";
+import { getInjectable, lifecycleEnum } from "@ogre-tools/injectable";
+import { waitUntilDefined } from "@skuberplus/utilities";
+import assert from "assert";
+import { groupBy, map } from "lodash/fp";
+import { action, computed, observable, runInAction } from "mobx";
+import navigateToHelmReleasesInjectable from "../../../../../common/front-end-routing/routes/cluster/helm/releases/navigate-to-helm-releases.injectable";
+import requestHelmReleaseConfigurationInjectable from "../../../../../common/k8s-api/endpoints/helm-releases.api/request-configuration.injectable";
+import hostedClusterInjectable from "../../../../cluster-frame-context/hosted-cluster.injectable";
+import hostedClusterIdInjectable from "../../../../cluster-frame-context/hosted-cluster-id.injectable";
+import createUpgradeChartTabInjectable from "../../../dock/upgrade-chart/create-upgrade-chart-tab.injectable";
+import { notificationPanelStore } from "../../../status-bar/items/notification-panel.store";
+import helmChartRepoInjectable from "../../helm-chart-repo.injectable";
+import updateReleaseInjectable from "../../update-release/update-release.injectable";
+import getResourceDetailsUrlInjectable from "./get-resource-details-url.injectable";
+import requestDetailedHelmReleaseInjectable from "./request-detailed-helm-release.injectable";
+
+import type { KubeJsonApiData } from "@skuberplus/kube-object";
+
+import type { IAsyncComputed } from "@ogre-tools/injectable-react";
+import type { IObservableValue } from "mobx";
+
+import type { Cluster } from "../../../../../common/cluster/cluster";
+import type { NavigateToHelmReleases } from "../../../../../common/front-end-routing/routes/cluster/helm/releases/navigate-to-helm-releases.injectable";
+import type { HelmRelease } from "../../../../../common/k8s-api/endpoints/helm-releases.api";
+import type { RequestHelmReleaseConfiguration } from "../../../../../common/k8s-api/endpoints/helm-releases.api/request-configuration.injectable";
+import type { RequestHelmReleaseUpdate } from "../../../../../common/k8s-api/endpoints/helm-releases.api/request-update.injectable";
+import type { TargetHelmRelease } from "../target-helm-release.injectable";
+import type { GetResourceDetailsUrl } from "./get-resource-details-url.injectable";
+import type { DetailedHelmRelease, RequestDetailedHelmRelease } from "./request-detailed-helm-release.injectable";
+
+const releaseDetailsModelInjectable = getInjectable({
+  id: "release-details-model",
+
+  instantiate: async (di, targetRelease: TargetHelmRelease) => {
+    const clusterId = di.inject(hostedClusterIdInjectable);
+
+    assert(clusterId, "Cluster id is required");
+
+    // 🆕 FIX-038: clusterName metadata 추가
+    const hostedCluster = di.inject(hostedClusterInjectable);
+
+    const model = new ReleaseDetailsModel({
+      requestDetailedHelmRelease: di.inject(requestDetailedHelmReleaseInjectable),
+      targetRelease,
+      clusterId,
+      hostedCluster,
+      requestHelmReleaseConfiguration: di.inject(requestHelmReleaseConfigurationInjectable),
+      getResourceDetailsUrl: di.inject(getResourceDetailsUrlInjectable),
+      updateRelease: di.inject(updateReleaseInjectable),
+      createUpgradeChartTab: di.inject(createUpgradeChartTabInjectable),
+      navigateToHelmReleases: di.inject(navigateToHelmReleasesInjectable),
+      helmChartRepo: di.injectFactory(helmChartRepoInjectable),
+    });
+
+    await model.load();
+
+    return model;
+  },
+
+  lifecycle: lifecycleEnum.keyedSingleton({
+    getInstanceKey: (di, release: TargetHelmRelease) => `${release.namespace}/${release.name}`,
+  }),
+});
+
+export default releaseDetailsModelInjectable;
+
+export interface OnlyUserSuppliedValuesAreShownToggle {
+  readonly value: IObservableValue<boolean>;
+  toggle: () => Promise<void>;
+}
+
+export interface ConfigurationInput {
+  readonly nonSavedValue: IObservableValue<string>;
+  readonly isLoading: IObservableValue<boolean>;
+  readonly isSaving: IObservableValue<boolean>;
+  onChange: (value: string) => void;
+  save: () => Promise<void>;
+}
+
+interface Dependencies {
+  readonly targetRelease: TargetHelmRelease;
+  readonly clusterId: string;
+  readonly hostedCluster: Cluster | undefined;
+  requestDetailedHelmRelease: RequestDetailedHelmRelease;
+  requestHelmReleaseConfiguration: RequestHelmReleaseConfiguration;
+  getResourceDetailsUrl: GetResourceDetailsUrl;
+  updateRelease: RequestHelmReleaseUpdate;
+  createUpgradeChartTab: (release: HelmRelease) => string;
+  navigateToHelmReleases: NavigateToHelmReleases;
+  helmChartRepo: (release: HelmRelease) => IAsyncComputed<string | undefined>;
+}
+
+export class ReleaseDetailsModel {
+  readonly id: string;
+
+  constructor(protected readonly dependencies: Dependencies) {
+    this.id = `${this.dependencies.targetRelease.namespace}/${this.dependencies.targetRelease.name}`;
+  }
+
+  private readonly detailedRelease = observable.box<DetailedHelmRelease | undefined>();
+
+  readonly loadingError = observable.box<string>();
+
+  readonly configuration: ConfigurationInput = {
+    nonSavedValue: observable.box(""),
+    isLoading: observable.box(false),
+    isSaving: observable.box(false),
+
+    onChange: action((value: string) => {
+      this.configuration.nonSavedValue.set(value);
+    }),
+
+    save: async () => {
+      runInAction(() => {
+        this.configuration.isSaving.set(true);
+      });
+
+      const name = this.release.getName();
+      const namespace = this.release.getNs();
+      const helmChartRepo = this.dependencies.helmChartRepo(this.release);
+      const repo = await waitUntilDefined(helmChartRepo.value);
+
+      const data = {
+        chart: this.release.getChart(),
+        repo,
+        version: this.release.getVersion(),
+        values: this.configuration.nonSavedValue.get(),
+      };
+
+      const result = await this.dependencies.updateRelease(name, namespace, data);
+
+      runInAction(() => {
+        this.configuration.isSaving.set(false);
+      });
+
+      // 🆕 FIX-038: clusterName metadata 추가
+      const clusterName = this.dependencies.hostedCluster?.name.get() ?? "Unknown Cluster";
+
+      if (!result.callWasSuccessful) {
+        notificationPanelStore.addCheckedError(
+          "operations",
+          result.error,
+          "Unknown error occurred while updating release",
+          { clusterName },
+        );
+
+        return;
+      }
+
+      notificationPanelStore.addSuccess("operations", "Release Updated", `Release ${name} successfully updated!`, {
+        actionType: "update",
+        resourceKind: "HelmRelease",
+        resourceName: name,
+        namespace,
+        clusterName,
+      });
+
+      await this.loadConfiguration();
+    },
+  };
+
+  readonly onlyUserSuppliedValuesAreShown: OnlyUserSuppliedValuesAreShownToggle = {
+    value: observable.box(false),
+
+    toggle: action(async () => {
+      const value = this.onlyUserSuppliedValuesAreShown.value;
+
+      value.set(!value.get());
+
+      await this.loadConfiguration();
+    }),
+  };
+
+  load = async () => {
+    const { name, namespace } = this.dependencies.targetRelease;
+
+    const result = await this.dependencies.requestDetailedHelmRelease({
+      releaseName: name,
+      namespace,
+      clusterId: this.dependencies.clusterId,
+    });
+
+    if (!result.callWasSuccessful) {
+      runInAction(() => {
+        this.loadingError.set(result.error);
+      });
+
+      return;
+    }
+
+    runInAction(() => {
+      this.detailedRelease.set(result.response);
+    });
+
+    await this.loadConfiguration();
+  };
+
+  private loadConfiguration = async () => {
+    runInAction(() => {
+      this.configuration.isLoading.set(true);
+    });
+
+    const { name, namespace } = this.release;
+
+    const configuration = await this.dependencies.requestHelmReleaseConfiguration(
+      name,
+      namespace,
+      !this.onlyUserSuppliedValuesAreShown.value.get(),
+    );
+
+    runInAction(() => {
+      this.configuration.isLoading.set(false);
+      this.configuration.nonSavedValue.set(configuration);
+    });
+  };
+
+  @computed get release() {
+    const detailedRelease = this.detailedRelease.get();
+
+    assert(detailedRelease, "Tried to access release before load");
+
+    return detailedRelease.release;
+  }
+
+  @computed private get details() {
+    const detailedRelease = this.detailedRelease.get();
+
+    assert(detailedRelease, "Tried to access details before load");
+
+    return detailedRelease.details;
+  }
+
+  @computed get notes() {
+    return this.details?.info.notes ?? "";
+  }
+
+  @computed get groupedResources(): MinimalResourceGroup[] {
+    return pipeline(
+      this.details.resources ?? [],
+      groupBy((resource) => resource.kind),
+      (grouped) => Object.entries(grouped),
+
+      map(([kind, resources]) => ({
+        kind,
+
+        resources: resources.map(toMinimalResourceFor(this.dependencies.getResourceDetailsUrl, kind)),
+
+        isNamespaced: resources.some((resource) => !!resource.metadata.namespace),
+      })),
+    );
+  }
+
+  close = () => {
+    this.dependencies.navigateToHelmReleases();
+  };
+
+  startUpgradeProcess = () => {
+    this.dependencies.createUpgradeChartTab(this.release);
+
+    this.dependencies.navigateToHelmReleases();
+  };
+}
+
+export interface MinimalResourceGroup {
+  kind: string;
+  isNamespaced: boolean;
+  resources: MinimalResource[];
+}
+
+export interface MinimalResource {
+  uid: string | undefined;
+  name: string;
+  namespace: string | undefined;
+  detailsUrl: string | undefined;
+}
+
+const toMinimalResourceFor =
+  (getResourceDetailsUrl: GetResourceDetailsUrl, kind: string) =>
+  (resource: KubeJsonApiData): MinimalResource => {
+    const { name, namespace, uid } = resource.metadata;
+
+    return {
+      uid,
+      name,
+      namespace,
+      detailsUrl: getResourceDetailsUrl(kind, resource.apiVersion, namespace, name),
+    };
+  };

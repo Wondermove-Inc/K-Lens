@@ -1,0 +1,97 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { withInjectables } from "@ogre-tools/injectable-react";
+import { Icon } from "@skuberplus/icon";
+import { observer } from "mobx-react";
+import React from "react";
+import { checkThatAllDiscriminablesAreExhausted } from "../../../../common/utils/composable-responsibilities/discriminable/discriminable";
+import { compositeHasDescendant } from "../../../../common/utils/composite/composite-has-descendant/composite-has-descendant";
+import { Map } from "../../../../renderer/components/map/map";
+import { Tabs } from "../../../../renderer/components/tabs";
+import activePreferenceTabInjectable from "../active-preference-tab.injectable";
+import preferencesCompositeInjectable from "../preference-items/preferences-composite.injectable";
+import { PreferencesNavigationTab } from "./preferences-navigation-tab";
+
+import type { IComputedValue } from "mobx";
+
+import type { Composite } from "../../../../common/utils/composite/get-composite/get-composite";
+import type { ActivePreferenceTab } from "../active-preference-tab.injectable";
+import type { PreferenceItemTypes } from "../preference-items/preference-item-injection-token";
+import type { PreferenceTabsRoot } from "../preference-items/preference-tab-root";
+
+interface Dependencies {
+  composite: IComputedValue<Composite<PreferenceItemTypes | PreferenceTabsRoot>>;
+  activePreferenceTab: ActivePreferenceTab;
+}
+
+const NonInjectedPreferencesNavigation = observer(({ composite, activePreferenceTab }: Dependencies) => (
+  <Tabs<string> className="flex column" scrollable={false} onChange={(tabId) => activePreferenceTab.set(tabId)}>
+    {toNavigationHierarchy(composite.get())}
+  </Tabs>
+));
+
+export const PreferencesNavigation = withInjectables<Dependencies>(NonInjectedPreferencesNavigation, {
+  getProps: (di) => ({
+    composite: di.inject(preferencesCompositeInjectable),
+    activePreferenceTab: di.inject(activePreferenceTabInjectable),
+  }),
+});
+
+const toNavigationHierarchy = (composite: Composite<PreferenceItemTypes | PreferenceTabsRoot>) => {
+  const value = composite.value;
+
+  switch (value.kind) {
+    // Note: These preference item types are not rendered in navigation,
+    // yet they are interesting for deciding if eg. a tab group or a tab has content
+    // somewhere in structure, and therefore not be hidden.
+    case "page":
+
+    // Intentional case fallthrough
+    case "block": {
+      return emptyRender;
+    }
+
+    case "tab-group": {
+      return (
+        <div data-preference-tab-group-test={value.id}>
+          <div className="header flex items-center">
+            {value.iconName && <Icon material={value.iconName} smallest className="mr-3" />}
+            {value.label}
+          </div>
+
+          <Map items={composite.children.filter(hasContent)}>{toNavigationHierarchy}</Map>
+        </div>
+      );
+    }
+
+    case "tab": {
+      return <PreferencesNavigationTab tab={value} />;
+    }
+
+    case "preference-tabs-root": {
+      return (
+        <Map
+          // Note: stricter typing for composite children could maybe remove this curiosity.
+          items={composite.children.filter(hasContent) as Composite<PreferenceItemTypes>[]}
+          getSeparator={value.childSeparator}
+        >
+          {toNavigationHierarchy}
+        </Map>
+      );
+    }
+
+    default: {
+      throw checkThatAllDiscriminablesAreExhausted(value);
+    }
+  }
+};
+
+const hasContent = compositeHasDescendant<PreferenceItemTypes | PreferenceTabsRoot>(
+  (composite) => composite.value.kind === "block",
+);
+
+const emptyRender = <></>;

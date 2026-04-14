@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CephFs /> should render 'false' for Readonly when false is provided 1`] = `
+<div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Monitors
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      <ul />
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Mount Path
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Username
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      admin
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Secret Filepath
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /etc/ceph/user.secret
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Readonly
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      false
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CephFs /> should render 'false' for Readonly when not provided 1`] = `
+<div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Monitors
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      <ul />
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Mount Path
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Username
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      admin
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Secret Filepath
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /etc/ceph/user.secret
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Readonly
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      false
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CephFs /> should render 'true' for Readonly when true is provided 1`] = `
+<div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Monitors
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      <ul />
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Mount Path
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Username
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      admin
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Secret Filepath
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      /etc/ceph/user.secret
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+  >
+    <span
+      class="text-sm text-muted-foreground"
+    >
+      Readonly
+    </span>
+    <div
+      class="text-sm text-foreground"
+    >
+      true
+    </div>
+  </div>
+</div>
+`;

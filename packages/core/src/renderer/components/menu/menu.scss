@@ -1,0 +1,117 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../mixins";
+@use "../vars" as *;
+
+.Menu {
+  --bgc: var(--layoutBackground);
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--bgc);
+  list-style: none;
+  border: 1px solid var(--borderColor);
+  z-index: 101;
+  /* 🔄 THEME-040: rgb 하드코딩 → CSS 변수 */
+  box-shadow: var(--menu-shadow, oklch(0 0 0 / 17%)) 0px 6px 9px 0px;
+  border-radius: 4px;
+
+  &.portal {
+    left: -1000px;
+    top: -1000px;
+  }
+
+  &:not(.portal) {
+    margin: $margin 0;
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
+
+    &.top {
+      bottom: 100%;
+    }
+
+    &.bottom {
+      top: 100%;
+    }
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
+// 🔄 THEME-031: white → CSS 변수
+.MenuItem {
+  --color: var(--textColorPrimary);
+  --color-active: var(--menu-item-color-active, oklch(1 0 0));
+  --bgc-active: var(--menuActiveBackground);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--color);
+  padding: calc(var(--padding) / 2) var(--padding);
+  margin-bottom: -3px;
+  white-space: nowrap;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  border-radius: 6px;
+  border: 3px solid var(--bgc);
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:hover:not(.disabled) {
+    color: var(--color-active);
+    background: var(--bgc-active);
+    cursor: pointer;
+  }
+
+  &.active,
+  &:focus {
+    color: var(--color-active);
+    background-color: var(--bgc-active);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &.spacer {
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    border-top: 1px solid var(--contentColor);
+    pointer-events: none;
+  }
+
+  .Icon {
+    &:first-child {
+      margin-left: 0;
+      margin-right: $padding;
+    }
+  }
+}
+
+@include mixins.theme-light {
+  .Menu {
+    border: 1px solid var(--borderColor);
+  }
+}

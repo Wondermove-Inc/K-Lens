@@ -1,0 +1,24 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import { action } from "mobx";
+import cronJobTriggerDialogStateInjectable from "./state.injectable";
+
+import type { CronJob } from "@skuberplus/kube-object";
+
+export type OpenCronJobTriggerDialog = (cronJob: CronJob) => void;
+
+const openCronJobTriggerDialogInjectable = getInjectable({
+  id: "open-cron-job-trigger-dialog",
+  instantiate: (di): OpenCronJobTriggerDialog => {
+    const state = di.inject(cronJobTriggerDialogStateInjectable);
+
+    return action((cronJob) => state.set(cronJob));
+  },
+});
+
+export default openCronJobTriggerDialogInjectable;

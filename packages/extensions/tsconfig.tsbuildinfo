@@ -1,0 +1,1 @@
+{"root":["./src/extension-api.ts","../core/types/dom.d.ts","../core/types/font-face.d.ts","../core/types/from-webpack.d.ts","../core/types/json-to-pretty-yaml.d.ts","../core/types/mocks.d.ts","../core/types/react-table.config.d.ts","../core/types/selfsigned.d.ts","../core/types/storybook-shadcn.d.ts"],"version":"5.9.3"}

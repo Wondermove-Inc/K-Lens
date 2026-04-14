@@ -1,0 +1,37 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🎯 THEME-030: P0 Hardcode Migration
+ * 📝 CatalogAddButton 하드코딩 색상 → CSS 변수 마이그레이션
+ * 🔄 Migration: 2026-01-31 - #4a2a96, #222 제거
+ */
+.CatalogAddButton {
+  position: absolute;
+  right: 40px;
+  bottom: 30px;
+
+  .MuiFab-primary {
+    background-color: var(--blue);
+    border-radius: 50%;
+
+    &:hover {
+      background-color: var(--primary-hover);
+    }
+  }
+}
+
+.catalogSpeedDialPopper {
+  .MuiTooltip-tooltip {
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-fg);
+    font-size: 12px;
+  }
+
+  .MuiTooltip-arrow {
+    color: var(--tooltip-bg);
+  }
+}

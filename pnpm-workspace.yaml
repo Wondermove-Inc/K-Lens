@@ -1,0 +1,37 @@
+packages:
+  - skuberplus
+  - packages/**
+  # 🚫 Git Submodule 빌드 제외 (현재 프로젝트의 Storybook 설정 사용)
+  - '!packages/storybook-shadcn/vendor/**'
+
+nodeGyp: ../../../../node-gyp/bin/node-gyp.js
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - core-js-pure
+  - electron
+  - electron-winstaller
+  - esbuild
+  - node-pty
+  - playwright
+  - sharp
+
+overrides:
+  '@types/http-proxy': '-'
+  brace-expansion@^2.0.1: ^2.0.2
+  compression: ^1.8.1
+  form-data: ^4.0.4
+  http-proxy-middleware: ^3.0.0
+  http-proxy: npm:http-proxy-node16@^1.0.0
+  minimatch@3.1.2: ^5.0.0
+  tmp@^0.2.0: ^0.2.5
+
+patchedDependencies:
+  circular-dependency-plugin: patches/circular-dependency-plugin.patch
+  '@async-fn/jest': patches/@async-fn__jest.patch
+
+publicHoistPattern:
+  - node-gyp
+
+shellEmulator: true

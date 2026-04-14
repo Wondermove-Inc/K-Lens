@@ -1,0 +1,26 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+$vpa-status-colors: (
+  RecommendationProvided: var(--colorOk),
+  LowConfidence: var(--colorInfo),
+  FetchingHistory: var(--colorInfo),
+  NoPodsMatched: var(--colorInfo),
+  RecommendationMissing: var(--colorInfo),
+  ConfigUnsupported: var(--colorError),
+  UpdateModeUnsupported: var(--colorError),
+  UpdateInProgress: var(--colorWarning),
+);
+
+// 🔄 THEME-031: white → CSS 변수
+@mixin vpa-status-bgc {
+  @each $status, $color in $vpa-status-colors {
+    &.#{$status} {
+      background: $color;
+      color: var(--status-badge-text, oklch(1 0 0));
+    }
+  }
+}

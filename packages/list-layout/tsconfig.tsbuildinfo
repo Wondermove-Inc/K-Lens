@@ -1,0 +1,1 @@
+{"root":["./index.ts","./dist/index.d.ts","./dist/src/general-kube-column-token.d.ts","./dist/src/kube-list-layout-column.d.ts","./dist/src/list-layout-column.d.ts","./dist/src/pod-list-layout-token.d.ts","./src/general-kube-column-token.ts","./src/kube-list-layout-column.ts","./src/list-layout-column.ts","./src/pod-list-layout-token.ts"],"version":"5.9.3"}

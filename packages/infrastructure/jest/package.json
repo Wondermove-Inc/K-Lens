@@ -1,0 +1,34 @@
+{
+  "name": "@skuberplus/jest",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Jest configuration and scripts for SkuberPlus packages.",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "index.js",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules"
+  },
+  "dependencies": {
+    "identity-obj-proxy": "^3.0.0",
+    "glob": "^11.0.3",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@types/jest": "^29.5.14"
+  }
+}

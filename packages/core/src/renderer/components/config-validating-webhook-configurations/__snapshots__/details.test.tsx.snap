@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidatingWebhookConfigsDetails renders 1`] = `
+<body>
+  <div>
+    <div
+      class="ValidatingWebhookDetails"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          API version
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          admissionregistration.k8s.io/v1
+        </div>
+      </div>
+      <div
+        class="mt-8"
+      >
+        <h3
+          class="text-base font-semibold mb-4"
+        >
+          Webhooks
+        </h3>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0 firstItem"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Name
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            <strong>
+              pod-policy.example.com
+            </strong>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Client Config
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            <div>
+              <div>
+                Name: 
+                service-name
+              </div>
+              <div>
+                Namespace: 
+                service-namespace
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Match Policy
+          </span>
+          <div
+            class="text-sm text-foreground"
+          />
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Failure Policy
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            Fail
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Admission Review Versions
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            v1, v1beta1
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Side Effects
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            None
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Timeout Seconds
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            5
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Namespace Selector
+          </span>
+          <div
+            class="text-sm text-foreground"
+          />
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Object Selector
+          </span>
+          <div
+            class="text-sm text-foreground"
+          />
+        </div>
+        <div
+          class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0 lastItem"
+        >
+          <span
+            class="text-sm text-muted-foreground"
+          >
+            Rules
+          </span>
+          <div
+            class="text-sm text-foreground"
+          >
+            <div>
+              <div>
+                API Groups: 
+                , apps, extensions
+              </div>
+              <div>
+                API Versions: 
+                v1, v1beta1
+              </div>
+              <div>
+                Operations: 
+                CREATE, UPDATE
+              </div>
+              <div>
+                Resources: 
+                pods, deployments
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`ValidatingWebhookConfigsDetails renders with no webhooks 1`] = `
+<body>
+  <div>
+    <div
+      class="ValidatingWebhookDetails"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          API version
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          admissionregistration.k8s.io/v1
+        </div>
+      </div>
+      <div
+        class="mt-8"
+      >
+        <h3
+          class="text-base font-semibold mb-4"
+        >
+          Webhooks
+        </h3>
+        <div
+          style="opacity: 0.6;"
+        >
+          No webhooks set
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

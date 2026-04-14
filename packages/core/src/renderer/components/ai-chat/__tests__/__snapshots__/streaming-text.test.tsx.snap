@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StreamingText 컴포넌트 스냅샷 AC6: 기본 렌더링 스냅샷 1`] = `
+<div
+  class="prose prose-sm dark:prose-invert max-w-none"
+  data-testid="streaming-text"
+>
+  <div
+    data-testid="react-markdown"
+  >
+    <pre>
+      스냅샷 테스트
+    </pre>
+  </div>
+</div>
+`;
+
+exports[`StreamingText 컴포넌트 스냅샷 스트리밍 중 스냅샷 1`] = `
+<div
+  class="prose prose-sm dark:prose-invert max-w-none"
+  data-testid="streaming-text"
+>
+  <div
+    data-testid="react-markdown"
+  >
+    <pre>
+      스트리밍 중...
+    </pre>
+  </div>
+  <span
+    aria-hidden="true"
+    class="inline-block w-2 h-4 bg-foreground animate-blink ml-0.5"
+    data-testid="streaming-cursor"
+  />
+</div>
+`;

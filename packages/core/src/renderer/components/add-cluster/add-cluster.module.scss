@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../../components/mixins.scss";
+
+.AddClusters {
+  --flex-gap: calc(var(--unit) * 2);
+
+  /* 🔄 THEME-040: rgb 하드코딩 → CSS 변수 */
+  code {
+    color: var(--code-accent-color);
+  }
+
+  a[href] {
+    color: var(--colorInfo);
+  }
+}
+
+.editor {
+  min-height: 600px;
+  max-height: 600px;
+  border: 1px solid var(--colorVague);
+  border-radius: var(--border-radius);
+}
+
+@include mixins.theme-light {
+  .editor {
+    border-color: var(--borderFaintColor);
+  }
+}

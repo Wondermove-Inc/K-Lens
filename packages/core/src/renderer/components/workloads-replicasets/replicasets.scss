@@ -1,0 +1,35 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../table/table.mixins";
+
+.ReplicaSets {
+  .TableCell {
+    &.name {
+      flex-grow: 2;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.desired {
+      flex-grow: 0.4;
+    }
+
+    &.current {
+      flex-grow: 0.4;
+    }
+
+    &.read {
+      flex-grow: 0.4;
+    }
+
+    &.age {
+      flex-grow: 0.3;
+    }
+  }
+}

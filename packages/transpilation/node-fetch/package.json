@@ -1,0 +1,29 @@
+{
+  "name": "@skuberplus/node-fetch",
+  "version": "1.5.4-0",
+  "description": "Node fetch for SkuberPlus",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@skuberplus/typescript": "workspace:^",
+    "node-fetch": "^3.3.2",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3"
+  }
+}

@@ -1,0 +1,85 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.charts {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  background: var(--contentColor);
+  min-height: 300px;
+  margin-top: 0px;
+}
+
+.chartCard {
+  flex: 0 0 auto;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: var(--layoutBackground);
+  border-radius: 8px;
+  /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+  border: 1px solid var(--chart-card-border);
+}
+
+.chartTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--textColorPrimary);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.chartContainer {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.chartLegend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--textColorPrimary);
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.metricInfo {
+  font-size: 12px;
+  color: var(--textColorSecondary);
+  margin-top: 4px;
+  padding-left: 20px;
+}
+
+.empty {
+  background: var(--contentColor);
+  min-height: 280px;
+  text-align: center;
+  padding: calc(var(--padding) * 2);
+}
+
+.noMetrics {
+  display: flex;
+  flex-grow: 1;
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "files": [],
+  "references": [
+    { "path": "./skuberplus" },
+    { "path": "./skuberplus/integration" },
+    { "path": "./packages/cluster-settings" },
+    { "path": "./packages/cluster-sidebar" },
+    { "path": "./packages/core" },
+    { "path": "./packages/ensure-binaries" },
+    { "path": "./packages/extensions" },
+    { "path": "./packages/generate-tray-icons" },
+    { "path": "./packages/kube-object" },
+    { "path": "./packages/kubectl-versions" },
+    { "path": "./packages/legacy-global-di" },
+    { "path": "./packages/list-layout" },
+    { "path": "./packages/logger" },
+    { "path": "./packages/metrics" },
+    { "path": "./packages/random" },
+    { "path": "./packages/routing" },
+    { "path": "./packages/semver" },
+    { "path": "./packages/storybook-shadcn" }
+  ]
+}

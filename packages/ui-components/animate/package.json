@@ -1,0 +1,55 @@
+{
+  "name": "@skuberplus/animate",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Highly extendable animate in the SkuberPlus.",
+  "type": "commonjs",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./styles": "./dist/index.css"
+  },
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "build": "lens-webpack-build",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules"
+  },
+  "dependencies": {
+    "@skuberplus/feature-core": "workspace:^",
+    "@skuberplus/utilities": "workspace:^",
+    "@ogre-tools/injectable": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-auto-registration": "^17.11.1",
+    "@ogre-tools/injectable-react": "^17.11.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@skuberplus/jest": "workspace:^",
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@types/react": "^18.3.3",
+    "@types/webpack-env": "^1.18.8",
+    "css-loader": "^6.11.0",
+    "postcss-loader": "^8.2.0",
+    "sass-loader": "^16.0.5",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3"
+  }
+}

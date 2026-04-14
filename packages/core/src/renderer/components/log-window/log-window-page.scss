@@ -1,0 +1,180 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// 로그 창 모드일 때 RootFrame 크롬(TopBar, StatusBar) 숨기기
+// LogWindowPage 컴포넌트가 body에 log-window-mode 클래스를 추가하여 활성화
+body.log-window-mode {
+  // TopBar 숨기기 (grid-area: topbar)
+  [style*="grid-area: topbar"],
+  [class*="topBar"] {
+    display: none !important;
+  }
+
+  // StatusBar 숨기기
+  [data-testid="status-bar"] {
+    display: none !important;
+  }
+
+  // ClusterManager 그리드 재조정 (topbar, status-bar 행 제거)
+  .ClusterManager {
+    grid-template-areas: "main" !important;
+    grid-template-rows: 1fr !important;
+  }
+
+  // AI 패널용 padding-right가 로그 창에 영향주지 않도록 제거
+  .main-layout-wrapper {
+    padding-right: 0 !important;
+  }
+
+  // AI Chat Panel 숨기기 (defense-in-depth)
+  .AIChatPanelWrapper {
+    display: none !important;
+  }
+}
+
+.LogWindowPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+  background: var(--logsBackground, #1e1e1e);
+  color: var(--logsForeground, #d4d4d4);
+
+  // 🎯 라이트 모드에서도 로그 영역을 다크 톤으로 고정
+  // 메인 Dock의 .PodLogs와 동일한 ShadCN CSS 변수 오버라이드
+  --background: var(--logsBackground);
+  --foreground: var(--logsForeground);
+  --color-background: var(--logsBackground);
+  --color-foreground: var(--logsForeground);
+  --input: var(--logsBackground);
+  --color-input: var(--logsBackground);
+  --popover: var(--logsBackground);
+  --color-popover: var(--logsBackground);
+  --accent: var(--logRowHoverBackground);
+  --color-accent: var(--logRowHoverBackground);
+  --accent-foreground: var(--logsForeground);
+  --color-accent-foreground: var(--logsForeground);
+  --border: var(--logRowHoverBackground);
+  --color-border: var(--logRowHoverBackground);
+  --ring: var(--logsForeground);
+  --color-ring: var(--logsForeground);
+  --dockInfoBackground: var(--logsBackground);
+  --textColorPrimary: var(--logsForeground);
+  --textColorSecondary: var(--logsForeground);
+  --textColorAccent: var(--logsForeground);
+  --colorInfo: var(--logsForeground);
+  --inputControlBackground: var(--logsBackground);
+  --inputControlBorder: var(--logRowHoverBackground);
+  --inputControlHoverBorder: var(--logRowHoverBackground);
+  --menuSelectedOptionBgc: var(--logRowHoverBackground);
+  --select-menu-bgc: var(--logsBackground);
+  --select-menu-border-color: var(--logRowHoverBackground);
+  --select-option-focused-bgc: var(--logRowHoverBackground);
+  --select-option-focused-color: var(--logsForeground);
+  --select-option-selected-color: var(--logsForeground);
+  --borderColor: var(--logRowHoverBackground);
+
+  .Checkbox {
+    --checkbox-color: var(--logsForeground);
+    --checkbox-color-active: var(--logsForeground);
+    --checkbox-bgc-active: var(--logRowHoverBackground);
+  }
+
+  &.loading,
+  &.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    p {
+      color: var(--logsForeground, #d4d4d4);
+      opacity: 0.7;
+    }
+  }
+
+  &.error {
+    .error-message {
+      text-align: center;
+      padding: 2rem;
+      background: var(--colorError, #f44336);
+      border-radius: 8px;
+      max-width: 400px;
+
+      h2 {
+        margin: 0 0 0.5rem;
+      }
+
+      p {
+        margin: 0;
+        opacity: 1;
+      }
+    }
+  }
+
+  .log-window-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--logRowHoverBackground, #333);
+    background: var(--logsBackground, #1e1e1e);
+
+    // 헤더 내 모든 요소 색상 강제 (라이트 모드 대응)
+    .Icon,
+    input,
+    .Select__single-value,
+    .Select__input,
+    .Select__indicator,
+    .Select__dropdown-indicator,
+    .Select__control,
+    [data-slot="badge"] {
+      color: var(--logsForeground) !important;
+    }
+
+    .LogResourceSelector span {
+      color: var(--logsForeground) !important;
+    }
+
+    // LogSearch를 오른쪽으로 배치
+    .LogSearch {
+      margin-left: auto;
+      max-width: 400px;
+    }
+  }
+
+  .log-window-content {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+
+    .LogList {
+      height: 100%;
+    }
+  }
+
+  .log-window-footer {
+    flex-shrink: 0;
+    border-top: 1px solid var(--logRowHoverBackground, #333);
+    background: var(--logsBackground, #1e1e1e);
+    color: var(--logsForeground);
+
+    // 하단 컨트롤 요소 색상 강제 (라이트 모드 대응)
+    span,
+    button,
+    .Icon,
+    .Checkbox .label,
+    .Checkbox .box {
+      color: var(--logsForeground) !important;
+    }
+
+    [data-testid="download-logs-dropdown"] {
+      border-color: var(--logsForeground);
+    }
+  }
+}

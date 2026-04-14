@@ -1,0 +1,37 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../namespaces/namespaces-mixins";
+@use "../table/table.mixins";
+
+.Namespaces {
+  .TableCell {
+    &.name {
+      flex: 2;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.labels {
+      flex: 4;
+      @include table.table-cell-labels-offsets;
+    }
+
+    &.age {
+      flex: 0.4;
+    }
+
+    &.status {
+      @include namespaces-mixins.namespaceStatus;
+    }
+  }
+
+  .subnamespaceBadge {
+    margin-inline-start: var(--margin);
+  }
+}

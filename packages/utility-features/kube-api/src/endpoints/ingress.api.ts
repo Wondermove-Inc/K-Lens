@@ -1,0 +1,22 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { Ingress } from "@skuberplus/kube-object";
+import { KubeApi } from "../kube-api";
+
+import type { DerivedKubeApiOptions, KubeApiDependencies } from "../kube-api";
+
+export class IngressApi extends KubeApi<Ingress> {
+  constructor(deps: KubeApiDependencies, opts?: DerivedKubeApiOptions) {
+    super(deps, {
+      ...(opts ?? {}),
+      objectConstructor: Ingress,
+      // Add fallback for Kubernetes <1.19
+      checkPreferredVersion: true,
+      fallbackApiBases: ["/apis/extensions/v1beta1/ingresses"],
+    });
+  }
+}

@@ -1,0 +1,38 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.closeButton {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border: 2px solid var(--textColorDimmed);
+  border-radius: 50%;
+
+  &:hover {
+    // 🔄 THEME-031: #72767d25 → CSS 변수
+    background-color: var(--close-button-hover-bg, oklch(0.50 0 0 / 15%));
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.icon {
+  color: var(--textColorAccent);
+  opacity: 0.6;
+}
+
+.esc {
+  text-align: center;
+  margin-top: var(--margin);
+  font-weight: bold;
+  user-select: none;
+  color: var(--textColorDimmed);
+  pointer-events: none;
+}

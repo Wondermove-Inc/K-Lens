@@ -1,0 +1,49 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "sass:map";
+@use "autoscaler.mixins";
+@use "../table/table.mixins";
+@use "../vars" as *;
+
+.HorizontalPodAutoscalers {
+  .TableCell {
+    &.name {
+      flex: 1.5;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.metrics {
+      flex: 1.5;
+    }
+
+    &.conditions {
+      flex: 1.5;
+
+      .condition {
+        display: inline-block;
+        margin-right: $margin;
+
+        &.AbleToScale {
+          color: map.get(autoscaler.$hpa-status-colors, AbleToScale);
+        }
+        &.ScalingActive {
+          color: map.get(autoscaler.$hpa-status-colors, ScalingActive);
+        }
+        &.ScalingLimited {
+          color: map.get(autoscaler.$hpa-status-colors, ScalingLimited);
+        }
+      }
+    }
+
+    &.age {
+      flex: 0.5;
+    }
+  }
+}

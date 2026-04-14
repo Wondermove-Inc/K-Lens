@@ -1,0 +1,42 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "sass:math";
+@use "../vars" as *;
+
+.EndpointSliceDetails {
+  .title {
+    margin-top: $margin * 2;
+    margin-bottom: $margin;
+  }
+
+  .TableCell {
+    &.conditions {
+      flex-grow: 1.5;
+    }
+  }
+
+  // 🔄 THEME-031: 하드코딩 색상 → CSS 변수
+  .conditions {
+    .ready {
+      background-color: var(--badge-ready-bg, var(--colorSuccess));
+      color: var(--badge-text-on-colored, oklch(1 0 0));
+      margin: math.div($margin, 2);
+    }
+
+    .serving {
+      background-color: var(--badge-serving-bg, oklch(0.55 0.15 210));
+      color: var(--badge-text-on-colored, oklch(1 0 0));
+      margin: math.div($margin, 2);
+    }
+
+    .terminating {
+      background-color: var(--badge-terminating-bg, oklch(0.35 0 0));
+      color: var(--badge-text-on-colored, oklch(1 0 0));
+      margin: math.div($margin, 2);
+    }
+  }
+}

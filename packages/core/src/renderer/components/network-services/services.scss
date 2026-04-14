@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../network/network-mixins";
+@use "../table/table.mixins";
+
+.Services {
+  .TableCell {
+    &.type {
+      flex: 0.6;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.age {
+      flex: 0.4;
+    }
+
+    &.selector {
+      @include table.table-cell-labels-offsets;
+    }
+
+    &.status {
+      @include network-mixins.service-status-colors;
+      flex: 0.6;
+    }
+  }
+}

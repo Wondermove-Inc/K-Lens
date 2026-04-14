@@ -1,0 +1,9 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+export { KubeObjectMenu } from "./kube-object-menu";
+
+export type { KubeObjectMenuProps } from "./kube-object-menu";

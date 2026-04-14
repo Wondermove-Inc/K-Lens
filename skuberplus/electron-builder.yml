@@ -1,0 +1,255 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/electron-userland/electron-builder/refs/heads/master/packages/app-builder-lib/scheme.json
+
+electronVersion: 35.7.5 # datasource=npm depName=electron
+
+## Run `pnpm electron-rebuild` instead
+npmRebuild: false
+
+## 🎯 electron-updater 설정 (자동 업데이트 지원)
+## 📝 latest-mac.yml 파일 생성을 위해 generic provider 사용
+detectUpdateChannel: true
+generateUpdatesFilesForAllChannels: true
+publish:
+  provider: generic
+  url: ${UPDATE_SERVER_URL:-http://localhost:8080}
+
+## Asar archive configuration
+## 🔒 보안: 소스코드 보호를 위해 asar 압축 활성화
+asar: true
+
+## 🔧 네이티브 모듈은 asar에서 제외 (런타임에 직접 로드 필요)
+asarUnpack:
+  - "node_modules/node-pty/**/*"
+  - "node_modules/**/*.node"
+  - "**/*.node"
+
+## Files in app.asar
+## 🔒 보안: 소스코드, 소스맵, 개발 설정 파일 제외
+files:
+  - "package.json"
+  - "static/**/*"
+  - "node_modules/**/*"
+  - "!node_modules/@skuberplus/*/src"
+  - "!node_modules/@skuberplus/core/build"
+  - "!node_modules/@skuberplus/core/static/build/library/fonts"
+  - "!node_modules/@skuberplus/storybook-shadcn/vendor"
+  - "!node_modules/@skuberplus/storybook-shadcn/.storybook"
+  - "!node_modules/electron"
+  # 🚫 소스코드 제외 (보안)
+  - "!src/**/*"
+  - "!**/*.ts"
+  - "!**/*.tsx"
+  - "!**/*.map"
+  - "!tsconfig.json"
+  - "!tsconfig.tsbuildinfo"
+  - "!jest.config.js"
+  - "!webpack/**/*"
+  # 🚫 테스트/문서 파일 제외
+  - "!**/__tests__/**/*"
+  - "!**/*.test.ts"
+  - "!**/*.spec.ts"
+  - "!**/README.md"
+
+## Extra files added to unpacked resources
+## 🎯 webpack externals로 처리된 패키지들을 명시적으로 복사
+## 📝 이유: pnpm workspace 구조에서 심볼릭 링크가 제대로 처리되지 않음
+extraResources:
+  - build/license.txt
+  # Native modules
+  - from: "../node_modules/node-pty"
+    to: "node_modules/node-pty"
+  - from: "../node_modules/pnpm"
+    to: "node_modules/pnpm"
+  # Network modules
+  - from: "../node_modules/ws"
+    to: "node_modules/ws"
+  # React/MobX family (commonjs external로 처리됨)
+  - from: "../node_modules/mobx"
+    to: "node_modules/mobx"
+  - from: "../node_modules/react"
+    to: "node_modules/react"
+  - from: "../node_modules/react-dom"
+    to: "node_modules/react-dom"
+  - from: "../node_modules/scheduler"
+    to: "node_modules/scheduler"
+  - from: "../node_modules/use-sync-external-store"
+    to: "node_modules/use-sync-external-store"
+  - from: "../node_modules/mobx-react-lite"
+    to: "node_modules/mobx-react-lite"
+  # @ogre-tools packages (commonjs external로 처리됨)
+  - from: "../node_modules/@ogre-tools/injectable"
+    to: "node_modules/@ogre-tools/injectable"
+  - from: "../node_modules/@ogre-tools/injectable-extension-for-mobx"
+    to: "node_modules/@ogre-tools/injectable-extension-for-mobx"
+  - from: "../node_modules/@ogre-tools/injectable-extension-for-auto-registration"
+    to: "node_modules/@ogre-tools/injectable-extension-for-auto-registration"
+  - from: "../node_modules/@ogre-tools/injectable-react"
+    to: "node_modules/@ogre-tools/injectable-react"
+  - from: "../node_modules/@ogre-tools/fp"
+    to: "node_modules/@ogre-tools/fp"
+  # @ogre-tools/injectable-react 의존성
+  - from: "../node_modules/mobx-react"
+    to: "node_modules/mobx-react"
+  - from: "../node_modules/lodash"
+    to: "node_modules/lodash"
+
+## For Linux targets
+linux:
+  appId: com.wondermove.skuber-plus-client
+  category: Development;Network
+  artifactName: ${version}/SkuberPlusClient-${version}-${arch}.${ext}
+  # 🎯 .desktop 파일명 및 실행 파일명 설정 (package.json name 대신 사용)
+  executableName: skuberplus-client
+  # 🎯 Linux 아이콘 명시적 설정 (build/icon.png)
+  icon: build/icon.png
+  target:
+    - AppImage
+    - deb
+    - rpm
+  extraResources:
+    - from: binaries/client/linux/${arch}/kubectl
+      to: ./${arch}/kubectl
+    - from: binaries/client/linux/${arch}/skuberplus-k8s-proxy
+      to: ./${arch}/skuberplus-k8s-proxy
+    - from: binaries/client/linux/${arch}/helm
+      to: ./${arch}/helm
+    - from: binaries/client/linux/${arch}/trivy
+      to: ./${arch}/trivy
+    - from: binaries/client/linux/${arch}/kubescape
+      to: ./${arch}/kubescape
+  # 🎯 publish 설정은 상위 레벨 publish 사용 (latest-linux.yml 생성)
+
+appImage:
+  executableArgs:
+    - --ozone-platform-hint=auto
+    - --enable-features=WebRTCPipeWireCapturer
+    - --enable-features=WaylandWindowDecorations
+    - --disable-gpu-compositing
+    - --no-sandbox
+  license: build/license.txt
+
+deb:
+  depends:
+    - libgtk-3-0
+    - libnotify4
+    - libnss3
+    - libxss1
+    - libxtst6
+    - xdg-utils
+    - libatspi2.0-0
+    - libuuid1
+    - libsecret-1-0
+    - libasound2
+    - libgbm1
+  executableArgs:
+    - --ozone-platform-hint=auto
+    - --enable-features=WebRTCPipeWireCapturer
+    - --enable-features=WaylandWindowDecorations
+    - --disable-gpu-compositing
+  afterInstall: ./build/after-install-deb.sh
+  afterRemove: ./build/after-remove-deb.sh
+  fpm:
+    - ./build/apparmor-profile.aa=/etc/apparmor.d/skuberplus-client
+    - ./build/metainfo.xml=/usr/share/metainfo/app.skuberplus.SkuberPlus.metainfo.xml
+  packageCategory: devel
+
+## Official Flatpak is built from the separate repository
+flatpak:
+  useWaylandFlags: true
+  license: build/license.txt
+
+## Official Snap is built from the separate repository
+snap:
+  allowNativeWayland: true
+  confinement: classic
+
+rpm:
+  depends:
+    - gtk3
+    - libnotify
+    - nss
+    - libXScrnSaver
+    - (libXtst or libXtst6)
+    - xdg-utils
+    - at-spi2-core
+    - (libdrm2 or libdrm)
+    - (libgbm1 or libgmb or mesa-libgbm)
+    - (alsa-lib or libalsa2 or libasound2)
+  executableArgs:
+    - --ozone-platform-hint=auto
+    - --enable-features=WebRTCPipeWireCapturer
+    - --enable-features=WaylandWindowDecorations
+    - --disable-gpu-compositing
+  fpm:
+    - --rpm-rpmbuild-define=_build_id_links none
+    - ./build/metainfo.xml=/usr/share/metainfo/app.skuberplus.SkuberPlus.metainfo.xml
+  packageCategory: devel
+
+## For macOS targets
+mac:
+  appId: com.wondermove.skuber-plus-client
+  # 🎯 버전별 폴더 구조로 파일명 생성 (S3 구조: 0.0.2/SkuberPlusClient-0.0.2-arm64.dmg)
+  # 📝 productName에 공백/특수문자가 있어서 하드코딩으로 파일명 지정 (+ → Plus)
+  artifactName: ${version}/SkuberPlusClient-${version}-${arch}.${ext}
+  # 🎯 macOS 아이콘 명시적 설정 (build/icon.icns)
+  icon: build/icon.icns
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  category: public.app-category.developer-tools
+  darkModeSupport: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # 🎯 DMG, ZIP 생성 + latest-mac.yml 자동 생성
+  # 📝 electron-updater가 latest-mac.yml을 읽어 업데이트 체크
+  target:
+    - dmg
+    - zip
+  extraResources:
+    - from: binaries/client/darwin/${arch}/kubectl
+      to: ./${arch}/kubectl
+    - from: binaries/client/darwin/${arch}/skuberplus-k8s-proxy
+      to: ./${arch}/skuberplus-k8s-proxy
+    - from: binaries/client/darwin/${arch}/helm
+      to: ./${arch}/helm
+    - from: binaries/client/darwin/${arch}/trivy
+      to: ./${arch}/trivy
+    - from: binaries/client/darwin/${arch}/kubescape
+      to: ./${arch}/kubescape
+  # 🎯 publish 설정은 상위 레벨 publish 사용 (latest-mac.yml 생성)
+
+pkg:
+  license: build/license.txt
+
+## For Windows targets
+win:
+  appId: com.wondermove.skuber-plus-client
+  # 🎯 버전별 폴더 구조로 파일명 생성 (S3 구조: 0.0.2/SkuberPlusClient-0.0.2-x64.exe)
+  # 📝 productName에 공백/특수문자가 있어서 하드코딩으로 파일명 지정 (+ → Plus)
+  artifactName: ${version}/SkuberPlusClient-${version}-${arch}.${ext}
+  # 🎯 Windows 아이콘 명시적 설정 (build/icon.ico)
+  icon: build/icon.ico
+  target:
+    - nsis
+  extraResources:
+    - from: binaries/client/windows/${arch}/kubectl.exe
+      to: ./${arch}/kubectl.exe
+    - from: binaries/client/windows/${arch}/skuberplus-k8s-proxy.exe
+      to: ./${arch}/skuberplus-k8s-proxy.exe
+    - from: binaries/client/windows/${arch}/helm.exe
+      to: ./${arch}/helm.exe
+    - from: binaries/client/windows/${arch}/trivy.exe
+      to: ./${arch}/trivy.exe
+    - from: binaries/client/windows/${arch}/kubescape.exe
+      to: ./${arch}/kubescape.exe
+  # 🎯 publish 설정은 상위 레벨 publish 사용 (latest.yml 생성)
+
+msi:
+  perMachine: false
+
+nsis:
+  include: build/installer.nsh
+  oneClick: false
+  allowElevation: true
+  createStartMenuShortcut: true
+  allowToChangeInstallationDirectory: true
+  license: build/license.txt

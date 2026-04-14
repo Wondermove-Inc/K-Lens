@@ -1,0 +1,83 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.scrollAreaWrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.scrollArea {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.groupContent {
+  max-height: calc(100vh - 140px);
+  min-height: 0;
+}
+
+.scrollViewport {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.treeContainer {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.treeScrollArea {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.overlayCard {
+  width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+}
+
+.overlayFooter {
+  display: flex;
+  justify-content: center;
+  padding: 0 !important;
+  margin: 0 0 10px;
+  --update-banner-fade-duration: 1000ms;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity var(--update-banner-fade-duration) ease,
+    transform var(--update-banner-fade-duration) ease;
+  will-change: opacity, transform;
+}
+
+.overlayFooter[data-banner-state="initial"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.overlayFooter[data-banner-state="enter"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlayFooter[data-banner-state="exit"] {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}

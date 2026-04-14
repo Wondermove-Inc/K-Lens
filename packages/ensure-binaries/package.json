@@ -1,0 +1,41 @@
+{
+  "name": "@skuberplus/ensure-binaries",
+  "version": "1.5.4-0",
+  "description": "CLI for downloading configured versions of the bundled versions of CLIs",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "build": "tsc --pretty --project .",
+    "start": "node ./dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "arg": "^5.0.2",
+    "cli-progress": "^3.12.0",
+    "gunzip-maybe": "^1.4.2",
+    "node-fetch": "^3.3.2",
+    "tar-stream": "^3.1.7",
+    "zod": "^4.1.11",
+    "unzipper": "^0.10.14"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/gunzip-maybe": "^1.4.2",
+    "@types/node": "~22.16.5",
+    "@types/tar-stream": "^3.1.4",
+    "typescript": "^5.9.2",
+    "@types/unzipper": "^0.10.10"
+  },
+  "bin": {
+    "ensure-binaries": "bin/ensure-binaries.js"
+  }
+}

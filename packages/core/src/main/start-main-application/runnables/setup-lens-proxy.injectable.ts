@@ -1,0 +1,87 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import { beforeApplicationIsLoadingInjectionToken } from "@skuberplus/application";
+import { loggerInjectionToken } from "@skuberplus/logger";
+import { Agent } from "https";
+import lensProxyCertificateInjectable from "../../../common/certificate/lens-proxy-certificate.injectable";
+import nodeFetchInjectable from "../../../common/fetch/node-fetch.injectable";
+import isWindowsInjectable from "../../../common/vars/is-windows.injectable";
+import { buildVersionInitializable } from "../../../features/vars/build-version/common/token";
+import { buildVersionInitializationInjectable } from "../../../features/vars/build-version/main/init.injectable";
+import forceAppExitInjectable from "../../electron-app/features/force-app-exit.injectable";
+import showErrorPopupInjectable from "../../electron-app/features/show-error-popup.injectable";
+import lensProxyInjectable from "../../lens-proxy/lens-proxy.injectable";
+import lensProxyPortInjectable from "../../lens-proxy/lens-proxy-port.injectable";
+
+const setupLensProxyInjectable = getInjectable({
+  id: "setup-lens-proxy",
+
+  instantiate: (di) => ({
+    run: async () => {
+      const lensProxy = di.inject(lensProxyInjectable);
+      const forceAppExit = di.inject(forceAppExitInjectable);
+      const logger = di.inject(loggerInjectionToken);
+      const lensProxyPort = di.inject(lensProxyPortInjectable);
+      const isWindows = di.inject(isWindowsInjectable);
+      const showErrorPopup = di.inject(showErrorPopupInjectable);
+      const buildVersion = di.inject(buildVersionInitializable.stateToken);
+      const lensProxyCertificate = di.inject(lensProxyCertificateInjectable);
+      const fetch = di.inject(nodeFetchInjectable);
+
+      try {
+        logger.info("🔌 Starting SkuberPlus Proxy");
+        await lensProxy.listen(); // lensProxy.port available
+      } catch (error: any) {
+        showErrorPopup("SkuberPlus Error", `Could not start proxy: ${error?.message || "unknown error"}`);
+
+        return forceAppExit();
+      }
+
+      // test proxy connection
+      try {
+        logger.info("🔎 Testing SkuberPlus Proxy connection ...");
+        const versionResponse = await fetch(`https://127.0.0.1:${lensProxyPort.get()}/version`, {
+          agent: new Agent({
+            ca: lensProxyCertificate.get()?.cert,
+          }),
+        });
+
+        const { version: versionFromProxy } = (await versionResponse.json()) as { version: string };
+
+        if (buildVersion !== versionFromProxy) {
+          logger.error("Proxy server responded with invalid response");
+
+          return forceAppExit();
+        }
+
+        logger.info("⚡ SkuberPlus Proxy connection OK");
+      } catch (error) {
+        logger.error(`🛑 SkuberPlus Proxy: failed connection test: ${error}`);
+
+        const hostsPath = isWindows ? "C:\\windows\\system32\\drivers\\etc\\hosts" : "/etc/hosts";
+        const message = [
+          `Failed connection test: ${error}`,
+          "Check to make sure that no other versions of SkuberPlus are running",
+          `Check ${hostsPath} to make sure that it is clean and that the localhost loopback is at the top and set to 127.0.0.1`,
+          "If you have HTTP_PROXY or http_proxy set in your environment, make sure that the localhost and the ipv4 loopback address 127.0.0.1 are added to the NO_PROXY environment variable.",
+        ];
+
+        showErrorPopup("SkuberPlus Proxy Error", message.join("\n\n"));
+
+        return forceAppExit();
+      }
+    },
+    runAfter: buildVersionInitializationInjectable,
+  }),
+
+  causesSideEffects: true,
+
+  injectionToken: beforeApplicationIsLoadingInjectionToken,
+});
+
+export default setupLensProxyInjectable;

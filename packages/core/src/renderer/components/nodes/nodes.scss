@@ -1,0 +1,99 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../table/table.mixins";
+@use "nodes-mixins";
+@use "../vars" as *;
+
+.Nodes {
+  .TableCell {
+    &.name {
+      flex: 2;
+      text-overflow: ellipsis;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    .LineProgress {
+      width: 100%;
+    }
+
+    &.cpu {
+      flex: 0.6;
+      align-self: center;
+      justify-content: right;
+
+      &.sorting {
+        justify-content: left;
+      }
+
+      .LineProgress {
+        color: var(--blue);
+      }
+    }
+
+    &.memory {
+      flex: 0.6;
+      align-self: center;
+      justify-content: right;
+
+      &.sorting {
+        justify-content: left;
+      }
+
+      .LineProgress {
+        color: var(--magenta);
+      }
+    }
+
+    &.disk {
+      flex: 0.6;
+      align-self: center;
+      justify-content: right;
+
+      &.sorting {
+        justify-content: left;
+      }
+
+      .LineProgress {
+        color: var(--golden);
+      }
+    }
+
+    &.schedulable {
+      flex: 0.6;
+    }
+
+    &.taints {
+      flex: 0.6;
+    }
+
+    &.roles {
+      flex-grow: 1.5;
+    }
+
+    &.internalIp {
+      flex-grow: 1.3;
+    }
+
+    &.age {
+      flex-grow: 0.4;
+    }
+
+    &.conditions {
+      flex: 1.7;
+
+      .condition {
+        display: inline-block;
+        margin-right: $margin;
+
+        @include nodes-mixins.node-status-colors;
+      }
+    }
+  }
+}

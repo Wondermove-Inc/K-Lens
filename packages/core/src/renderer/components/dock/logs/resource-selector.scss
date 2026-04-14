@@ -1,0 +1,18 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.LogResourceSelector {
+  color: var(--logsForeground);
+
+  [data-testid="pod-selector"],
+  [data-testid="container-selector"] {
+    min-width: 150px;
+  }
+
+  [data-slot="badge"] {
+    color: var(--logsForeground);
+  }
+}

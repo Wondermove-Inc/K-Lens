@@ -1,0 +1,41 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../table/table.mixins";
+
+.Ingresses {
+  .TableCell {
+    &.checkbox .Checkbox {
+      align-items: flex-start;
+    }
+
+    &.rules {
+      flex-grow: 3;
+      overflow-x: scroll;
+      flex-wrap: wrap;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .ingressRule {
+        overflow: hidden;
+      }
+
+      .ingressRule + .ingressRule {
+        margin-top: 6px;
+      }
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.age {
+      flex-grow: 0.3;
+    }
+  }
+}

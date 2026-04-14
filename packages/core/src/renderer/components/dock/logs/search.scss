@@ -1,0 +1,20 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.LogSearch {
+  color: var(--logsForeground);
+
+  [data-slot="input-group"] {
+    min-width: 220px;
+  }
+
+  [data-slot="input-group-addon"],
+  [data-slot="input-group-control"],
+  input,
+  .Icon {
+    color: var(--logsForeground) !important;
+  }
+}

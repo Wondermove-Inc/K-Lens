@@ -1,0 +1,49 @@
+{
+  "name": "@skuberplus/json-api",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "JSON api client",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "build": "lens-webpack-build",
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "dev": "webpack --mode=development --watch"
+  },
+  "dependencies": {
+    "@skuberplus/event-emitter": "workspace:^",
+    "@skuberplus/utilities": "workspace:^",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@skuberplus/logger": "workspace:^",
+    "@skuberplus/node-fetch": "workspace:^",
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "~22.16.5",
+    "rfc6902": "^5.1.2",
+    "ts-loader": "^9.5.4",
+    "type-fest": "^5.0.1",
+    "webpack": "^5.101.3"
+  }
+}

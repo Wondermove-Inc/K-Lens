@@ -1,0 +1,226 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// 🔄 THEME-031: 하드코딩 색상 → CSS 변수
+.LogList {
+  --overlay-bg: var(--logs-overlay-bg, oklch(0.70 0.12 140 / 72%));
+  --overlay-active-bg: var(--logs-overlay-active-bg, oklch(0.70 0.18 65));
+
+  position: relative;
+  color: var(--logsForeground);
+  background: var(--logsBackground);
+  flex-grow: 1;
+
+  .VirtualList {
+    height: 100%;
+
+    .list {
+      overflow-x: scroll !important;
+      overflow-y: auto !important;
+      background: var(--logsBackground);
+
+      // 🎯 로그 영역 스크롤바 - 항상 다크 배경에 맞는 색상 사용
+      scrollbar-color: var(--logsScrollbarColor) var(--logsBackground);
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+        background: var(--logsBackground);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--logsScrollbarColor);
+        border-radius: 12px;
+        border: 3px solid transparent;
+        background-clip: padding-box;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: var(--logsBackground);
+      }
+
+      .LogRow {
+        padding: 2px 16px;
+        height: 18px; // Must be equal to lineHeight variable in pod-log-list.tsx
+        font-family: var(--font-monospace);
+        font-size: smaller;
+        white-space: nowrap;
+        color: var(--logsForeground);
+
+        &:hover {
+          background: var(--logRowHoverBackground);
+        }
+
+        span {
+          -webkit-font-smoothing: auto; // Better readability on non-retina screens
+          white-space: pre;
+        }
+
+        // 🎯 로그 레벨별 색상 (CSS 변수 기반, !important 없음 - 이슈 #165 원칙 준수)
+        &.log-error {
+          color: var(--log-level-error);
+          span { color: inherit; }
+        }
+        &.log-warn {
+          color: var(--log-level-warn);
+          span { color: inherit; }
+        }
+        &.log-info {
+          color: var(--log-level-info);
+          span { color: inherit; }
+        }
+        &.log-debug {
+          color: var(--log-level-debug);
+          span { color: inherit; }
+        }
+        &.log-trace {
+          color: var(--log-level-trace);
+          span { color: inherit; }
+        }
+
+        span.container-prefix {
+          opacity: 0.6;
+        }
+
+        span.overlay {
+          border-radius: 2px;
+          -webkit-font-smoothing: auto;
+          background-color: var(--overlay-bg);
+
+          span {
+            background-color: var(
+              --overlay-bg
+            ) !important; // Rewriting inline styles from AnsiUp library
+          }
+
+          &.active {
+            background-color: var(--overlay-active-bg);
+
+            span {
+              background-color: var(
+                --overlay-active-bg
+              ) !important; // Rewriting inline styles from AnsiUp library
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.isLoading {
+    cursor: wait;
+  }
+
+  &.isScrollHidden {
+    .VirtualList .list {
+      overflow-x: hidden !important; // fixing scroll to bottom issues in PodLogs
+    }
+  }
+}
+
+
+// 🎯 라이트 모드에서도 로그 영역을 다크 톤으로 고정
+.PodLogs {
+  --background: var(--logsBackground);
+  --foreground: var(--logsForeground);
+  --color-background: var(--logsBackground);
+  --color-foreground: var(--logsForeground);
+  --input: var(--logsBackground);
+  --color-input: var(--logsBackground);
+  --popover: var(--logsBackground);
+  --color-popover: var(--logsBackground);
+  --accent: var(--logRowHoverBackground);
+  --color-accent: var(--logRowHoverBackground);
+  --accent-foreground: var(--logsForeground);
+  --color-accent-foreground: var(--logsForeground);
+  --border: var(--logRowHoverBackground);
+  --color-border: var(--logRowHoverBackground);
+  --ring: var(--logsForeground);
+  --color-ring: var(--logsForeground);
+  --dockInfoBackground: var(--logsBackground);
+  --textColorPrimary: var(--logsForeground);
+  --textColorSecondary: var(--logsForeground);
+  --textColorAccent: var(--logsForeground);
+  --colorInfo: var(--logsForeground);
+  --inputControlBackground: var(--logsBackground);
+  --inputControlBorder: var(--logRowHoverBackground);
+  --inputControlHoverBorder: var(--logRowHoverBackground);
+  --menuSelectedOptionBgc: var(--logRowHoverBackground);
+  --select-menu-bgc: var(--logsBackground);
+  --select-menu-border-color: var(--logRowHoverBackground);
+  --select-option-focused-bgc: var(--logRowHoverBackground);
+  --select-option-focused-color: var(--logsForeground);
+  --select-option-selected-color: var(--logsForeground);
+
+  .Checkbox {
+    --checkbox-color: var(--logsForeground);
+    --checkbox-color-active: var(--logsForeground);
+    --checkbox-bgc-active: var(--logRowHoverBackground);
+  }
+
+  .LogResourceSelector span,
+  [data-testid="log-controls"] span,
+  [data-testid="log-controls"] .Checkbox .label,
+  [data-testid="log-controls"] .Checkbox .box,
+  [data-testid="log-controls"] button,
+  [data-testid="log-controls"] .Icon {
+    color: var(--logsForeground) !important;
+  }
+
+  [data-testid="download-logs-dropdown"] {
+    border-color: var(--logsForeground);
+  }
+}
+
+// 🎯 로그 상단 컨트롤은 로그 배경/텍스트 색상과 동일하게 맞춤
+.PodLogsInfoPanel {
+  background: var(--logsBackground) !important;
+  color: var(--logsForeground) !important;
+
+  .Icon,
+  input,
+  .Select__single-value,
+  .Select__input,
+  .Select__indicator,
+  .Select__dropdown-indicator,
+  .Select__control,
+  [data-slot="badge"] {
+    color: var(--logsForeground) !important;
+  }
+}
+
+// 🎯 하단 컨트롤 바도 로그 톤으로 맞춤
+.PodLogs [data-testid="log-controls"] {
+  background: var(--logsBackground);
+  color: var(--logsForeground);
+}
+
+// 🎯 로그 드롭다운/콤보박스 포털 컨텐츠를 다크 톤으로 고정
+// 🔄 THEME-031: #ffffff → CSS 변수
+.PodLogsPopoverContent,
+.PodLogsDropdownContent {
+  --popover: var(--logsBackground);
+  --popover-foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --color-popover: var(--logsBackground);
+  --color-popover-foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --color-foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --muted-foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --color-muted-foreground: var(--logs-popover-fg, oklch(1 0 0));
+  --border: var(--logRowHoverBackground);
+  --color-border: var(--logRowHoverBackground);
+  --ring: var(--logsForeground);
+  --color-ring: var(--logsForeground);
+  --accent: var(--logRowHoverBackground);
+  --color-accent: var(--logRowHoverBackground);
+  --accent-foreground: var(--logsForeground);
+  --color-accent-foreground: var(--logsForeground);
+
+  background: var(--logsBackground) !important;
+  color: var(--logs-popover-fg, oklch(1 0 0)) !important;
+  border-color: var(--logRowHoverBackground) !important;
+}

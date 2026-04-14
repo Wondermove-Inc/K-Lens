@@ -1,0 +1,11 @@
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem; /* Tailwind h-24 */
+  color: var(--textColorDimmed);
+}
+
+.searchInput > label {
+  box-shadow: none !important;
+}

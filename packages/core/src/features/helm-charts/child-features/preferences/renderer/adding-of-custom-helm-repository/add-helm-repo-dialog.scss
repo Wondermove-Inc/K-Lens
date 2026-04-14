@@ -1,0 +1,102 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../../../../../../renderer/components/vars" as *;
+
+// 🎯 목적: Add Helm Repo 다이얼로그 스타일 (Storybook shadcn 스타일 적용)
+.AddHelmRepoDialog {
+  --flex-gap: #{$margin * 1.5};
+
+  // 🎯 목적: Icon 색상 테마 지원
+  .Icon {
+    --color-active: var(--textColorPrimary);
+  }
+
+  // 🎯 목적: 폼 컨테이너 레이아웃
+  .helm-repo-form {
+    display: flex;
+    flex-direction: column;
+    gap: $margin;
+  }
+
+  // 🎯 목적: 필드 그룹 (라벨 + 입력)
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: $margin * 0.375; // 6px
+
+    .field-label {
+      font-size: 0.875rem; // 14px
+      font-weight: 500;
+      color: var(--textColorPrimary);
+    }
+  }
+
+  // 🎯 목적: 확장/축소 토글 버튼
+  .expand-toggle {
+    width: fit-content;
+    align-self: flex-start;
+    padding: 0;
+    gap: $margin * 0.5;
+    font-size: 0.875rem;
+    font-weight: 400;
+
+    &:hover {
+      background: transparent;
+    }
+
+    &:focus:not(:active) {
+      box-shadow: none;
+    }
+  }
+
+  // 🎯 목적: 확장된 옵션 섹션
+  .expanded-section {
+    display: flex;
+    flex-direction: column;
+    gap: $margin * 0.625; // 10px
+  }
+
+  // 🎯 목적: 보안 설정 섹션
+  .security-section {
+    display: flex;
+    flex-direction: column;
+    gap: $margin * 0.625;
+
+    .section-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--textColorPrimary);
+    }
+  }
+
+  // 🎯 목적: 체크박스와 라벨
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: $margin * 0.5;
+
+    .checkbox-label {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--textColorSecondary);
+    }
+  }
+
+  // 🎯 목적: 자격증명 섹션
+  .credentials-section {
+    display: flex;
+    flex-direction: column;
+    gap: $margin * 0.625;
+    margin-top: $margin * 0.375;
+
+    .section-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--textColorPrimary);
+    }
+  }
+}

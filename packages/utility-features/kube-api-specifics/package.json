@@ -1,0 +1,46 @@
+{
+  "name": "@skuberplus/kube-api-specifics",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Kube api",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "build": "lens-webpack-build",
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "dev": "webpack --mode=development --watch"
+  },
+  "dependencies": {
+    "@skuberplus/feature-core": "workspace:^",
+    "@skuberplus/kube-api": "workspace:^",
+    "@skuberplus/logger": "workspace:^",
+    "@ogre-tools/injectable": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-auto-registration": "^17.11.1"
+  },
+  "devDependencies": {
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@types/webpack-env": "^1.18.8",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.101.3"
+  }
+}

@@ -1,0 +1,20 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.ClusterMetricSwitchers {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: calc(var(--margin) * 2);
+
+  .nodeRoleContainer {
+    // Master/Worker 버튼 컨테이너
+  }
+
+  .metricTypeContainer {
+    // CPU/Memory 버튼 컨테이너
+  }
+}

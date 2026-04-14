@@ -1,0 +1,24 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import dockStoreInjectable from "./store.injectable";
+
+import type { TabId } from "./store";
+
+const closeDockTabInjectable = getInjectable({
+  id: "close-dock-tab",
+
+  instantiate: (di) => {
+    const dockStore = di.inject(dockStoreInjectable);
+
+    return (tabId: TabId): void => {
+      dockStore.closeTab(tabId);
+    };
+  },
+});
+
+export default closeDockTabInjectable;

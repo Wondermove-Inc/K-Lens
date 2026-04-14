@@ -1,0 +1,8 @@
+# Gitleaks 설정 — 테스트 파일의 더미 시크릿 허용
+# https://github.com/gitleaks/gitleaks#configuration
+
+[allowlist]
+description = "Test dummy secrets in unit tests"
+paths = [
+  '''__tests__/.*\.test\.ts$''',
+]

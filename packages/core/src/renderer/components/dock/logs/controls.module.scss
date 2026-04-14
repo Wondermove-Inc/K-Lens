@@ -1,0 +1,31 @@
+@use "../../mixins";
+
+.controls {
+  @include mixins.hidden-scrollbar;
+
+  display: flex;
+  gap: var(--padding);
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  background: var(--logsBackground);
+  color: var(--logsForeground) !important;
+  padding: var(--padding) calc(var(--padding) * 2);
+
+  span,
+  b {
+    color: var(--logsForeground) !important;
+  }
+
+  .Checkbox {
+    .label,
+    .box {
+      color: var(--logsForeground) !important;
+    }
+  }
+
+  button,
+  .Icon {
+    color: var(--logsForeground) !important;
+  }
+}

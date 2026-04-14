@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <style>
+      html, body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #222129;
+        color: #6c757d;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .aligner-center-center{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .aligner-content{
+        position: relative;
+        width: 100%;
+        padding: 80px;
+      }
+      .icon {
+        position: relative;
+        font-size: 36px;
+        line-height: 54px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .icon svg{
+        position: relative;
+        display: inline-block;
+        width: 54px;
+        height: 54px;
+        top: 14px;
+      }
+      .icon .icon-text{
+        color: #fff;
+        text-align: center;
+        display: inline;
+      }
+      svg{
+        position: relative;
+        width: 100%;
+      }
+      .loading{
+        padding-top: 10px;
+        position: relative;
+      }
+      .bar{
+        position: relative;;
+        height: 2px;
+        background: #262b2f;
+      }
+      .progress{
+        position: relative;
+        height: 2px;
+        background: #5E3BC0;
+        box-shadow: 0 0 20px #5E3BC0;
+        animation-name: loader-animation;
+        animation-duration: 1.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+
+    @keyframes loader-animation{
+      0% {
+        left: 0;
+        width: 0px;
+      }
+      50% {
+        left: 0;
+        width: 100%;
+      }
+      100% {
+        left: 100%;
+        width: 0px;
+      }
+    }
+    .glow-wrapper{
+      position: relative;
+      width: 100%;
+      height: 2px;
+      top: -2px;
+    }
+
+    .glow{
+      height: 100%;
+      display: flex;
+      transform: translateZ(0);
+    }
+
+    .glow div{
+      flex: 1;
+      background: #5E3BC0;
+      animation: glow 0.8s infinite alternate ease;
+      box-shadow: 0 0 20px #5E3BC0;
+    }
+
+    .glow div.b1{ animation-delay: -0.72s; }
+    .glow div.b2{ animation-delay: -0.64s; }
+    .glow div.b3{ animation-delay: -0.56s; }
+    .glow div.b4{ animation-delay: -0.48s; }
+    .glow div.b5{ animation-delay: -0.40s; }
+    .glow div.b6{ animation-delay: -0.32s; }
+    .glow div.b7{ animation-delay: -0.24s; }
+    .glow div.b8{ animation-delay: -0.16s; }
+    .glow div.b9{ animation-delay: -0.08s; }
+
+
+    @keyframes glow{
+      100% {
+        background: transparent;
+        flex: 10;
+        box-shadow: 0 0 0 transparent;
+      }
+    }
+
+    .text{
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="aligner-center-center">
+      <div class="aligner-content">
+        <div class="icon">
+          <img src="./logo-skuber.svg" alt="Skuber⁺ Client logo" width="54" height="54">
+          <div class="icon-text">Skuber⁺ Client</div>
+        </div>
+        <div class="loading">
+          <div class="bar">
+            <div class="progress"></div>
+          </div>
+          <div class="glow-wrapper">
+            <div class="glow">
+              <div class="b1"></div>
+              <div class="b2"></div>
+              <div class="b3"></div>
+              <div class="b4"></div>
+              <div class="b5"></div>
+              <div class="b6"></div>
+              <div class="b7"></div>
+              <div class="b8"></div>
+              <div class="b9"></div>
+            </div>
+          </div>
+          <div class="text">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

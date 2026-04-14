@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Projected /> renders 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Sources
+        </span>
+        <div
+          class="text-sm text-foreground"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Projected /> renders a secret source including overriding mode 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Default Mount Mode
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0o777
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Sources
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          <div
+            class="mt-8"
+          >
+            <h3
+              class="text-base font-semibold mb-4"
+            >
+              Secret
+            </h3>
+            <div
+              class="flex flex-col"
+            >
+              <div
+                class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+              >
+                <span
+                  class="text-sm text-muted-foreground"
+                >
+                  Name
+                </span>
+                <div
+                  class="text-sm text-foreground"
+                >
+                  my-projected-secret
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+              >
+                <span
+                  class="text-sm text-muted-foreground"
+                >
+                  Items
+                </span>
+                <div
+                  class="text-sm text-foreground"
+                >
+                  <ul>
+                    <li>
+                      foo⇢/bar
+                       (0o666)
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Projected /> renders a secret source, when provided 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Default Mount Mode
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0o777
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Sources
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          <div
+            class="mt-8"
+          >
+            <h3
+              class="text-base font-semibold mb-4"
+            >
+              Secret
+            </h3>
+            <div
+              class="flex flex-col"
+            >
+              <div
+                class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+              >
+                <span
+                  class="text-sm text-muted-foreground"
+                >
+                  Name
+                </span>
+                <div
+                  class="text-sm text-foreground"
+                >
+                  my-projected-secret
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+              >
+                <span
+                  class="text-sm text-muted-foreground"
+                >
+                  Items
+                </span>
+                <div
+                  class="text-sm text-foreground"
+                >
+                  <ul>
+                    <li>
+                      foo⇢/bar
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Projected /> renders default mount mode in octal when provided 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Default Mount Mode
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0o777
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Sources
+        </span>
+        <div
+          class="text-sm text-foreground"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<Projected /> renders when no sources array provided 1`] = `
+<body>
+  <div>
+    <div
+      class="flex flex-col"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Default Mount Mode
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0o777
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Sources
+        </span>
+        <div
+          class="text-sm text-foreground"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

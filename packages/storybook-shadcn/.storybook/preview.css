@@ -1,0 +1,107 @@
+/* 스토리북 테마별 배경색 설정 */
+.sb-show-main,
+.sb-main-padded {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* 라이트 모드 (기본) */
+html:not(.dark) .sb-show-main,
+html:not(.dark) .sb-main-padded {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* 다크 모드 */
+html.dark .sb-show-main,
+html.dark .sb-main-padded {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* 스토리북 프리뷰 영역 */
+#storybook-preview-wrapper {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+html:not(.dark) #storybook-preview-wrapper {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+html.dark #storybook-preview-wrapper {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* 도큐멘트 모드에서도 배경색 적용 */
+.docs-story {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+html:not(.dark) .docs-story {
+  background-color: var(--color-background);
+}
+
+html.dark .docs-story {
+  background-color: var(--color-background);
+}
+
+/* 테마 스위처를 라디오 버튼 스타일로 변경 */
+[data-addon-id="themes"] {
+  & > button {
+    position: relative;
+    padding-left: 20px !important;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+
+    &[aria-pressed="true"]::before {
+      background-color: currentColor;
+      box-shadow: inset 0 0 0 2px hsl(0 0% 100%);
+    }
+  }
+
+  /* 드롭다운 메뉴를 라디오 버튼 그룹처럼 보이도록 */
+  [role="menu"] {
+    & button {
+      position: relative;
+      padding-left: 28px !important;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--color-muted-foreground);
+        border-radius: 50%;
+        background-color: transparent;
+      }
+
+      &[aria-checked="true"]::before {
+        background-color: hsl(207 90% 54%);
+        border-color: hsl(207 90% 54%);
+        box-shadow: inset 0 0 0 3px hsl(0 0% 100%);
+      }
+    }
+  }
+}

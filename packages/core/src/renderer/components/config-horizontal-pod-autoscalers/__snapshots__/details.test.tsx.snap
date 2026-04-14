@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HpaDetails/> renders 1`] = `
+<body>
+  <div>
+    <div
+      class="HpaDetails"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Reference
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          Deployment
+          /
+          hpav2deployment
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Min Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Max Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          10
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Replicas
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<HpaDetails/> shows unknown metrics with lack of metric type 1`] = `
+<body>
+  <div>
+    <div
+      class="HpaDetails"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Reference
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          Deployment
+          /
+          hpav2deployment
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Min Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Max Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          10
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Replicas
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="mt-8"
+      >
+        <h3
+          class="text-base font-semibold mb-4"
+        >
+          Metrics
+        </h3>
+        <div
+          class="metrics"
+        >
+          <div
+            class="relative w-full overflow-x-auto"
+            data-slot="table-container"
+          >
+            <table
+              class="caption-bottom text-sm w-full"
+              data-slot="table"
+              data-testid="hpa-metrics"
+            >
+              <thead
+                class="[&_tr]:border-b"
+                data-slot="table-header"
+              >
+                <tr
+                  class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+                  data-slot="table-row"
+                >
+                  <th
+                    class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[200px]"
+                    data-slot="table-head"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-head"
+                  >
+                    Current / Target
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="[&_tr:last-child]:border-0"
+                data-slot="table-body"
+              >
+                <tr
+                  class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+                  data-slot="table-row"
+                >
+                  <td
+                    class="p-2 align-middle whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-cell"
+                  >
+                    unknown
+                  </td>
+                  <td
+                    class="p-2 align-middle whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-cell"
+                  >
+                    unknown / unknown
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`<HpaDetails/> shows unknown metrics with with unusual type 1`] = `
+<body>
+  <div>
+    <div
+      class="HpaDetails"
+    >
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Reference
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          Deployment
+          /
+          hpav2deployment
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Min Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Max Pods
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          10
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+      >
+        <span
+          class="text-sm text-muted-foreground"
+        >
+          Replicas
+        </span>
+        <div
+          class="text-sm text-foreground"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="mt-8"
+      >
+        <h3
+          class="text-base font-semibold mb-4"
+        >
+          Metrics
+        </h3>
+        <div
+          class="metrics"
+        >
+          <div
+            class="relative w-full overflow-x-auto"
+            data-slot="table-container"
+          >
+            <table
+              class="caption-bottom text-sm w-full"
+              data-slot="table"
+              data-testid="hpa-metrics"
+            >
+              <thead
+                class="[&_tr]:border-b"
+                data-slot="table-header"
+              >
+                <tr
+                  class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+                  data-slot="table-row"
+                >
+                  <th
+                    class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px] w-[200px]"
+                    data-slot="table-head"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-head"
+                  >
+                    Current / Target
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="[&_tr:last-child]:border-0"
+                data-slot="table-body"
+              >
+                <tr
+                  class="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
+                  data-slot="table-row"
+                >
+                  <td
+                    class="p-2 align-middle whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-cell"
+                  >
+                    unknown
+                  </td>
+                  <td
+                    class="p-2 align-middle whitespace-nowrap overflow-hidden [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]"
+                    data-slot="table-cell"
+                  >
+                    unknown / unknown
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

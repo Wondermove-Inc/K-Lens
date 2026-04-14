@@ -1,0 +1,54 @@
+{
+  "name": "@skuberplus/application",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Package for creating SkuberPlus applications",
+  "type": "commonjs",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "build": "lens-webpack-build",
+    "test:unit": "jest --coverage --runInBand"
+  },
+  "dependencies": {
+    "@skuberplus/feature-core": "workspace:^",
+    "@skuberplus/run-many": "workspace:^",
+    "@ogre-tools/fp": "^17.11.1",
+    "@ogre-tools/injectable": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-auto-registration": "^17.11.1"
+  },
+  "devDependencies": {
+    "@async-fn/jest": "^1.6.4",
+    "@skuberplus/jest": "workspace:^",
+    "@skuberplus/test-utils": "workspace:^",
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@types/webpack-env": "^1.18.8",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "lodash": "^4.17.21",
+    "ts-jest": "^29.4.4",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3"
+  }
+}

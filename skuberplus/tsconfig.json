@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"],
+      "@skuberplus/core/renderer": ["../packages/core/src/renderer/index.ts"],
+      "@skuberplus/core/common": ["../packages/core/src/common/index.ts"],
+      "@skuberplus/core/main": ["../packages/core/src/main/index.ts"],
+      "@skuberplus/core/styles": ["../packages/core/src/renderer/index.css"],
+      "@skuberplus/core/template.html": ["../packages/core/src/renderer/template.html"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
+  },
+  "include": ["src/**/*", "../packages/core/types/*.d.ts"],
+  "exclude": ["out", "dist", "coverage", "binaries", "static"]
+}

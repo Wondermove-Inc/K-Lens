@@ -1,0 +1,244 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { pick } from "lodash";
+import { computed, observable, runInAction, toJS } from "mobx";
+import { ClusterMetadataKey, clusterModelIdChecker, updateClusterModelChecker } from "../cluster-types";
+import { replaceObservableObject } from "../utils/replace-observable-object";
+import { migratePrometheusPreferences } from "./migrate-prometheus-preferences";
+
+import type { IObservableValue } from "mobx";
+
+import type {
+  ClusterId,
+  ClusterMetadata,
+  ClusterModel,
+  ClusterPreferences,
+  ClusterPrometheusPreferences,
+  ClusterState,
+  UpdateClusterModel,
+} from "../cluster-types";
+import type { KubeApiResource } from "../rbac";
+
+export class Cluster {
+  /**
+   * Unique id for a cluster
+   */
+  readonly id: ClusterId;
+
+  /**
+   * Kubeconfig context name
+   */
+  readonly contextName = observable.box() as IObservableValue<string>;
+
+  /**
+   * Path to kubeconfig
+   */
+  readonly kubeConfigPath = observable.box() as IObservableValue<string>;
+
+  /**
+   * Describes if we can detect that cluster is online
+   */
+  readonly online = observable.box(false);
+
+  /**
+   * Describes if user is able to access cluster resources
+   */
+  readonly accessible = observable.box(false);
+
+  /**
+   * Is cluster instance in usable state
+   */
+  readonly ready = observable.box(false);
+
+  /**
+   * Is cluster disconnected. False if user has selected to connect.
+   */
+  readonly disconnected = observable.box(true);
+
+  /**
+   * Does user have admin like access
+   */
+  readonly isAdmin = observable.box(false);
+
+  /**
+   * Global watch-api accessibility , e.g. "/api/v1/services?watch=1"
+   */
+  readonly isGlobalWatchEnabled = observable.box(false);
+
+  /**
+   * Preferences
+   * 🎯 기본값: Metrics Server - Kubernetes 기본 메트릭 서버 사용
+   * 🔄 변경이력: 2026-01-09 - Auto-Detect 제거, Metrics Server를 기본값으로 변경
+   */
+  readonly preferences = observable.object<ClusterPreferences>({
+    metricsSource: "metrics-server",
+  });
+
+  /**
+   * Metadata
+   */
+  readonly metadata = observable.object<ClusterMetadata>({});
+
+  /**
+   * List of allowed namespaces verified via K8S::SelfSubjectAccessReview api
+   */
+  readonly allowedNamespaces = observable.array<string>();
+
+  /**
+   * List of accessible namespaces provided by user in the Cluster Settings
+   */
+  readonly accessibleNamespaces = observable.array<string>();
+
+  /**
+   * The list of all known resources associated with this cluster
+   */
+  readonly knownResources = observable.array<KubeApiResource>();
+
+  /**
+   * The formatting of this is `group.name` or `name` (if in core)
+   */
+  readonly resourcesToShow = observable.set<string>();
+
+  /**
+   * Labels for the catalog entity
+   */
+  readonly labels = observable.object<Partial<Record<string, string>>>({});
+
+  /**
+   * Is cluster available
+   */
+  readonly available = computed(() => this.accessible.get() && !this.disconnected.get());
+
+  /**
+   * Cluster name
+   */
+  readonly name = computed(() => this.preferences.clusterName || this.contextName.get());
+
+  /**
+   * The detected kubernetes distribution
+   */
+  readonly distribution = computed(() => this.metadata[ClusterMetadataKey.DISTRIBUTION]?.toString() || "unknown");
+
+  /**
+   * The detected kubernetes version
+   */
+  readonly version = computed(() => this.metadata[ClusterMetadataKey.VERSION]?.toString() || "unknown");
+
+  /**
+   * Prometheus preferences
+   * 🔄 변경이력: 2026-01-09 - metricsSource 필드 추가
+   */
+  readonly prometheusPreferences = computed(
+    () => pick(toJS(this.preferences), "metricsSource", "prometheus") as ClusterPrometheusPreferences,
+  );
+
+  constructor({ id, ...model }: ClusterModel) {
+    const { error } = clusterModelIdChecker.validate({ id });
+
+    if (error) {
+      throw error;
+    }
+
+    this.id = id;
+    this.updateModel(model);
+  }
+
+  /**
+   * Update cluster data model
+   *
+   * @param model
+   */
+  updateModel(model: UpdateClusterModel) {
+    // Note: do not assign ID as that should never be updated
+
+    const { error } = updateClusterModelChecker.validate(model, { allowUnknown: true });
+
+    if (error) {
+      throw error;
+    }
+
+    runInAction(() => {
+      this.kubeConfigPath.set(model.kubeConfigPath);
+      this.contextName.set(model.contextName);
+
+      if (model.preferences) {
+        // 🎯 기존 prometheusProvider 설정을 metricsSource로 마이그레이션
+        const migratedPreferences = migratePrometheusPreferences(model.preferences);
+
+        replaceObservableObject(this.preferences, migratedPreferences);
+      }
+
+      if (model.metadata) {
+        replaceObservableObject(this.metadata, model.metadata);
+      }
+
+      if (model.accessibleNamespaces) {
+        this.accessibleNamespaces.replace(model.accessibleNamespaces);
+      }
+
+      if (model.labels) {
+        replaceObservableObject(this.labels, model.labels);
+      }
+    });
+  }
+
+  toJSON(): ClusterModel {
+    return {
+      id: this.id,
+      contextName: this.contextName.get(),
+      kubeConfigPath: this.kubeConfigPath.get(),
+      preferences: toJS(this.preferences),
+      metadata: toJS(this.metadata),
+      accessibleNamespaces: this.accessibleNamespaces.toJSON(),
+      labels: toJS(this.labels),
+    };
+  }
+
+  /**
+   * Serializable cluster-state used for sync btw main <-> renderer
+   */
+  getState(): ClusterState {
+    return {
+      online: this.online.get(),
+      ready: this.ready.get(),
+      disconnected: this.disconnected.get(),
+      accessible: this.accessible.get(),
+      isAdmin: this.isAdmin.get(),
+      allowedNamespaces: this.allowedNamespaces.toJSON(),
+      resourcesToShow: this.resourcesToShow.toJSON(),
+      isGlobalWatchEnabled: this.isGlobalWatchEnabled.get(),
+    };
+  }
+
+  /**
+   * @param state cluster state
+   */
+  setState(state: ClusterState) {
+    runInAction(() => {
+      this.accessible.set(state.accessible);
+      this.allowedNamespaces.replace(state.allowedNamespaces);
+      this.resourcesToShow.replace(state.resourcesToShow);
+      this.disconnected.set(state.disconnected);
+      this.isAdmin.set(state.isAdmin);
+      this.isGlobalWatchEnabled.set(state.isGlobalWatchEnabled);
+      this.online.set(state.online);
+      this.ready.set(state.ready);
+    });
+  }
+
+  // get cluster system meta, e.g. use in "logger"
+  getMeta() {
+    return {
+      id: this.id,
+      name: this.contextName.get(),
+      ready: this.ready.get(),
+      online: this.online.get(),
+      accessible: this.accessible.get(),
+      disconnected: this.disconnected.get(),
+    };
+  }
+}

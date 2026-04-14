@@ -1,0 +1,38 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// 🔄 THEME-031: hsl, white → CSS 변수
+.Avatar {
+  background-color: var(--avatar-bg, oklch(0.45 0 0));
+  text-transform: uppercase;
+  color: var(--avatar-text, oklch(1 0 0));
+  font-size: 1.6ch;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.disabled {
+  opacity: 0.5;
+  filter: grayscale(0.7);
+}

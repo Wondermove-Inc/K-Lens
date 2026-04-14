@@ -1,0 +1,23 @@
+{
+  "name": "@skuberplus/semver",
+  "version": "1.5.4-0",
+  "description": "CLI over semver package for picking parts of a version",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "build": "tsc --pretty --project ."
+  },
+  "type": "module",
+  "dependencies": {
+    "command-line-args": "^6.0.1",
+    "semver": "^7.7.2"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.2.3",
+    "@types/node": "~22.16.5",
+    "@types/semver": "^7.7.1",
+    "typescript": "^5.9.2"
+  }
+}

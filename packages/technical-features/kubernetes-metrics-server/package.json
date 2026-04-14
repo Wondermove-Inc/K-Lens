@@ -1,0 +1,51 @@
+{
+  "name": "@skuberplus/kubernetes-metrics-server",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Kubernetes Metrics Server support for SkuberPlus",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "build": "lens-webpack-build",
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "dev": "webpack --mode=development --watch"
+  },
+  "dependencies": {
+    "@skuberplus/application": "workspace:^",
+    "@skuberplus/feature-core": "workspace:^",
+    "@skuberplus/kube-object": "workspace:^",
+    "@skuberplus/prometheus": "workspace:^",
+    "@skuberplus/utilities": "workspace:^",
+    "@ogre-tools/injectable": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-auto-registration": "^17.11.1"
+  },
+  "devDependencies": {
+    "@skuberplus/kubernetes-client-node": "workspace:^",
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@ogre-tools/fp": "^17.11.1",
+    "@types/webpack-env": "^1.18.8",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3"
+  }
+}

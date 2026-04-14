@@ -1,0 +1,34 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🎯 THEME-030: P0 Hardcode Migration
+ * 📝 Dialog 하드코딩 색상 → CSS 변수 마이그레이션
+ * 🔄 Migration: 2026-01-31 - #222, white 제거
+ */
+
+@use "../vars" as *;
+
+.Dialog {
+  position: fixed;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: $unit * 5;
+  z-index: $zIndex-dialog;
+  overscroll-behavior: none; // prevent swiping with touch-pad on MacOSX
+  overflow: auto;
+
+  &.modal {
+    background: var(--dialog-overlay);
+  }
+
+  h5 {
+    color: var(--popover-foreground);
+  }
+}

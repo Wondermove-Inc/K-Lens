@@ -1,0 +1,15 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+
+const isFlatpakPackageInjectable = getInjectable({
+  id: "is-flatpak",
+  instantiate: () => Boolean(process.env.FLATPAK_SANDBOX_DIR),
+  causesSideEffects: true,
+});
+
+export default isFlatpakPackageInjectable;

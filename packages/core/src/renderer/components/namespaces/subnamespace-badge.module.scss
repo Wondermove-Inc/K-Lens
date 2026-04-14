@@ -1,0 +1,16 @@
+/**
+ * 🎯 THEME-030: P0 Hardcode Migration
+ * 📝 SubnamespaceBadge 하드코딩 색상 → CSS 변수 마이그레이션
+ * 🔄 Migration: 2026-01-31 - cadetblue 제거
+ */
+.subnamespaceBadge {
+  border-radius: 3px;
+  padding: 0px 4px;
+  border: 1px solid var(--subnamespace-badge-color);
+  color: var(--subnamespace-badge-color);
+  display: inline-flex;
+  font-size: x-small;
+  font-weight: bold;
+  height: 16px;
+  align-items: center;
+}

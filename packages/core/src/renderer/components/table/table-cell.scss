@@ -1,0 +1,265 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../mixins";
+@use "../table/table.mixins";
+@use "../vars" as *;
+
+.TableCell {
+  position: relative;
+  padding: $padding;
+  word-break: break-all;
+  overflow: hidden;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+
+  // 🎯 모든 셀 높이 통일 (글자 수에 관계없이 동일한 높이 유지)
+  height: 32px;
+  box-sizing: border-box;
+
+  // 🔧 flex-basis 0 강제 적용으로 컨텐츠 길이 무관한 정렬
+  flex-basis: 0 !important;
+
+  // 🎯 세로 구분선 제거 - 헤더만 아래쪽 줄 유지
+  // border-right: 1px solid var(--borderFaintColor);
+
+  // 🔄 마지막 컬럼은 border 제거
+  // &:last-child {
+  //   border-right: none;
+  // }
+
+  // 🎯 모든 컬럼 왼쪽 정렬로 통일 (시각적 일관성 향상 + 가상화 호환)
+  &.name,
+  &.namespace,
+  &.node,
+  &.age,
+  &.cpu-usage,
+  &.memory-usage,
+  &.containers,
+  &.restarts,
+  &.ip,
+  &.status,
+  &.ready,
+  &.warning {
+    justify-content: flex-start !important; // 📝 모든 컬럼 왼쪽 정렬
+    text-align: left !important; // 📝 텍스트도 왼쪽 정렬로 통일
+  }
+
+  &.menu {
+    @include table.table-cell-action;
+  }
+
+  &.scrollable {
+    @include mixins.hidden-scrollbar;
+    display: flex;
+    align-items: center;
+
+    :not(:last-of-type) {
+      margin-right: 0.5em;
+    }
+  }
+
+  &.checkbox {
+    display: flex;
+    flex: 0 0 32px !important;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+
+    > .Checkbox {
+      margin: 1px auto;
+    }
+  }
+
+  &.sorting.nowrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .sortIcon {
+    transition: 150ms opacity;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    background: var(--tableHeaderBackground);
+
+    &.enabled {
+      opacity: 1;
+    }
+  }
+
+  &:hover .sortIcon {
+    opacity: 1;
+  }
+
+  &.sorting {
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--primary);
+    transition: 150ms color;
+
+    &:hover {
+      color: var(--textColorAccent);
+    }
+  }
+
+  // ============================================
+  // 🎯 컬럼 리사이즈 핸들 스타일 (UX 개선 버전)
+  // ============================================
+  .resize-handle {
+    position: absolute;
+    right: 0; // 🎯 정확히 셀 오른쪽 경계에 위치
+    top: 0;
+    width: 6px; // 🔄 조금 더 넓게 해서 클릭 영역 확대
+    height: 100%;
+    cursor: col-resize;
+    background: transparent;
+    border-right: 1px solid var(--borderFaintColor);
+    transition: all 0.1s ease;
+    z-index: 20; // 🛡️ 더 높은 우선순위로 다른 요소 위에 표시
+
+    // 🎯 마우스 hover 영역 확장 (정확한 클릭을 위해)
+    &::before {
+      content: "";
+      position: absolute;
+      left: -3px;
+      right: -3px;
+      top: 0;
+      bottom: 0;
+    }
+
+    /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+    &:hover {
+      border-right-color: var(--primary);
+      background: var(--table-resize-hover-bg);
+      transform: scaleX(1.5); // 🎨 hover 시 살짝 두꺼워짐
+    }
+
+    // 🎨 드래그 중 시각적 피드백 강화
+    /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+    &:active,
+    &.resizing {
+      border-right-color: var(--primary);
+      background: var(--table-resize-active-bg);
+      transform: scaleX(2); // 🔄 드래그 중 더 두꺼워짐
+    }
+
+    // 💾 저장 중 시각적 피드백
+    // 🔄 THEME-031: rgba(76,175,80,0.1) → CSS 변수
+    &.saving {
+      border-right-color: var(--colorSuccess);
+      background: var(--table-save-indicator-bg, oklch(0.60 0.18 145 / 10%));
+      animation: pulse-save 0.6s ease-in-out;
+    }
+
+    // 🎯 실시간 너비 표시 툴팁
+    // 🔄 THEME-031: white → CSS 변수
+    .resize-tooltip {
+      position: absolute;
+      top: -30px;
+      right: -20px;
+      background: var(--colorTerminated);
+      color: var(--status-badge-text, oklch(1 0 0));
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1000;
+
+      // 🎨 툴팁 화살표
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 4px solid transparent;
+        border-top-color: var(--colorTerminated);
+      }
+    }
+
+    // 💾 저장 완료 표시
+    // 🔄 THEME-031: white → CSS 변수
+    .save-indicator {
+      position: absolute;
+      top: -25px;
+      right: -10px;
+      background: var(--colorSuccess);
+      color: var(--status-badge-text, oklch(1 0 0));
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      pointer-events: none;
+      z-index: 1001;
+      animation: pop-in 0.2s ease-out;
+    }
+  }
+
+  // 🔄 리사이즈 중인 셀 시각적 상태
+  /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+  &.resizing {
+    position: relative;
+    border-right: 2px solid var(--primary); // 🎯 리사이즈 중 경계선 강조
+    background: var(--table-resizing-bg); // 🎨 미묘한 배경 강조
+
+    .resize-handle {
+      border-right-color: var(--primary);
+      background: var(--table-resize-handle-bg);
+      transform: scaleX(2);
+    }
+  }
+
+  // 🔄 헤더 셀에서만 리사이즈 핸들 표시
+  &.sorting {
+    position: relative; // resize-handle 위치 기준점
+  }
+}
+
+// ============================================
+// 🎨 UX 개선을 위한 애니메이션
+// ============================================
+
+// 💾 저장 중 펄스 애니메이션
+@keyframes pulse-save {
+  0%,
+  100% {
+    transform: scaleX(2);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(2.5);
+    opacity: 0.8;
+  }
+}
+
+// 💾 저장 완료 팝인 애니메이션
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,55 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+@use "../vars" as *;
+
+.StatusBrick {
+  @include workloads-mixins.pod-status-bgs;
+  $brickSize: 8px;
+
+  display: inline-block;
+  width: $brickSize;
+  height: $brickSize;
+  margin-right: $margin;
+  background: var(--colorVague);
+  border-radius: 2px;
+  position: relative;
+
+  // 투명한 hover 영역 확장 (상하좌우 4px, margin 8px 대비 겹침 없음)
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.container-ephemeral {
+    background-color: var(--colorInfo);
+  }
+
+  &.running {
+    background-color: var(--colorOk);
+  }
+
+  &.terminated {
+    background-color: transparent;
+    border: 1px solid var(--colorTerminated);
+  }
+
+  &.failed {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTI4OS45NCAyNTZsOTUtOTVBMjQgMjQgMCAwIDAgMzUxIDEyN2wtOTUgOTVsLTk1LTk1YTI0IDI0IDAgMCAwLTM0IDM0bDk1IDk1bC05NSA5NWEyNCAyNCAwIDEgMCAzNCAzNGw5NS05NWw5NSA5NWEyNCAyNCAwIDAgMCAzNC0zNHoiIGZpbGw9IiNmM2I3YjQiPjwvcGF0aD48L3N2Zz4K");
+  }
+
+  // 🔄 THEME-031: #ff980090 → CSS 변수
+  &.waiting {
+    background-color: var(--status-brick-waiting-bg, oklch(0.70 0.18 65 / 56%));
+    border: 1px solid var(--colorWarning);
+  }
+}

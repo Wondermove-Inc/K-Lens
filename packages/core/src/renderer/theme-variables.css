@@ -1,0 +1,1563 @@
+/**
+ * 🎯 THEME-040: 테마 CSS 변수 정의 파일
+ * 📝 이 파일은 Tailwind 처리 없이 직접 번들에 포함됩니다.
+ * 🔄 목적: Tailwind v4 JIT tree-shaking 방지
+ *    - Tailwind는 html:where(.theme-*) 선택자를 "사용되지 않음"으로 간주하여 제거
+ *    - 이 파일을 Tailwind 외부에서 import하여 항상 번들에 포함되도록 함
+ */
+
+/* 🎯 목적: FIX-042 Soft Contrast 테마 - 눈 피로 감소 */
+html:where(.theme-default-light) {
+  --radius: 0.65rem;
+  /* 🎯 FIX-042: Soft Contrast - off-white 배경 */
+  --background: oklch(0.985 0 0); /* #FAFAFA */
+  --foreground: oklch(0.15 0 0); /* #212121 (near-black) */
+  --card: oklch(0.995 0 0); /* #FDFDFD */
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(0.995 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.488 0.243 264.376); /* blue-700 */
+  --primary-foreground: oklch(1 0 0); /* 순수 흰색 */
+  --color-primary: oklch(0.488 0.243 264.376);
+  --secondary: oklch(0.96 0 0); /* #F5F5F5 */
+  --secondary-foreground: oklch(0.25 0 0); /* #3D3D3D */
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0); /* #6B6B6B - WCAG AA 4.7:1 */
+  --accent: oklch(0.96 0 0);
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.9 0 0); /* #E5E5E5 */
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  /* 🎯 THEME-040: Node Charts Neutral Colors (Light) - Secondary axis lines */
+  --chart-neutral-light: oklch(0.8 0 0);
+  --chart-neutral-dark: oklch(0 0 0);
+  --sidebar: oklch(0.98 0 0); /* #FAFAFA */
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.2 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.96 0 0);
+  --sidebar-accent-foreground: oklch(0.2 0 0);
+  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* 🎯 DAIVE StatusBar 테마 변수 (Light) */
+  --daive-status-bar-border-color: var(--sidebar-border);
+  --daive-status-bar-bg: var(--sidebar);
+  --daive-status-bar-foreground: var(--muted-foreground);
+  --daive-status-bar-hover-bg: oklch(0 0 0 / 8%);
+
+  /* 🎯 THEME-001: Terminal CSS Variables (Light)
+   * 📝 ANSI 16색 표준 + 커서/선택 영역
+   * 🔄 라이트 모드에서도 다크 터미널 사용 (가독성 향상)
+   */
+  --color-terminal-foreground: #cccccc;
+  --color-terminal-background: #0d0d0d;
+  --color-terminal-cursor: #ffffff;
+  --color-terminal-cursor-accent: #0d0d0d;
+  --color-terminal-selection-background: #264f78;
+  /* ANSI 기본 8색 */
+  --color-terminal-black: #000000;
+  --color-terminal-red: #cd3131;
+  --color-terminal-green: #0dbc79;
+  --color-terminal-yellow: #e5e510;
+  --color-terminal-blue: #2472c8;
+  --color-terminal-magenta: #bc3fbc;
+  --color-terminal-cyan: #11a8cd;
+  --color-terminal-white: #e5e5e5;
+  /* ANSI 밝은 8색 */
+  --color-terminal-bright-black: #666666;
+  --color-terminal-bright-red: #f14c4c;
+  --color-terminal-bright-green: #23d18b;
+  --color-terminal-bright-yellow: #f5f543;
+  --color-terminal-bright-blue: #3b8eea;
+  --color-terminal-bright-magenta: #d670d6;
+  --color-terminal-bright-cyan: #29b8db;
+  --color-terminal-bright-white: #e5e5e5;
+
+  /* 🎯 THEME-020: Diff Viewer Colors (Light)
+   * 📝 Git diff 스타일 - GitHub Light 테마 기반
+   */
+  --diff-added-bg: oklch(0.95 0.05 150); /* #d4f4dd */
+  --diff-added-fg: oklch(0.35 0.12 150); /* #1a7f37 */
+  --diff-added-symbol: oklch(0.55 0.18 150); /* #22c55e */
+  --diff-removed-bg: oklch(0.95 0.05 25); /* #ffd7d5 */
+  --diff-removed-fg: oklch(0.45 0.15 25); /* #cf222e */
+  --diff-removed-symbol: oklch(0.55 0.2 25); /* #ef4444 */
+  --diff-header-bg: oklch(0.93 0.03 220); /* #ddf4ff */
+  --diff-header-fg: oklch(0.4 0.1 220); /* #0969da */
+  --diff-unchanged-bg: transparent;
+  --diff-unchanged-fg: var(--foreground);
+  --diff-line-number: oklch(0.55 0 0); /* #888888 */
+  --diff-gutter-bg: oklch(0.96 0 0); /* #f6f8fa */
+  --diff-gutter-selected: oklch(0.9 0.08 220); /* #b6e3ff */
+
+  /* 🎯 THEME-020: Mermaid Diagram Colors (Light)
+   * 📝 Mermaid.js 다이어그램 테마 변수
+   */
+  --mermaid-bg: oklch(0.98 0 0); /* #fafafa */
+  --mermaid-primary: oklch(0.55 0.2 260); /* #3b82f6 */
+  --mermaid-primary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-primary-border: oklch(0.55 0 0); /* #6b7280 */
+  --mermaid-secondary: oklch(0.45 0 0); /* #6b7280 */
+  --mermaid-secondary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-tertiary: oklch(0.35 0 0); /* #374151 */
+  --mermaid-tertiary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-line: oklch(0.55 0 0); /* #6b7280 */
+  --mermaid-text: oklch(0.2 0 0); /* #1f2937 */
+  --mermaid-main-bg: oklch(0.96 0 0); /* #f3f4f6 */
+  --mermaid-node-bg: oklch(0.96 0 0); /* #f3f4f6 */
+  --mermaid-node-border: oklch(0.75 0 0); /* #d1d5db */
+  --mermaid-cluster-bg: oklch(0.98 0 0); /* #f9fafb */
+  --mermaid-cluster-border: oklch(0.8 0 0); /* #e5e7eb */
+  --mermaid-title: oklch(0.2 0 0); /* #111827 */
+  --mermaid-edge-label-bg: oklch(0.96 0 0); /* #f3f4f6 */
+
+  /* 🎯 THEME-020: Code Block Colors (Light)
+   * 📝 구문 강조 테마 변수
+   */
+  --code-bg: oklch(0.96 0 0); /* #f5f5f5 */
+  --code-fg: oklch(0.25 0 0); /* #333333 */
+  --code-text-green: oklch(0.55 0.15 150); /* #22863a */
+  --code-text-blue: oklch(0.5 0.15 260); /* #0366d6 */
+  --syntax-highlight-bg: oklch(0.97 0 0); /* #f6f8fa */
+
+  /* 🎯 THEME-020: Connection Status Colors (Light)
+   * 📝 클러스터 연결 상태 표시
+   */
+  --connection-status-connecting: oklch(0.75 0.18 85); /* #FFA500 orange */
+  --connection-status-connected: oklch(0.65 0.2 145); /* #4CAF50 green */
+  --connection-status-disconnected: oklch(0.55 0.2 25); /* #F44336 red */
+
+  /* 🎯 THEME-020: Pod Status Colors (Light)
+   * 📝 Pod 상태별 색상 (차트용)
+   */
+  --pod-status-running: oklch(0.55 0.2 260); /* #2563eb blue-600 */
+  --pod-status-succeeded: oklch(0.6 0.18 145); /* #16a34a green-600 */
+  --pod-status-pending: oklch(0.65 0.18 85); /* #ca8a04 yellow-600 */
+  --pod-status-failed: oklch(0.55 0.22 15); /* #e11d48 rose-600 */
+  --pod-status-unknown: oklch(0.45 0 0); /* #4b5563 gray-600 */
+
+  /* 🎯 THEME-020: Workload Overview Chart Colors (Light)
+   * 📝 Workload 파이 차트용 색상 팔레트
+   */
+  --workload-default: oklch(0.85 0 0); /* #d1d5db gray-300 */
+  --workload-succeeded: oklch(0.75 0.12 200); /* #7DD3FC sky-300 */
+  --workload-running: oklch(0.55 0.2 260); /* #3B82F6 blue-500 */
+  --workload-pending: oklch(0.75 0.15 85); /* #FCD34D amber-300 */
+  --workload-failed: oklch(0.65 0.18 15); /* #F87171 red-400 */
+  --workload-unknown: oklch(0.65 0 0); /* #9CA3AF gray-400 */
+  --workload-available: oklch(0.6 0.18 145); /* #4ADE80 green-400 */
+  --workload-unavailable: oklch(0.55 0.2 25); /* #FB7185 rose-400 */
+  --workload-suspended: oklch(0.55 0 0); /* #6B7280 gray-500 */
+  --workload-complete: oklch(0.65 0.2 145); /* #22C55E green-500 */
+  --workload-active: oklch(0.6 0.22 260); /* #6366F1 indigo-500 */
+  --workload-updating: oklch(0.65 0.2 290); /* #A855F7 purple-500 */
+
+  /* 🎯 THEME-020: Chart Colors (Light)
+   * 📝 Recharts 차트용 색상 팔레트
+   */
+  --chart-blue-600: oklch(0.55 0.2 260); /* #3b82f6 */
+  --chart-blue-300: oklch(0.75 0.12 260); /* #93c5fd */
+  --chart-gray-400: oklch(0.65 0 0); /* #9ca3af */
+  --chart-gray-200: oklch(0.9 0 0); /* #e5e7eb */
+
+  /* 🎯 THEME-021: Cluster Overview Bar Chart Colors (Light)
+   * 📝 CPU/Memory/Pods 리소스 바 차트용
+   */
+  --cluster-bar-usage: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --cluster-bar-request: oklch(0.73 0.15 260); /* #93c5fd blue-300 */
+  --cluster-bar-limit: oklch(0.65 0 0); /* #9ca3af gray-400 */
+  --cluster-bar-available: oklch(0.9 0 0); /* #e5e7eb gray-200 */
+
+  /* 🎯 THEME-022: Resource Cell Bar Colors (Light)
+   * 📝 GitHub 잔디 스타일 리소스 바용
+   */
+  --cell-bar-usage: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --cell-bar-usage-warning: oklch(0.75 0.18 85); /* #fbbf24 amber-400 */
+  --cell-bar-request: oklch(0.82 0.1 260); /* #bfdbfe blue-200 */
+  --cell-bar-available: oklch(0.9 0 0); /* #e5e7eb gray-200 */
+  --cell-bar-limits: oklch(0.85 0.1 15); /* #fca5a5 red-300 */
+  --cell-bar-limits-alt: oklch(0.75 0.15 15); /* #f87171 red-400 */
+
+  /* 🎯 THEME-022: Metrics Chart Colors (Light)
+   * 📝 Ingress/Volume 차트용
+   */
+  --chart-request-duration: oklch(0.6 0.15 160); /* #48b18d teal */
+  --chart-response-duration: oklch(0.65 0.18 135); /* #73ba3c green */
+  --chart-disk-usage: oklch(0.8 0.18 85); /* #ffc63d amber */
+
+  /* 🎯 THEME-023: Provider Brand Colors (Light)
+   * 📝 Cloud Provider 공식 브랜드 색상
+   * 🔄 브랜드 일관성을 위해 테마별 동일값 사용
+   */
+  --provider-aws: oklch(0.7 0.18 65); /* #FF9900 AWS Orange */
+  --provider-azure: oklch(0.5 0.18 250); /* #0078D4 Azure Blue */
+  --provider-gcp: oklch(0.55 0.18 260); /* #4285F4 Google Blue */
+  --provider-docker: oklch(0.55 0.2 240); /* #2496ED Docker Blue */
+  --provider-oracle: oklch(0.5 0.25 25); /* #F80000 Oracle Red */
+  --provider-naver: oklch(0.65 0.22 150); /* #03C75A Naver Green */
+
+  /* 🎯 THEME-023: Cluster Palette Colors (Light)
+   * 📝 클러스터 식별용 7색 팔레트
+   * 🔄 사이드바 연결 상태, 메인 탭 활성 표시에 사용
+   */
+  --cluster-palette-1: oklch(0.6 0.2 145); /* #4CAF50 Green - production */
+  --cluster-palette-2: oklch(0.55 0.2 260); /* #2196F3 Blue - development */
+  --cluster-palette-3: oklch(0.5 0.22 300); /* #9C27B0 Purple - staging */
+  --cluster-palette-4: oklch(0.7 0.18 65); /* #FF9800 Orange - test */
+  --cluster-palette-5: oklch(0.55 0.25 350); /* #E91E63 Pink */
+  --cluster-palette-6: oklch(0.65 0.15 195); /* #00BCD4 Cyan */
+  --cluster-palette-7: oklch(0.55 0.25 25); /* #F44336 Red */
+
+  /* 🎯 THEME-023: Chart Utility Colors (Light)
+   * 📝 Chart.js 유틸리티 색상
+   */
+  --chart-backdrop: oklch(1 0 0); /* white */
+
+  /* 🎯 THEME-040: Unified Semantic Color System (Light)
+   * 📝 역할 기반, 일관성 있고, 접근성 있는 색상 시스템
+   * 🔄 WCAG AA (4.5:1 대비율), OKLCH 색상 공간
+   */
+  /* Running/Active - Blue */
+  --semantic-running: oklch(0.55 0.2 260);
+  --semantic-running-text: oklch(1 0 0);
+  --semantic-running-muted: oklch(0.92 0.06 260);
+  /* Success/Succeeded - Green */
+  --semantic-success: oklch(0.55 0.18 145);
+  --semantic-success-text: oklch(1 0 0);
+  --semantic-success-muted: oklch(0.92 0.08 145);
+  /* Warning/Pending - Amber (밝은 배경 → 어두운 텍스트) */
+  --semantic-warning: oklch(0.7 0.18 85);
+  --semantic-warning-text: oklch(0.2 0 0);
+  --semantic-warning-muted: oklch(0.95 0.08 85);
+  /* Error/Failed - Red */
+  --semantic-error: oklch(0.55 0.22 25);
+  --semantic-error-text: oklch(1 0 0);
+  --semantic-error-muted: oklch(0.92 0.08 25);
+  /* Neutral/Unknown - Gray */
+  --semantic-neutral: oklch(0.55 0.02 286);
+  --semantic-neutral-text: oklch(1 0 0);
+  --semantic-neutral-muted: oklch(0.92 0.01 286);
+
+  /* 🎯 THEME-040: Component Token Mapping (Light)
+   * 📝 Button, Badge, Chart 컴포넌트 토큰 - semantic 변수 참조
+   */
+  /* Button Component Tokens */
+  --button-primary-bg: var(--semantic-running);
+  --button-primary-fg: var(--semantic-running-text);
+  --button-destructive-bg: var(--semantic-error);
+  --button-destructive-fg: var(--semantic-error-text);
+  --button-subtle-bg: oklch(0.95 0 0);
+  --button-subtle-fg: oklch(0.25 0 0);
+  /* Badge Component Tokens */
+  --badge-running-bg: var(--semantic-running);
+  --badge-running-fg: var(--semantic-running-text);
+  --badge-succeeded-bg: var(--semantic-success);
+  --badge-succeeded-fg: var(--semantic-success-text);
+  --badge-pending-bg: var(--semantic-warning);
+  --badge-pending-fg: var(--semantic-warning-text);
+  --badge-failed-bg: var(--semantic-error);
+  --badge-failed-fg: var(--semantic-error-text);
+  --badge-unknown-bg: var(--semantic-neutral);
+  --badge-unknown-fg: var(--semantic-neutral-text);
+  /* Chart Component Tokens */
+  --chart-running: var(--semantic-running);
+  --chart-succeeded: var(--semantic-success);
+  --chart-pending: var(--semantic-warning);
+  --chart-failed: var(--semantic-error);
+  --chart-unknown: var(--semantic-neutral);
+
+  /* 🎯 THEME-040: Recharts ChartContainer Color Aliases (Light)
+   * 📝 overview.tsx에서 사용하는 --color-* 변수 → workload 색상 참조
+   */
+  --color-succeeded: var(--workload-succeeded);
+  --color-running: var(--workload-running);
+  --color-pending: var(--workload-pending);
+  --color-failed: var(--workload-failed);
+  --color-unknown: var(--workload-unknown);
+
+  /* 🎯 THEME-024: Status Colors (Light)
+   * 📝 상태 표시용 시맨틱 색상 - Tailwind 하드코딩 대체
+   * 🔄 bg-green-500, bg-red-500 등을 대체
+   */
+  --status-success: oklch(0.6 0.18 145); /* #22c55e green-500 */
+  --status-success-muted: oklch(0.9 0.08 145); /* #dcfce7 green-100 */
+  --status-success-border: oklch(0.8 0.12 145); /* #86efac green-300 */
+  --status-warning: oklch(0.75 0.18 85); /* #eab308 yellow-500 */
+  --status-warning-muted: oklch(0.95 0.08 85); /* #fef9c3 yellow-100 */
+  --status-warning-border: oklch(0.85 0.15 85); /* #fde047 yellow-300 */
+  --status-error: oklch(0.55 0.22 25); /* #ef4444 red-500 */
+  --status-error-muted: oklch(0.92 0.08 25); /* #fee2e2 red-100 */
+  --status-error-border: oklch(0.75 0.15 25); /* #fca5a5 red-300 */
+  --status-info: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --status-info-muted: oklch(0.92 0.06 260); /* #dbeafe blue-100 */
+  --status-info-border: oklch(0.75 0.12 260); /* #93c5fd blue-300 */
+  --status-pending: oklch(0.55 0 0); /* #6b7280 gray-500 */
+  --status-pending-muted: oklch(0.95 0 0); /* #f3f4f6 gray-100 */
+  --status-pending-border: oklch(0.85 0 0); /* #d1d5db gray-300 */
+
+  /* 🎯 THEME-024: Tailwind Color Replacement (Light)
+   * 📝 Tailwind 하드코딩 클래스를 CSS 변수로 대체
+   * 🔄 bg-blue-600, text-blue-600 등을 대체
+   */
+  --tw-blue-50: oklch(0.97 0.03 260);
+  --tw-blue-100: oklch(0.93 0.06 260);
+  --tw-blue-200: oklch(0.88 0.1 260);
+  --tw-blue-300: oklch(0.75 0.12 260);
+  --tw-blue-400: oklch(0.65 0.16 260);
+  --tw-blue-500: oklch(0.55 0.2 260);
+  --tw-blue-600: oklch(0.5 0.2 260);
+  --tw-blue-700: oklch(0.45 0.18 260);
+  --tw-green-50: oklch(0.97 0.03 145);
+  --tw-green-100: oklch(0.93 0.06 145);
+  --tw-green-200: oklch(0.88 0.1 145);
+  --tw-green-500: oklch(0.6 0.18 145);
+  --tw-green-600: oklch(0.55 0.18 145);
+  --tw-red-50: oklch(0.97 0.03 25);
+  --tw-red-100: oklch(0.93 0.06 25);
+  --tw-red-200: oklch(0.88 0.1 25);
+  --tw-red-500: oklch(0.55 0.22 25);
+  --tw-red-600: oklch(0.5 0.22 25);
+  --tw-yellow-50: oklch(0.97 0.03 85);
+  --tw-yellow-100: oklch(0.93 0.08 85);
+  --tw-yellow-200: oklch(0.9 0.12 85);
+  --tw-yellow-500: oklch(0.75 0.18 85);
+  --tw-gray-50: oklch(0.98 0 0);
+  --tw-gray-100: oklch(0.96 0 0);
+  --tw-gray-200: oklch(0.92 0 0);
+  --tw-gray-300: oklch(0.85 0 0);
+  --tw-gray-400: oklch(0.65 0 0);
+  --tw-gray-500: oklch(0.55 0 0);
+  --tw-gray-600: oklch(0.45 0 0);
+  --tw-gray-700: oklch(0.35 0 0);
+  --tw-gray-800: oklch(0.25 0 0);
+
+  /* 🎯 THEME-024: Badge & UI Semantic Colors (Light)
+   * 📝 Badge, Status Cell 등 UI 컴포넌트용
+   */
+  --badge-success-bg: oklch(0.9 0.08 145);
+  --badge-success-text: oklch(0.4 0.15 145);
+  --badge-warning-bg: oklch(0.92 0.1 85);
+  --badge-warning-text: oklch(0.4 0.15 85);
+  --badge-error-bg: oklch(0.92 0.08 25);
+  --badge-error-text: oklch(0.4 0.18 25);
+  --badge-info-bg: oklch(0.92 0.06 260);
+  --badge-info-text: oklch(0.4 0.15 260);
+  --badge-neutral-bg: oklch(0.95 0 0);
+  --badge-neutral-text: oklch(0.35 0 0);
+
+  /* 🎯 THEME-024: Highlight & Misc Colors (Light)
+   * 📝 검색 하이라이트, Modified 표시 등
+   */
+  --highlight-bg: oklch(0.9 0.12 85); /* yellow-200 */
+  --highlight-text: oklch(0.35 0 0);
+  --modified-bg: oklch(0.75 0.18 85 / 20%); /* yellow-500/20 */
+  --modified-text: oklch(0.6 0.18 85); /* yellow-600 */
+
+  /* 🎯 THEME-025: Lens Legacy - Dock Variables (Light)
+   * 📝 Source: lens-light.injectable.ts
+   * 🔄 Migration: 2026-01-31 - OpenLens injectable에서 CSS 변수로 이관
+   */
+  --dock-head-background: #e8e8e8;
+  --dock-info-background: #f3f3f3;
+  --dock-badge-background: #dedede;
+  --filter-area-background: #f7f7f7;
+
+  /* 🎯 THEME-025: Lens Legacy - Dialog Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 101-102)
+   */
+  --dialog-header-background: #f0f0f0;
+  --dialog-footer-background: #f4f4f4;
+
+  /* 🎯 THEME-025: Lens Legacy - Helm/Menu Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 62-63, 109-111)
+   */
+  --helm-stable-repo: var(--primary);
+  --helm-incubator-repo: #ff7043;
+  --cluster-menu-background: #e2e2e2;
+  --cluster-menu-cell-background: #d2d2d2;
+
+  /* 🎯 THEME-025: Lens Legacy - Drawer/Icon Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 103, 106, 114)
+   */
+  --drawer-toggler-background: #eaeced;
+  --drawer-subtitle-background: #f1f1f1;
+  --add-cluster-icon-color: #8d8d8d;
+
+  /* 🎯 THEME-025: Lens Legacy - Progress Bar Variables (Light)
+   * 📝 FIX: lineProgressBackground was circular reference (var(--lineProgressBackground))
+   * 🔄 Migration: 2026-01-31 - Define actual color values
+   */
+  --lineProgressBackground: #e5e7eb; /* gray-200 - progress bar track */
+
+  /* 🎯 THEME-025: Lens Legacy - Button Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 51-55)
+   * 🔄 THEME-040: accent → semantic-error 참조, Light 전용 값
+   */
+  --buttonPrimaryBackground: var(--primary);
+  --buttonDefaultBackground: var(--primary);
+  --buttonLightBackground: var(--button-subtle-bg, #f1f1f1);
+  --buttonAccentBackground: var(--button-destructive-bg, oklch(0.55 0.22 25)); /* #e85555 equivalent */
+  --buttonDisabledBackground: #808080;
+
+  /* 🎯 THEME-025: Lens Legacy - Badge Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 50)
+   */
+  --badgeBackgroundColor: #ffba44;
+
+  /* 🎯 THEME-025: Lens Legacy - Chart Variables (Light)
+   * 📝 Source: lens-light.injectable.ts (line 119-122)
+   */
+  --chartLiveBarBackground: #00000033;
+  --chartStripesColor: #00000009;
+  --chartCapacityColor: #cccccc;
+  --pieChartDefaultColor: #efefef;
+
+  /* 🎯 THEME-025: Lens Legacy - Status Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 75-82)
+   */
+  --colorSuccess: #00c02a;
+  --colorOk: #00c02a;
+  --colorInfo: var(--primary);
+  --colorError: #ce3933;
+  --colorSoftError: #e85555;
+  --colorWarning: #ff9800;
+  --colorVague: #ededed;
+  --colorTerminated: #9dabb5;
+
+  /* 🎯 THEME-025: Lens Legacy - Text Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 30-34)
+   */
+  --textColorPrimary: #212121;
+  --textColorSecondary: #5a5a5a;
+  --textColorTertiary: #6b6b6b;
+  --textColorAccent: #2d2d2d;
+  --textColorDimmed: #6b6b6b80;
+
+  /* 🎯 THEME-025: Lens Legacy - Table Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 56-60)
+   */
+  --tableBgcStripe: #f8f8f8;
+  --tableBgcSelected: #f4f5f5;
+  --tableHeaderBackground: #f1f1f1;
+  --tableHeaderColor: #212121;
+  --tableSelectedRowColor: #212121;
+
+  /* 🎯 THEME-025: Lens Legacy - Input Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 123-126)
+   */
+  --inputOptionHoverColor: #e8e9ea;
+  --inputControlBackground: #f6f6f7;
+  --inputControlBorder: #cccdcf;
+  --inputControlHoverBorder: #b9bbbe;
+
+  /* 🎯 THEME-025: Lens Legacy - Border Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 35-36)
+   */
+  --borderColor: #c9cfd3;
+  --borderFaintColor: #dfdfdf;
+
+  /* 🎯 THEME-025: Lens Legacy - Background Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 37-48)
+   */
+  --mainBackground: #f1f1f1;
+  --secondaryBackground: #f2f3f5;
+  --contentColor: #ffffff;
+  --layoutBackground: #e8e8e8;
+  --layoutTabsBackground: #f8f8f8;
+  --layoutTabsActiveColor: #333333;
+  --layoutTabsLineColor: #87909c80;
+  --sidebarBackground: #e8e8e8;
+  --sidebarLogoBackground: #f1f1f1;
+  --sidebarActiveColor: #e8e9ea;
+  --sidebarSubmenuActiveColor: var(--primary);
+  --sidebarItemHoverBackground: #f0f2f5;
+
+  /* 🎯 THEME-025: Lens Legacy - Dock Editor Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 86-93)
+   */
+  --dockEditorBackground: #24292e;
+  --dockEditorTag: #8e97a3;
+  --dockEditorKeyword: #e8e9ea;
+  --dockEditorComment: #808080;
+  --dockEditorActiveLineBackground: #3a3d41;
+  --dockInfoBorderColor: #c9cfd3;
+  --dockTabBorderColor: #d5d4de;
+  --dockTabActiveBackground: #ffffff;
+
+  /* 🎯 THEME-025: Lens Legacy - Logs Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 95-97)
+   */
+  --logsBackground: #1a1a1a;
+  --logsForeground: #ffffff;
+  --logRowHoverBackground: #2a2a2a;
+  --logsScrollbarColor: oklch(0.49 0.006 275); /* 로그는 항상 다크 배경이므로 다크 테마 스크롤바 색상 사용 */
+
+  /* 🎯 THEME-025: Lens Legacy - Dialog Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 98-99)
+   */
+  --dialogTextColor: #666666;
+  --dialogBackground: #ffffff;
+
+  /* 🎯 THEME-025: Lens Legacy - Drawer Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 105-108)
+   */
+  --drawerTitleText: #212121;
+  --drawerItemNameColor: #666666;
+  --drawerItemValueColor: #212121;
+
+  /* 🎯 THEME-025: Lens Legacy - Cluster Menu Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 110-114)
+   */
+  --clusterMenuBorderColor: #c9cfd3;
+  --clusterMenuCellOutline: #22222266;
+  --clusterSettingsBackground: #ffffff;
+
+  /* 🎯 THEME-025: Lens Legacy - Misc Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (various)
+   */
+  --boxShadow: #0000003a;
+  --iconActiveColor: #e8e9ea;
+  --iconActiveBackground: #a6a6a694;
+  --radioActiveBackground: #f1f1f1;
+  --menuActiveBackground: var(--primary);
+  --menuSelectedOptionBgc: #e8e8e8;
+  --canvasBackground: #24292e;
+  --scrollBarColor: var(--border);
+  --settingsBackground: #ffffff;
+  --settingsColor: #212121;
+  --navSelectedBackground: #ffffff;
+  --navHoverColor: #2e3135;
+  --hrColor: #06060714;
+  --tooltipBackground: #ffffff;
+
+  /* 🎯 THEME-030: P0 Hardcode Migration - Button/Tooltip/Dialog (Light)
+   * 📝 CatalogAddButton, SubnamespaceBadge, Dialog 하드코딩 제거
+   * 🔄 Migration: 2026-01-31 - 테마 대응 100% 달성
+   */
+  --primary-hover: oklch(0.35 0.2 280); /* purple-700: #4a2a96 equivalent */
+  --tooltip-bg: #222222; /* tooltip background */
+  --tooltip-fg: #ffffff; /* tooltip text */
+  --dialog-overlay: oklch(0.13 0 0 / 50%); /* #222 with 50% alpha */
+  --subnamespace-badge-color: oklch(0.55 0.15 200); /* cadetblue equivalent */
+
+  /* 🎯 THEME-031: P1/P2 Hardcode Removal (Light)
+   * 📝 Button, Close, Node Status, Badge, Window Control 등
+   * 🔄 Migration: 2026-01-31 - 하드코딩 색상 완전 제거
+   */
+  /* Button Colors */
+  --button-filled-text: oklch(1 0 0); /* #ffffff */
+  --button-light-text: oklch(0.35 0 0); /* #505050 */
+  --button-waiting-overlay: oklch(1 0 0 / 15%); /* white 15% */
+  --button-focus-ring: oklch(1 0 0 / 50%); /* rgba(255,255,255,0.5) */
+  --button-active-overlay: oklch(1 0 0 / 15%); /* white 15% */
+
+  /* Close Button */
+  --close-button-hover-bg: oklch(0.5 0 0 / 15%); /* #72767d25 */
+
+  /* Node Status Colors */
+  --node-status-out-of-disk: oklch(0.5 0.18 25); /* #ce3933 */
+  --node-status-network-unavailable: oklch(0.35 0.12 25); /* #812727 */
+  --node-status-memory-pressure: oklch(0.45 0.18 310); /* #901995 */
+  --node-status-disk-pressure: oklch(0.65 0.18 70); /* #cc8d00 */
+  --node-status-pid-pressure: oklch(0.55 0.15 210); /* #068dbf */
+  --node-status-scheduling-disabled: var(--colorWarning); /* #ff9800 */
+  --node-status-text: oklch(1 0 0); /* white */
+
+  /* Badge Colors (Endpoint Slice) */
+  --badge-ready-bg: var(--colorSuccess); /* #00c02a */
+  --badge-serving-bg: oklch(0.55 0.15 210); /* #068dbf */
+  --badge-terminating-bg: oklch(0.35 0 0); /* #4c5053 */
+  --badge-text-on-colored: oklch(1 0 0); /* white */
+
+  /* Window Controls (Ubuntu/Linux) */
+  --window-control-close-bg: oklch(0.55 0.25 30); /* #e63e02 */
+  --window-control-close-hover-bg: oklch(0.65 0.22 30); /* #ff5a23 */
+  --window-control-close-active-bg: oklch(0.55 0.22 15); /* #ef4b4e */
+  --window-control-close-text: oklch(1 0 0); /* white */
+
+  /* Terminal Status */
+  --terminal-status-success: oklch(0.7 0.18 145); /* #4ade80 */
+  --terminal-status-error: oklch(0.55 0.22 25); /* #ef4444 */
+
+  /* Spinner Colors */
+  --spinner-blue: oklch(0.55 0.2 260); /* #4285f4 */
+  --spinner-red: oklch(0.5 0.22 25); /* #de3e35 */
+  --spinner-yellow: oklch(0.8 0.18 85); /* #f7c223 */
+  --spinner-green: oklch(0.5 0.18 145); /* #1b9a59 */
+
+  /* Dialog Colors */
+  --dialog-content-bg: oklch(1 0 0); /* white */
+  --dialog-footer-bg: oklch(0.96 0 0); /* #f4f4f4 */
+  --dialog-warning-bg: oklch(0.92 0.08 25); /* #fad8d7 */
+  --dialog-warning-text: oklch(0.5 0 0); /* #797979 */
+  --dialog-hr-color: oklch(0.87 0 0 / 50%); /* #dfdfdf80 */
+
+  /* Status Brick */
+  --status-brick-waiting-bg: oklch(0.7 0.18 65 / 56%); /* #ff980090 */
+
+  /* Logs Popover & Overlay */
+  --logs-popover-fg: oklch(1 0 0); /* #ffffff */
+  --logs-overlay-bg: oklch(0.7 0.12 140 / 72%); /* #8cc474b8 green highlight */
+  --logs-overlay-active-bg: oklch(0.7 0.18 65); /* orange */
+
+  /* Log Level Colors (Soft contrast for dark log background #1a1a1a) */
+  --log-level-error: oklch(0.65 0.15 25); /* soft red */
+  --log-level-warn: oklch(0.72 0.12 85); /* soft amber */
+  --log-level-info: oklch(0.7 0.12 145); /* soft green */
+  --log-level-debug: oklch(0.68 0.12 260); /* soft blue */
+  --log-level-trace: oklch(0.55 0.02 286); /* muted gray */
+  --log-level-button-active-bg: oklch(1 0 0 / 18%); /* 눌림 효과: 다크 배경 #1a1a1a에서 잘 보이도록 밝게 */
+
+  /* Wizard/Scale Dialog */
+  --wizard-subtitle-color: oklch(0.65 0 0); /* #a0a0a0 */
+
+  /* Sidebar */
+  --sidebar-icon-muted: oklch(0.55 0 0); /* #888888 */
+
+  /* Mixins */
+  --stripes-color-1: oklch(0.83 0 0); /* #ccc */
+
+  /* 🎯 THEME-031 Additional: Selection, Badge, Wizard, Table (Light)
+   * 📝 심층 검색에서 발견된 추가 하드코딩 제거
+   */
+  /* Selection Text */
+  --selection-text: oklch(1 0 0); /* white */
+  --selection-bg: var(--primary); /* blue */
+
+  /* Pod/Job Status Badge */
+  --status-badge-text: oklch(1 0 0); /* white */
+
+  /* Wizard Header */
+  --wizard-header-text: oklch(1 0 0); /* white */
+  --stepper-color: oklch(0.75 0 0); /* silver */
+  --stepper-point-color: oklch(0.15 0 0); /* black */
+
+  /* Table Cell */
+  --table-save-indicator-bg: oklch(0.6 0.18 145 / 10%); /* green 10% */
+
+  /* Avatar */
+  --avatar-bg: oklch(0.45 0 0); /* gray */
+  --avatar-text: oklch(1 0 0); /* white */
+
+  /* Layout Debug */
+  --layout-debug-bg: oklch(0.85 0.15 350); /* pink */
+
+  /* Input Icon */
+  --input-icon-color: oklch(1 0 0); /* white */
+
+  /* Drawer */
+  --drawer-icon-focus: oklch(1 0 0); /* white */
+
+  /* Helm */
+  --helm-error-color: oklch(0.55 0.22 25); /* red */
+
+  /* Config Dialog */
+  --config-dialog-text: oklch(0.15 0 0); /* black */
+
+  /* Switch Component */
+  --switch-thumb-color: oklch(1 0 0); /* white */
+  --switch-thumb-highlight: oklch(1 0 0 / 25%); /* white 25% */
+  --switch-track-inactive: oklch(0.45 0 0); /* gray */
+  --switch-track-active: oklch(0.65 0.2 145); /* green */
+  --switch-disabled-track: oklch(0.4 0 0); /* darker gray */
+  --switch-disabled-shadow: oklch(0 0 0 / 40%); /* black 40% */
+
+  /* 🎯 THEME-031 Final: CSS Variable Definitions (Light)
+   * 📝 CSS 변수 정의 내 하드코딩 제거
+   */
+  /* Icon/Menu Active Colors */
+  --icon-color-active: oklch(0.15 0 0); /* black for light theme */
+  --menu-item-color-active: oklch(1 0 0); /* white */
+  --catalog-tab-color-active: oklch(1 0 0); /* white */
+  /* Gradient/Select Background */
+  --gradient-color: oklch(1 0 0); /* white - for gradient fade */
+  --select-menu-bgc-light: oklch(1 0 0); /* white - select menu background */
+
+  /* 🎯 THEME-040: Shadow CSS Variables (Light)
+   * 📝 box-shadow 하드코딩 제거 - CSS 변수로 통합
+   */
+  --menu-shadow: oklch(0 0 0 / 17%); /* menu.scss box-shadow */
+  --dropdown-shadow: 0 2px 8px oklch(0 0 0 / 15%); /* sidebar dropdown */
+  --context-menu-shadow: 0 4px 12px oklch(0 0 0 / 20%); /* context menu */
+  --scroll-shadow-color: oklch(0 0 0 / 20%); /* scrollable area shadow */
+  --card-hover-shadow: 0 4px 12px oklch(0 0 0 / 10%); /* card hover effect */
+  --command-palette-shadow: oklch(0 0 0 / 50%) 0px 16px 70px; /* command palette */
+
+  /* 🎯 THEME-040: Component-specific CSS Variables (Light)
+   * 📝 컴포넌트별 하드코딩 색상 제거
+   */
+  /* Table Resize Handle */
+  --table-resize-hover-bg: oklch(0.55 0.2 260 / 10%); /* primary 10% */
+  --table-resize-active-bg: oklch(0.55 0.2 260 / 20%); /* primary 20% */
+  --table-resizing-bg: oklch(0.55 0.2 260 / 2%); /* primary 2% */
+  --table-resize-handle-bg: oklch(0.55 0.2 260 / 30%); /* primary 30% */
+  /* Chart Card */
+  --chart-card-border: oklch(0.5 0 0 / 20%); /* gray 20% */
+  /* Metric Button */
+  --metric-button-hover-bg: oklch(0.5 0 0 / 15%); /* gray 15% */
+  --metric-button-active-bg: oklch(0.4 0 0 / 20%); /* gray 20% */
+  --metric-button-active-border: oklch(0.5 0 0 / 30%); /* gray 30% */
+  /* Dock Scrollbar */
+  --dock-scrollbar-thumb: oklch(0.45 0 0 / 20%); /* gray 20% */
+  /* Code Accent */
+  --code-accent-color: oklch(0.6 0.22 10); /* pink - rgb(236, 64, 122) */
+  /* Notification */
+  --notification-text: oklch(1 0 0); /* white */
+  /* Terminal (이미 THEME-001에 정의됨, 여기서는 fallback 용도로 재정의) */
+  --terminalBackground: oklch(0.1 0 0); /* #1a1a1a */
+  --terminalForeground: oklch(0.97 0.01 110); /* #f8f8f2 */
+
+  /* 🎯 THEME-025: Lens Legacy - Helm Description Colors (Light)
+   * 📝 Source: lens-light.injectable.ts (line 61-74)
+   */
+  --helmLogoBackground: #ffffff;
+  --helmDescriptionHr: #dddddd;
+  --helmDescriptionBlockquoteColor: #666666;
+  --helmDescriptionBlockquoteBorder: #8a8f93;
+  --helmDescriptionBlockquoteBackground: #eeeeee;
+  --helmDescriptionHeaders: #3e4147;
+  --helmDescriptionH6: #6a737d;
+  --helmDescriptionTdBorder: #c6c6c6;
+  --helmDescriptionTrBackground: #1c2125;
+  --helmDescriptionCodeBackground: #ffffff1a;
+  --helmDescriptionPreBackground: #eeeeee;
+  --helmDescriptionPreColor: #212121;
+}
+html:where(.theme-default-dark) {
+  /* 🎯 FIX-042: Soft Contrast - deep dark 배경 */
+  --background: oklch(0.1 0 0); /* #0D0D0D */
+  --foreground: oklch(0.93 0 0); /* #EDEDED (off-white) */
+  --card: oklch(0.16 0 0); /* #1F1F1F */
+  --card-foreground: oklch(0.93 0 0);
+  --popover: oklch(0.16 0 0);
+  --popover-foreground: oklch(0.93 0 0);
+  --primary: oklch(0.488 0.243 264.376); /* blue-700 */
+  --primary-foreground: oklch(1 0 0); /* 순수 흰색 */
+  --color-primary: oklch(0.488 0.243 264.376);
+  --secondary: oklch(0.22 0 0); /* #333333 */
+  --secondary-foreground: oklch(0.85 0 0); /* #D4D4D4 */
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.7 0 0); /* #B0B0B0 - WCAG AA */
+  --accent: oklch(0.22 0 0);
+  --accent-foreground: oklch(0.93 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 12%); /* 투명도 조정 */
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  /* 🎯 THEME-040: Node Charts Neutral Colors (Dark) - Secondary axis lines */
+  --chart-neutral-light: oklch(0.7 0 0);
+  --chart-neutral-dark: oklch(0.95 0 0);
+  --sidebar: oklch(0.14 0 0); /* #1A1A1A */
+  --sidebar-foreground: oklch(0.93 0 0);
+  --sidebar-primary: oklch(0.9 0 0);
+  --sidebar-primary-foreground: oklch(0.16 0 0);
+  --sidebar-accent: oklch(0.22 0 0);
+  --sidebar-accent-foreground: oklch(0.93 0 0);
+  --sidebar-border: oklch(1 0 0 / 20%); /* 트리 라인 가시성 */
+  --sidebar-ring: oklch(0.556 0 0);
+
+  /* 🎯 DAIVE StatusBar 테마 변수 (Dark) */
+  --daive-status-bar-border-color: var(--sidebar-border);
+  --daive-status-bar-bg: var(--sidebar);
+  --daive-status-bar-foreground: var(--muted-foreground);
+  --daive-status-bar-hover-bg: oklch(1 0 0 / 12%);
+
+  /* 🎯 THEME-001: Terminal CSS Variables (Dark)
+   * 📝 ANSI 16색 표준 + 커서/선택 영역
+   * 🔄 VSCode Dark+ 테마 기반 색상
+   */
+  --color-terminal-foreground: #cccccc;
+  --color-terminal-background: #0d0d0d;
+  --color-terminal-cursor: #ffffff;
+  --color-terminal-cursor-accent: #0d0d0d;
+  --color-terminal-selection-background: #264f78;
+  /* ANSI 기본 8색 */
+  --color-terminal-black: #000000;
+  --color-terminal-red: #cd3131;
+  --color-terminal-green: #0dbc79;
+  --color-terminal-yellow: #e5e510;
+  --color-terminal-blue: #2472c8;
+  --color-terminal-magenta: #bc3fbc;
+  --color-terminal-cyan: #11a8cd;
+  --color-terminal-white: #e5e5e5;
+  /* ANSI 밝은 8색 */
+  --color-terminal-bright-black: #666666;
+  --color-terminal-bright-red: #f14c4c;
+  --color-terminal-bright-green: #23d18b;
+  --color-terminal-bright-yellow: #f5f543;
+  --color-terminal-bright-blue: #3b8eea;
+  --color-terminal-bright-magenta: #d670d6;
+  --color-terminal-bright-cyan: #29b8db;
+  --color-terminal-bright-white: #e5e5e5;
+
+  /* 🎯 THEME-020: Diff Viewer Colors (Dark)
+   * 📝 Git diff 스타일 - GitHub Dark 테마 기반
+   */
+  --diff-added-bg: oklch(0.25 0.08 150); /* #1a3d2e */
+  --diff-added-fg: oklch(0.8 0.12 150); /* #a8e6cf */
+  --diff-added-symbol: oklch(0.65 0.18 150); /* #22c55e */
+  --diff-removed-bg: oklch(0.25 0.08 25); /* #3d1a1a */
+  --diff-removed-fg: oklch(0.8 0.12 25); /* #ffb3b3 */
+  --diff-removed-symbol: oklch(0.6 0.2 25); /* #ef4444 */
+  --diff-header-bg: oklch(0.25 0.05 220); /* #1a2d3d */
+  --diff-header-fg: oklch(0.8 0.1 220); /* #a8d8ea */
+  --diff-unchanged-bg: oklch(0.18 0 0); /* #252525 */
+  --diff-unchanged-fg: oklch(0.88 0 0); /* #e0e0e0 */
+  --diff-line-number: oklch(0.55 0 0); /* #888888 */
+  --diff-gutter-bg: oklch(0.15 0 0); /* #1f1f1f */
+  --diff-gutter-selected: oklch(0.3 0.08 220); /* #264f78 */
+
+  /* 🎯 THEME-020: Mermaid Diagram Colors (Dark)
+   * 📝 Mermaid.js 다이어그램 테마 변수
+   */
+  --mermaid-bg: oklch(0.15 0 0); /* #1e1e1e */
+  --mermaid-primary: oklch(0.55 0.2 260); /* #3b82f6 */
+  --mermaid-primary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-primary-border: oklch(0.45 0 0); /* #4b5563 */
+  --mermaid-secondary: oklch(0.35 0 0); /* #374151 */
+  --mermaid-secondary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-tertiary: oklch(0.25 0 0); /* #1f2937 */
+  --mermaid-tertiary-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-line: oklch(0.5 0 0); /* #6b7280 */
+  --mermaid-text: oklch(1 0 0); /* #ffffff */
+  --mermaid-main-bg: oklch(0.3 0 0); /* #374151 */
+  --mermaid-node-bg: oklch(0.3 0 0); /* #374151 */
+  --mermaid-node-border: oklch(0.45 0 0); /* #4b5563 */
+  --mermaid-cluster-bg: oklch(0.25 0 0); /* #1f2937 */
+  --mermaid-cluster-border: oklch(0.45 0 0); /* #4b5563 */
+  --mermaid-title: oklch(1 0 0); /* #ffffff */
+  --mermaid-edge-label-bg: oklch(0.3 0 0); /* #374151 */
+
+  /* 🎯 THEME-020: Code Block Colors (Dark)
+   * 📝 구문 강조 테마 변수 - One Dark 테마 기반
+   */
+  --code-bg: oklch(0.2 0 0); /* #282c34 */
+  --code-fg: oklch(0.85 0 0); /* #abb2bf */
+  --code-text-green: oklch(0.7 0.12 150); /* #98c379 */
+  --code-text-blue: oklch(0.7 0.12 220); /* #61afef */
+  --syntax-highlight-bg: oklch(0.18 0 0); /* #282c34 */
+
+  /* 🎯 THEME-020: Connection Status Colors (Dark)
+   * 📝 클러스터 연결 상태 표시
+   */
+  --connection-status-connecting: oklch(0.75 0.18 85); /* #FFA500 orange */
+  --connection-status-connected: oklch(0.65 0.2 145); /* #4CAF50 green */
+  --connection-status-disconnected: oklch(0.55 0.2 25); /* #F44336 red */
+
+  /* 🎯 THEME-020: Pod Status Colors (Dark)
+   * 📝 Pod 상태별 색상 (차트용)
+   */
+  --pod-status-running: oklch(0.55 0.2 260); /* #2563eb blue-600 */
+  --pod-status-succeeded: oklch(0.6 0.18 145); /* #16a34a green-600 */
+  --pod-status-pending: oklch(0.65 0.18 85); /* #ca8a04 yellow-600 */
+  --pod-status-failed: oklch(0.55 0.22 15); /* #e11d48 rose-600 */
+  --pod-status-unknown: oklch(0.45 0 0); /* #4b5563 gray-600 */
+
+  /* 🎯 THEME-020: Workload Overview Chart Colors (Dark)
+   * 📝 Workload 파이 차트용 색상 팔레트
+   */
+  --workload-default: oklch(0.35 0 0); /* #374151 gray-700 */
+  --workload-succeeded: oklch(0.7 0.12 200); /* #7DD3FC sky-300 */
+  --workload-running: oklch(0.55 0.2 260); /* #3B82F6 blue-500 */
+  --workload-pending: oklch(0.7 0.15 85); /* #FCD34D amber-300 */
+  --workload-failed: oklch(0.6 0.18 15); /* #F87171 red-400 */
+  --workload-unknown: oklch(0.55 0 0); /* #6B7280 gray-500 */
+  --workload-available: oklch(0.6 0.18 145); /* #4ADE80 green-400 */
+  --workload-unavailable: oklch(0.55 0.2 25); /* #FB7185 rose-400 */
+  --workload-suspended: oklch(0.45 0 0); /* #4B5563 gray-600 */
+  --workload-complete: oklch(0.65 0.2 145); /* #22C55E green-500 */
+  --workload-active: oklch(0.6 0.22 260); /* #6366F1 indigo-500 */
+  --workload-updating: oklch(0.65 0.2 290); /* #A855F7 purple-500 */
+
+  /* 🎯 THEME-020: Chart Colors (Dark)
+   * 📝 Recharts 차트용 색상 팔레트
+   */
+  --chart-blue-600: oklch(0.55 0.2 260); /* #3b82f6 */
+  --chart-blue-300: oklch(0.75 0.12 260); /* #93c5fd */
+  --chart-gray-400: oklch(0.65 0 0); /* #9ca3af */
+  --chart-gray-200: oklch(0.35 0 0); /* #374151 - darker for dark theme */
+
+  /* 🎯 THEME-021: Cluster Overview Bar Chart Colors (Dark)
+   * 📝 CPU/Memory/Pods 리소스 바 차트용
+   */
+  --cluster-bar-usage: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --cluster-bar-request: oklch(0.73 0.15 260); /* #93c5fd blue-300 */
+  --cluster-bar-limit: oklch(0.65 0 0); /* #9ca3af gray-400 */
+  --cluster-bar-available: oklch(0.35 0 0); /* #374151 gray-700 (dark) */
+
+  /* 🎯 THEME-022: Resource Cell Bar Colors (Dark)
+   * 📝 GitHub 잔디 스타일 리소스 바용
+   */
+  --cell-bar-usage: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --cell-bar-usage-warning: oklch(0.75 0.18 85); /* #fbbf24 amber-400 */
+  --cell-bar-request: oklch(0.7 0.1 260); /* #60a5fa blue-400 (brighter for dark) */
+  --cell-bar-available: oklch(0.35 0 0); /* #374151 gray-700 (dark) */
+  --cell-bar-limits: oklch(0.7 0.1 15); /* #fca5a5 red-300 */
+  --cell-bar-limits-alt: oklch(0.6 0.15 15); /* #f87171 red-400 */
+
+  /* 🎯 THEME-022: Metrics Chart Colors (Dark)
+   * 📝 Ingress/Volume 차트용
+   */
+  --chart-request-duration: oklch(0.6 0.15 160); /* #48b18d teal */
+  --chart-response-duration: oklch(0.65 0.18 135); /* #73ba3c green */
+  --chart-disk-usage: oklch(0.8 0.18 85); /* #ffc63d amber */
+
+  /* 🎯 THEME-023: Provider Brand Colors (Dark)
+   * 📝 Cloud Provider 공식 브랜드 색상
+   * 🔄 브랜드 일관성을 위해 테마별 동일값 사용
+   */
+  --provider-aws: oklch(0.7 0.18 65); /* #FF9900 AWS Orange */
+  --provider-azure: oklch(0.5 0.18 250); /* #0078D4 Azure Blue */
+  --provider-gcp: oklch(0.55 0.18 260); /* #4285F4 Google Blue */
+  --provider-docker: oklch(0.55 0.2 240); /* #2496ED Docker Blue */
+  --provider-oracle: oklch(0.5 0.25 25); /* #F80000 Oracle Red */
+  --provider-naver: oklch(0.65 0.22 150); /* #03C75A Naver Green */
+
+  /* 🎯 THEME-023: Cluster Palette Colors (Dark)
+   * 📝 클러스터 식별용 7색 팔레트
+   * 🔄 사이드바 연결 상태, 메인 탭 활성 표시에 사용
+   */
+  --cluster-palette-1: oklch(0.6 0.2 145); /* #4CAF50 Green - production */
+  --cluster-palette-2: oklch(0.55 0.2 260); /* #2196F3 Blue - development */
+  --cluster-palette-3: oklch(0.5 0.22 300); /* #9C27B0 Purple - staging */
+  --cluster-palette-4: oklch(0.7 0.18 65); /* #FF9800 Orange - test */
+  --cluster-palette-5: oklch(0.55 0.25 350); /* #E91E63 Pink */
+  --cluster-palette-6: oklch(0.65 0.15 195); /* #00BCD4 Cyan */
+  --cluster-palette-7: oklch(0.55 0.25 25); /* #F44336 Red */
+
+  /* 🎯 THEME-023: Chart Utility Colors (Dark)
+   * 📝 Chart.js 유틸리티 색상
+   */
+  --chart-backdrop: oklch(0.1 0 0); /* near-black for dark theme */
+
+  /* 🎯 THEME-040: Unified Semantic Color System (Dark)
+   * 📝 역할 기반, 일관성 있고, 접근성 있는 색상 시스템
+   * 🔄 WCAG AA (4.5:1 대비율), OKLCH 색상 공간
+   */
+  /* Running/Active - Blue (Dark에서 더 밝은 톤) */
+  --semantic-running: oklch(0.65 0.2 260);
+  --semantic-running-text: oklch(0.98 0 0);
+  --semantic-running-muted: oklch(0.25 0.08 260);
+  /* Success/Succeeded - Green */
+  --semantic-success: oklch(0.65 0.18 145);
+  --semantic-success-text: oklch(0.98 0 0);
+  --semantic-success-muted: oklch(0.25 0.08 145);
+  /* Warning/Pending - Amber (밝은 배경 → 어두운 텍스트) */
+  --semantic-warning: oklch(0.75 0.18 85);
+  --semantic-warning-text: oklch(0.15 0 0);
+  --semantic-warning-muted: oklch(0.3 0.08 85);
+  /* Error/Failed - Red */
+  --semantic-error: oklch(0.63 0.22 25);
+  --semantic-error-text: oklch(0.98 0 0);
+  --semantic-error-muted: oklch(0.25 0.08 25);
+  /* Neutral/Unknown - Gray */
+  --semantic-neutral: oklch(0.5 0.02 286);
+  --semantic-neutral-text: oklch(0.95 0 0);
+  --semantic-neutral-muted: oklch(0.25 0.01 286);
+
+  /* 🎯 THEME-040: Component Token Mapping (Dark)
+   * 📝 Button, Badge, Chart 컴포넌트 토큰 - semantic 변수 참조
+   */
+  /* Button Component Tokens */
+  --button-primary-bg: var(--semantic-running);
+  --button-primary-fg: var(--semantic-running-text);
+  --button-destructive-bg: var(--semantic-error);
+  --button-destructive-fg: var(--semantic-error-text);
+  --button-subtle-bg: oklch(0.3 0 0);
+  --button-subtle-fg: oklch(0.9 0 0);
+  /* Badge Component Tokens */
+  --badge-running-bg: var(--semantic-running);
+  --badge-running-fg: var(--semantic-running-text);
+  --badge-succeeded-bg: var(--semantic-success);
+  --badge-succeeded-fg: var(--semantic-success-text);
+  --badge-pending-bg: var(--semantic-warning);
+  --badge-pending-fg: var(--semantic-warning-text);
+  --badge-failed-bg: var(--semantic-error);
+  --badge-failed-fg: var(--semantic-error-text);
+  --badge-unknown-bg: var(--semantic-neutral);
+  --badge-unknown-fg: var(--semantic-neutral-text);
+  /* Chart Component Tokens */
+  --chart-running: var(--semantic-running);
+  --chart-succeeded: var(--semantic-success);
+  --chart-pending: var(--semantic-warning);
+  --chart-failed: var(--semantic-error);
+  --chart-unknown: var(--semantic-neutral);
+
+  /* 🎯 THEME-040: Recharts ChartContainer Color Aliases (Dark)
+   * 📝 overview.tsx에서 사용하는 --color-* 변수 → workload 색상 참조
+   */
+  --color-succeeded: var(--workload-succeeded);
+  --color-running: var(--workload-running);
+  --color-pending: var(--workload-pending);
+  --color-failed: var(--workload-failed);
+  --color-unknown: var(--workload-unknown);
+
+  /* 🎯 THEME-024: Status Colors (Dark)
+   * 📝 상태 표시용 시맨틱 색상 - Tailwind 하드코딩 대체
+   */
+  --status-success: oklch(0.6 0.18 145); /* #22c55e green-500 */
+  --status-success-muted: oklch(0.25 0.08 145); /* dark green bg */
+  --status-success-border: oklch(0.5 0.12 145); /* green-600 */
+  --status-warning: oklch(0.75 0.18 85); /* #eab308 yellow-500 */
+  --status-warning-muted: oklch(0.25 0.08 85); /* dark yellow bg */
+  --status-warning-border: oklch(0.6 0.15 85); /* yellow-600 */
+  --status-error: oklch(0.55 0.22 25); /* #ef4444 red-500 */
+  --status-error-muted: oklch(0.25 0.08 25); /* dark red bg */
+  --status-error-border: oklch(0.5 0.15 25); /* red-600 */
+  --status-info: oklch(0.55 0.2 260); /* #3b82f6 blue-500 */
+  --status-info-muted: oklch(0.25 0.08 260); /* dark blue bg */
+  --status-info-border: oklch(0.5 0.12 260); /* blue-600 */
+  --status-pending: oklch(0.55 0 0); /* #6b7280 gray-500 */
+  --status-pending-muted: oklch(0.25 0 0); /* dark gray bg */
+  --status-pending-border: oklch(0.45 0 0); /* gray-600 */
+
+  /* 🎯 THEME-024: Tailwind Color Replacement (Dark)
+   * 📝 Tailwind 하드코딩 클래스를 CSS 변수로 대체
+   * 🔄 다크 테마에서 더 밝은 색상 사용
+   */
+  --tw-blue-50: oklch(0.2 0.03 260);
+  --tw-blue-100: oklch(0.25 0.06 260);
+  --tw-blue-200: oklch(0.35 0.1 260);
+  --tw-blue-300: oklch(0.5 0.12 260);
+  --tw-blue-400: oklch(0.6 0.16 260);
+  --tw-blue-500: oklch(0.55 0.2 260);
+  --tw-blue-600: oklch(0.5 0.2 260);
+  --tw-blue-700: oklch(0.45 0.18 260);
+  --tw-green-50: oklch(0.2 0.03 145);
+  --tw-green-100: oklch(0.25 0.06 145);
+  --tw-green-200: oklch(0.35 0.1 145);
+  --tw-green-500: oklch(0.6 0.18 145);
+  --tw-green-600: oklch(0.55 0.18 145);
+  --tw-red-50: oklch(0.2 0.03 25);
+  --tw-red-100: oklch(0.25 0.06 25);
+  --tw-red-200: oklch(0.35 0.1 25);
+  --tw-red-500: oklch(0.55 0.22 25);
+  --tw-red-600: oklch(0.5 0.22 25);
+  --tw-yellow-50: oklch(0.2 0.03 85);
+  --tw-yellow-100: oklch(0.25 0.08 85);
+  --tw-yellow-200: oklch(0.35 0.12 85);
+  --tw-yellow-500: oklch(0.75 0.18 85);
+  --tw-gray-50: oklch(0.18 0 0);
+  --tw-gray-100: oklch(0.22 0 0);
+  --tw-gray-200: oklch(0.28 0 0);
+  --tw-gray-300: oklch(0.35 0 0);
+  --tw-gray-400: oklch(0.5 0 0);
+  --tw-gray-500: oklch(0.6 0 0);
+  --tw-gray-600: oklch(0.7 0 0);
+  --tw-gray-700: oklch(0.8 0 0);
+  --tw-gray-800: oklch(0.88 0 0);
+
+  /* 🎯 THEME-024: Badge & UI Semantic Colors (Dark)
+   * 📝 Badge, Status Cell 등 UI 컴포넌트용
+   */
+  --badge-success-bg: oklch(0.25 0.08 145);
+  --badge-success-text: oklch(0.8 0.12 145);
+  --badge-warning-bg: oklch(0.25 0.08 85);
+  --badge-warning-text: oklch(0.85 0.15 85);
+  --badge-error-bg: oklch(0.25 0.08 25);
+  --badge-error-text: oklch(0.8 0.15 25);
+  --badge-info-bg: oklch(0.25 0.06 260);
+  --badge-info-text: oklch(0.8 0.12 260);
+  --badge-neutral-bg: oklch(0.25 0 0);
+  --badge-neutral-text: oklch(0.85 0 0);
+
+  /* 🎯 THEME-024: Highlight & Misc Colors (Dark)
+   * 📝 검색 하이라이트, Modified 표시 등
+   */
+  --highlight-bg: oklch(0.35 0.12 85); /* yellow-800 */
+  --highlight-text: oklch(0.95 0 0);
+  --modified-bg: oklch(0.75 0.18 85 / 20%); /* yellow-500/20 */
+  --modified-text: oklch(0.75 0.18 85); /* yellow-500 */
+
+  /* 🎯 THEME-025: Lens Legacy - Dock Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts
+   * 🔄 Migration: 2026-01-31 - OpenLens injectable에서 CSS 변수로 이관
+   */
+  --dock-head-background: #252525;
+  --dock-info-background: #1e2125;
+  --dock-badge-background: #36393e;
+  --filter-area-background: #28242e;
+
+  /* 🎯 THEME-025: Lens Legacy - Dialog Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 98-99)
+   */
+  --dialog-header-background: #36393e;
+  --dialog-footer-background: #f4f4f4;
+
+  /* 🎯 THEME-025: Lens Legacy - Helm/Menu Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 61-62, 105-107)
+   */
+  --helm-stable-repo: var(--primary);
+  --helm-incubator-repo: #ff7043;
+  --cluster-menu-background: #28242e;
+  --cluster-menu-cell-background: #211d26;
+
+  /* 🎯 THEME-025: Lens Legacy - Drawer/Icon Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 100, 102, 110)
+   */
+  --drawer-toggler-background: #2f343a;
+  --drawer-subtitle-background: #373a3e;
+  --add-cluster-icon-color: #252729;
+
+  /* 🎯 THEME-025: Lens Legacy - Progress Bar Variables (Dark)
+   * 📝 FIX: lineProgressBackground was circular reference (var(--lineProgressBackground))
+   * 🔄 Migration: 2026-01-31 - Define actual color values
+   */
+  --lineProgressBackground: #4c545f; /* chartCapacityColor - progress bar track */
+
+  /* 🎯 THEME-025: Lens Legacy - Button Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 50-54)
+   * 🔄 THEME-040: accent → semantic-error 참조, Dark 전용 더 밝은 톤
+   */
+  --buttonPrimaryBackground: var(--primary);
+  --buttonDefaultBackground: var(--primary);
+  --buttonLightBackground: var(--button-subtle-bg, oklch(0.3 0 0)); /* 어두운 배경용 */
+  --buttonAccentBackground: var(--button-destructive-bg, oklch(0.63 0.22 25)); /* 더 밝은 빨강 */
+  --buttonDisabledBackground: #808080;
+
+  /* 🎯 THEME-025: Lens Legacy - Badge Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 49)
+   */
+  --badgeBackgroundColor: #ffba44;
+
+  /* 🎯 THEME-025: Lens Legacy - Chart Variables (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 115-118)
+   */
+  --chartLiveBarBackground: #00000033;
+  --chartStripesColor: #ffffff08;
+  --chartCapacityColor: #4c545f;
+  --pieChartDefaultColor: #30353a;
+
+  /* 🎯 THEME-025: Lens Legacy - Status Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 74-81)
+   */
+  --colorSuccess: #00c02a;
+  --colorOk: #00c02a;
+  --colorInfo: var(--primary);
+  --colorError: #ce3933;
+  --colorSoftError: #e85555;
+  --colorWarning: #ff9800;
+  --colorVague: #36393e;
+  --colorTerminated: #4c5053;
+
+  /* 🎯 THEME-025: Lens Legacy - Text Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 30-34)
+   */
+  --textColorPrimary: #ededed;
+  --textColorSecondary: #a8a8a8;
+  --textColorTertiary: #b0b0b0;
+  --textColorAccent: #e0e0e0;
+  --textColorDimmed: #b0b0b080;
+
+  /* 🎯 THEME-025: Lens Legacy - Table Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 55-59)
+   */
+  --tableBgcStripe: #2a2d33;
+  --tableBgcSelected: #383c42;
+  --tableHeaderBackground: #211d26;
+  --tableHeaderColor: #e0e0e0;
+  --tableSelectedRowColor: #e0e0e0;
+
+  /* 🎯 THEME-025: Lens Legacy - Input Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 119-122)
+   */
+  --inputOptionHoverColor: #9e9e9e;
+  --inputControlBackground: #1e2125;
+  --inputControlBorder: #414448;
+  --inputControlHoverBorder: #474a4f;
+
+  /* 🎯 THEME-025: Lens Legacy - Border Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 35-36)
+   */
+  --borderColor: #4c5053;
+  --borderFaintColor: #373a3e;
+
+  /* 🎯 THEME-025: Lens Legacy - Background Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 37-48)
+   */
+  --mainBackground: #222129;
+  --secondaryBackground: #222129;
+  --contentColor: #211d26;
+  --layoutBackground: #28242e;
+  --layoutTabsBackground: #211d26;
+  --layoutTabsActiveColor: #e0e0e0;
+  --layoutTabsLineColor: #75757580;
+  --sidebarBackground: #211d26;
+  --sidebarLogoBackground: #211d26;
+  --sidebarActiveColor: #ffffff;
+  --sidebarSubmenuActiveColor: #e0e0e0;
+  --sidebarItemHoverBackground: #3a3e44;
+
+  /* 🎯 THEME-025: Lens Legacy - Dock Editor Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 85-92)
+   */
+  --dockEditorBackground: #000000;
+  --dockEditorTag: #8e97a3;
+  --dockEditorKeyword: #e0e0e0;
+  --dockEditorComment: #808080;
+  --dockEditorActiveLineBackground: #3a3d41;
+  --dockInfoBorderColor: #303136;
+  --dockTabBorderColor: #43424d;
+  --dockTabActiveBackground: #3a3e45;
+
+  /* 🎯 THEME-025: Lens Legacy - Logs Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 93-95)
+   */
+  --logsBackground: #000000;
+  --logsForeground: #e0e0e0;
+  --logRowHoverBackground: #35373a;
+  --logsScrollbarColor: oklch(0.49 0.006 275);
+
+  /* 🎯 THEME-025: Lens Legacy - Dialog Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 96-97)
+   */
+  --dialogTextColor: #9e9e9e;
+  --dialogBackground: #ffffff;
+
+  /* 🎯 THEME-025: Lens Legacy - Drawer Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 101, 103-104)
+   */
+  --drawerTitleText: #e0e0e0;
+  --drawerItemNameColor: #9e9e9e;
+  --drawerItemValueColor: #e0e0e0;
+
+  /* 🎯 THEME-025: Lens Legacy - Cluster Menu Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 106-109)
+   */
+  --clusterMenuBorderColor: #28242e;
+  --clusterMenuCellOutline: #ffffff66;
+  --clusterSettingsBackground: #1e2124;
+
+  /* 🎯 THEME-025: Lens Legacy - Misc Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (various)
+   */
+  --boxShadow: #0000003a;
+  --iconActiveColor: #ffffff;
+  --iconActiveBackground: #ffffff18;
+  --radioActiveBackground: #36393e;
+  --menuActiveBackground: var(--primary);
+  --menuSelectedOptionBgc: #36393e;
+  --canvasBackground: #24292e;
+  --scrollBarColor: #5f6064;
+  --settingsBackground: #262b2e;
+  --settingsColor: #e0e0e0;
+  --navSelectedBackground: #262b2e;
+  --navHoverColor: #e0e0e0;
+  --hrColor: #ffffff0f;
+  --tooltipBackground: #18191c;
+
+  /* 🎯 THEME-030: P0 Hardcode Migration - Button/Tooltip/Dialog (Dark)
+   * 📝 CatalogAddButton, SubnamespaceBadge, Dialog 하드코딩 제거
+   * 🔄 Migration: 2026-01-31 - 테마 대응 100% 달성
+   */
+  --primary-hover: oklch(0.45 0.22 280); /* purple-600 for dark: brighter hover */
+  --tooltip-bg: #18191c; /* dark tooltip background */
+  --tooltip-fg: #e0e0e0; /* dark tooltip text */
+  --dialog-overlay: oklch(0 0 0 / 60%); /* darker overlay for dark theme */
+  --subnamespace-badge-color: oklch(0.65 0.15 200); /* brighter cadetblue for dark */
+
+  /* 🎯 THEME-031: P1/P2 Hardcode Removal (Dark)
+   * 📝 Button, Close, Node Status, Badge, Window Control 등
+   * 🔄 Migration: 2026-01-31 - 하드코딩 색상 완전 제거
+   */
+  /* Button Colors - 다크 테마에서도 흰색 텍스트 유지 */
+  --button-filled-text: oklch(1 0 0); /* #ffffff */
+  --button-light-text: oklch(0.35 0 0); /* #505050 - light 버튼은 밝은 배경 */
+  --button-waiting-overlay: oklch(1 0 0 / 15%); /* white 15% */
+  --button-focus-ring: oklch(1 0 0 / 50%); /* rgba(255,255,255,0.5) */
+  --button-active-overlay: oklch(1 0 0 / 15%); /* white 15% */
+
+  /* Close Button */
+  --close-button-hover-bg: oklch(0.5 0 0 / 15%); /* #72767d25 */
+
+  /* Node Status Colors - Dark에서 더 밝은 톤 */
+  --node-status-out-of-disk: oklch(0.55 0.2 25); /* #ce3933 brighter */
+  --node-status-network-unavailable: oklch(0.4 0.15 25); /* #812727 brighter */
+  --node-status-memory-pressure: oklch(0.5 0.2 310); /* #901995 brighter */
+  --node-status-disk-pressure: oklch(0.7 0.18 70); /* #cc8d00 brighter */
+  --node-status-pid-pressure: oklch(0.6 0.18 210); /* #068dbf brighter */
+  --node-status-scheduling-disabled: var(--colorWarning); /* #ff9800 */
+  --node-status-text: oklch(1 0 0); /* white */
+
+  /* Badge Colors (Endpoint Slice) */
+  --badge-ready-bg: var(--colorSuccess); /* #00c02a */
+  --badge-serving-bg: oklch(0.6 0.18 210); /* #068dbf brighter */
+  --badge-terminating-bg: oklch(0.4 0 0); /* #4c5053 brighter */
+  --badge-text-on-colored: oklch(1 0 0); /* white */
+
+  /* Window Controls (Ubuntu/Linux) */
+  --window-control-close-bg: oklch(0.55 0.25 30); /* #e63e02 */
+  --window-control-close-hover-bg: oklch(0.65 0.22 30); /* #ff5a23 */
+  --window-control-close-active-bg: oklch(0.55 0.22 15); /* #ef4b4e */
+  --window-control-close-text: oklch(1 0 0); /* white */
+
+  /* Terminal Status */
+  --terminal-status-success: oklch(0.7 0.18 145); /* #4ade80 */
+  --terminal-status-error: oklch(0.55 0.22 25); /* #ef4444 */
+
+  /* Spinner Colors */
+  --spinner-blue: oklch(0.55 0.2 260); /* #4285f4 */
+  --spinner-red: oklch(0.5 0.22 25); /* #de3e35 */
+  --spinner-yellow: oklch(0.8 0.18 85); /* #f7c223 */
+  --spinner-green: oklch(0.5 0.18 145); /* #1b9a59 */
+
+  /* Dialog Colors - Dark에서는 다크 배경 */
+  --dialog-content-bg: oklch(0.22 0 0); /* dark content */
+  --dialog-footer-bg: oklch(0.25 0 0); /* dark footer */
+  --dialog-warning-bg: oklch(0.3 0.08 25); /* dark warning */
+  --dialog-warning-text: oklch(0.75 0 0); /* brighter text */
+  --dialog-hr-color: oklch(0.35 0 0 / 50%); /* dark hr */
+
+  /* Status Brick */
+  --status-brick-waiting-bg: oklch(0.7 0.18 65 / 56%); /* #ff980090 */
+
+  /* Logs Popover & Overlay */
+  --logs-popover-fg: oklch(1 0 0); /* #ffffff */
+  --logs-overlay-bg: oklch(0.7 0.12 140 / 72%); /* #8cc474b8 green highlight */
+  --logs-overlay-active-bg: oklch(0.7 0.18 65); /* orange */
+
+  /* Log Level Colors (Soft contrast for dark log background #000000) */
+  --log-level-error: oklch(0.68 0.15 25); /* soft red, slightly brighter for darker bg */
+  --log-level-warn: oklch(0.75 0.12 85); /* soft amber */
+  --log-level-info: oklch(0.73 0.12 145); /* soft green */
+  --log-level-debug: oklch(0.7 0.12 260); /* soft blue */
+  --log-level-trace: oklch(0.5 0.02 286); /* muted gray */
+  --log-level-button-active-bg: oklch(1 0 0 / 12%); /* 눌림 효과: 다크 배경 #000000에서 적당한 수준 */
+
+  /* Wizard/Scale Dialog */
+  --wizard-subtitle-color: oklch(0.65 0 0); /* #a0a0a0 */
+
+  /* Sidebar */
+  --sidebar-icon-muted: oklch(0.55 0 0); /* #888888 */
+
+  /* Mixins */
+  --stripes-color-1: oklch(0.5 0 0); /* darker for dark theme */
+
+  /* 🎯 THEME-031 Additional: Selection, Badge, Wizard, Table (Dark)
+   * 📝 심층 검색에서 발견된 추가 하드코딩 제거
+   */
+  /* Selection Text */
+  --selection-text: oklch(1 0 0); /* white */
+  --selection-bg: var(--primary); /* blue */
+
+  /* Pod/Job Status Badge */
+  --status-badge-text: oklch(1 0 0); /* white */
+
+  /* Wizard Header */
+  --wizard-header-text: oklch(1 0 0); /* white */
+  --stepper-color: oklch(0.7 0 0); /* silver - brighter for dark */
+  --stepper-point-color: oklch(0.9 0 0); /* light for dark theme */
+
+  /* Table Cell */
+  --table-save-indicator-bg: oklch(0.6 0.18 145 / 10%); /* green 10% */
+
+  /* Avatar */
+  --avatar-bg: oklch(0.45 0 0); /* gray */
+  --avatar-text: oklch(1 0 0); /* white */
+
+  /* Layout Debug */
+  --layout-debug-bg: oklch(0.7 0.15 350); /* pink - darker for dark */
+
+  /* Input Icon */
+  --input-icon-color: oklch(1 0 0); /* white */
+
+  /* Drawer */
+  --drawer-icon-focus: oklch(1 0 0); /* white */
+
+  /* Helm */
+  --helm-error-color: oklch(0.6 0.22 25); /* red - brighter for dark */
+
+  /* Config Dialog */
+  --config-dialog-text: oklch(0.9 0 0); /* light for dark theme */
+
+  /* Switch Component */
+  --switch-thumb-color: oklch(1 0 0); /* white */
+  --switch-thumb-highlight: oklch(1 0 0 / 25%); /* white 25% */
+  --switch-track-inactive: oklch(0.35 0 0); /* gray - darker for dark */
+  --switch-track-active: oklch(0.65 0.2 145); /* green */
+  --switch-disabled-track: oklch(0.3 0 0); /* darker gray */
+  --switch-disabled-shadow: oklch(0 0 0 / 40%); /* black 40% */
+  --switch-thumb-highlight-light: oklch(0 0 0 / 25%); /* for light theme mode */
+  --switch-disabled-track-light: oklch(0.8 0 0); /* light mode disabled */
+
+  /* 🎯 THEME-031 Final: CSS Variable Definitions (Dark)
+   * 📝 CSS 변수 정의 내 하드코딩 제거
+   */
+  /* Icon/Menu Active Colors */
+  --icon-color-active: oklch(0.9 0 0); /* light gray for dark theme */
+  --menu-item-color-active: oklch(1 0 0); /* white */
+  --catalog-tab-color-active: oklch(1 0 0); /* white */
+  /* Gradient/Select Background - Dark theme uses contentColor */
+  --gradient-color: var(--contentColor); /* dark theme gradient */
+  --select-menu-bgc-light: var(--contentColor); /* dark theme menu bg */
+
+  /* 🎯 THEME-040: Shadow CSS Variables (Dark)
+   * 📝 box-shadow 하드코딩 제거 - CSS 변수로 통합
+   * 🔄 Dark 테마에서 더 진한 그림자 사용
+   */
+  --menu-shadow: oklch(0 0 0 / 30%); /* menu.scss box-shadow - darker */
+  --dropdown-shadow: 0 2px 8px oklch(0 0 0 / 30%); /* sidebar dropdown */
+  --context-menu-shadow: 0 4px 12px oklch(0 0 0 / 40%); /* context menu */
+  --scroll-shadow-color: oklch(0 0 0 / 35%); /* scrollable area shadow */
+  --card-hover-shadow: 0 4px 12px oklch(0 0 0 / 25%); /* card hover effect - darker */
+  --command-palette-shadow: oklch(0 0 0 / 70%) 0px 16px 70px; /* command palette - darker */
+
+  /* 🎯 THEME-040: Component-specific CSS Variables (Dark)
+   * 📝 컴포넌트별 하드코딩 색상 제거
+   */
+  /* Table Resize Handle */
+  --table-resize-hover-bg: oklch(0.55 0.2 260 / 15%); /* primary 15% */
+  --table-resize-active-bg: oklch(0.55 0.2 260 / 25%); /* primary 25% */
+  --table-resizing-bg: oklch(0.55 0.2 260 / 5%); /* primary 5% */
+  --table-resize-handle-bg: oklch(0.55 0.2 260 / 35%); /* primary 35% */
+  /* Chart Card */
+  --chart-card-border: oklch(0.5 0 0 / 30%); /* gray 30% */
+  /* Metric Button */
+  --metric-button-hover-bg: oklch(0.5 0 0 / 20%); /* gray 20% */
+  --metric-button-active-bg: oklch(0.4 0 0 / 25%); /* gray 25% */
+  --metric-button-active-border: oklch(0.5 0 0 / 40%); /* gray 40% */
+  /* Dock Scrollbar */
+  --dock-scrollbar-thumb: oklch(0.45 0 0 / 30%); /* gray 30% */
+  /* Code Accent */
+  --code-accent-color: oklch(0.65 0.22 10); /* pink - brighter for dark */
+  /* Notification */
+  --notification-text: oklch(1 0 0); /* white */
+  /* Terminal (Dark 테마용) */
+  --terminalBackground: oklch(0 0 0); /* #000000 */
+  --terminalForeground: oklch(0.88 0 0); /* #E0E0E0 */
+
+  /* 🎯 THEME-025: Lens Legacy - Helm Description Colors (Dark)
+   * 📝 Source: lens-dark.injectable.ts (line 60-73)
+   */
+  --helmLogoBackground: #ffffff;
+  --helmDescriptionHr: #41474a;
+  --helmDescriptionBlockquoteColor: #9e9e9e;
+  --helmDescriptionBlockquoteBorder: #8a8f93;
+  --helmDescriptionBlockquoteBackground: #3b4348;
+  --helmDescriptionHeaders: #3e4147;
+  --helmDescriptionH6: #6a737d;
+  --helmDescriptionTdBorder: #47494a;
+  --helmDescriptionTrBackground: #1c2125;
+  --helmDescriptionCodeBackground: #ffffff1a;
+  --helmDescriptionPreBackground: #1b1f21;
+  --helmDescriptionPreColor: #e0e0e0;
+} /* Dark 테마 블록 종료 */
+
+/* ============================================================
+ * 🎯 THEME-040: Semantic Status Utility Classes
+ * 📝 Tailwind v4 JIT tree-shaking 우회를 위해 직접 정의
+ *    @utility는 정의된 파일 내에서만 작동하고 @source inline()은
+ *    Tailwind 기본 유틸리티만 지원하므로, 직접 클래스 정의가 필요
+ * ============================================================ */
+
+/* Background Colors */
+.bg-semantic-running {
+  background-color: var(--semantic-running);
+}
+.bg-semantic-success {
+  background-color: var(--semantic-success);
+}
+.bg-semantic-warning {
+  background-color: var(--semantic-warning);
+}
+.bg-semantic-error {
+  background-color: var(--semantic-error);
+}
+.bg-semantic-neutral {
+  background-color: var(--semantic-neutral);
+}
+
+/* Text Colors */
+.text-semantic-running-text {
+  color: var(--semantic-running-text);
+}
+.text-semantic-success-text {
+  color: var(--semantic-success-text);
+}
+.text-semantic-warning-text {
+  color: var(--semantic-warning-text);
+}
+.text-semantic-error-text {
+  color: var(--semantic-error-text);
+}
+.text-semantic-neutral-text {
+  color: var(--semantic-neutral-text);
+}
+
+/* Badge Specific Classes */
+.bg-badge-running-bg {
+  background-color: var(--badge-running-bg);
+}
+.bg-badge-succeeded-bg {
+  background-color: var(--badge-succeeded-bg);
+}
+.bg-badge-pending-bg {
+  background-color: var(--badge-pending-bg);
+}
+.bg-badge-failed-bg {
+  background-color: var(--badge-failed-bg);
+}
+.bg-badge-unknown-bg {
+  background-color: var(--badge-unknown-bg);
+}
+
+.text-badge-running-fg {
+  color: var(--badge-running-fg);
+}
+.text-badge-succeeded-fg {
+  color: var(--badge-succeeded-fg);
+}
+.text-badge-pending-fg {
+  color: var(--badge-pending-fg);
+}
+.text-badge-failed-fg {
+  color: var(--badge-failed-fg);
+}
+.text-badge-unknown-fg {
+  color: var(--badge-unknown-fg);
+}
+
+/* Status Classes (Legacy compatibility) */
+.bg-status-success {
+  background-color: var(--status-success, var(--semantic-success));
+}
+.bg-status-error {
+  background-color: var(--status-error, var(--semantic-error));
+}
+.bg-status-warning {
+  background-color: var(--status-warning, var(--semantic-warning));
+}
+.bg-status-info {
+  background-color: var(--status-info, var(--semantic-running));
+}
+
+/* Chart Status Colors */
+.bg-chart-running {
+  background-color: var(--chart-running);
+}
+.bg-chart-succeeded {
+  background-color: var(--chart-succeeded);
+}
+.bg-chart-pending {
+  background-color: var(--chart-pending);
+}
+.bg-chart-failed {
+  background-color: var(--chart-failed);
+}
+.bg-chart-unknown {
+  background-color: var(--chart-unknown);
+}

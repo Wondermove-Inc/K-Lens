@@ -1,0 +1,111 @@
+/**
+ * Copyright (c) SkuberPlus Authors. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.mainLayout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+// 🎨 상단 바 (숨김 처리)
+.topBar {
+  display: none; // 🔄 topBar 영역 숨김
+
+  .topBarContent {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .topBarActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+// 🏗️ 메인 본문 레이아웃 (Flexbox 구조)
+// base-structure-template 구조 100% 적용: hotbar (고정) | flexContainer (나머지)
+.bodyLayout {
+  display: flex; // 🔄 Grid → Flexbox 변경
+  flex: 1;
+  height: 100%; // 🔄 전체 높이 사용
+  overflow: hidden;
+}
+
+// 🎯 Hotbar 영역: Tailwind classes로 완전 전환 (className="w-12 flex-shrink-0 relative bg-sidebar z-10 overflow-hidden")
+// .hotbar 클래스 제거됨
+
+// 🎯 Flex Container: Sidebar + (Contents + Footer)를 포함하는 영역
+.flexContainer {
+  flex: 1; // 🔄 나머지 공간 채우기
+  display: flex;
+  flex-direction: row; // 🔄 가로 방향 (sidebar | mainContent)
+  overflow: hidden;
+}
+
+// 🎯 Main Content: Contents + Footer를 포함하는 영역 (flex-1)
+.mainContent {
+  flex: 1; // 🔄 나머지 공간 채우기
+  display: flex;
+  flex-direction: column; // 🔄 세로 방향 (contents | footer)
+  overflow: hidden;
+}
+
+// 🎯 Sidebar wrapper - ResizingAnchor의 absolute positioning 기준점
+.sidebarWrapper {
+  width: var(--sidebar-width); // 🔄 동적 너비
+  height: 100%; // 🔄 추가: flexContainer의 전체 높이 사용 (scroll 복구)
+  display: flex;
+  position: relative; // 🔄 ResizingAnchor의 absolute positioning 기준
+  flex-shrink: 0; // 🔄 축소 불가
+}
+
+// 🎯 Sidebar: Tailwind classes로 색상 전환 (className="flex-1 flex flex-col relative bg-sidebar z-10 overflow-hidden")
+// 하지만 shadcn override CSS를 위해 .sidebar selector 유지
+.sidebar {
+  // 🔧 shadcn Sidebar의 position: fixed 강제 override
+  // shadcn Sidebar는 모든 variant에서 fixed를 사용하므로 Flexbox layout을 위해 강제로 relative로 변경
+  // Tailwind CSS보다 높은 우선순위를 위해 매우 구체적인 selector 사용
+  // 🔄 width override 제거: shadcn의 w-(--sidebar-width)를 사용하여 resizer 변경에 동적 반응
+  &
+    :global(div[data-slot="sidebar-wrapper"])
+    :global(div[data-slot="sidebar-container"]) {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    height: 100% !important;
+    // width: 100% !important; // 🔄 제거: shadcn의 w-(--sidebar-width) 사용
+  }
+}
+
+// 📋 메인 콘텐츠 영역 (flex-1)
+.contents {
+  flex: 1; // 🔄 나머지 공간 채우기
+  overflow: hidden;
+
+  // 🎯 MainTab과 기존 TabLayout 간의 간격 조정
+  // MainTabContainer 다음에 오는 기존 TabLayout의 중복 여백 제거
+  .main-tab-container + .TabLayout {
+    margin-top: 0;
+  }
+
+  // 🔄 변경사항: MainTab이 활성화된 상태에서 기존 TabLayout과의 레이아웃 충돌 방지
+  .main-tab-container {
+    + * {
+      // MainTab 바로 다음에 오는 모든 요소의 상단 여백 최적화
+      margin-top: 0;
+    }
+  }
+}
+
+// 🦶 푸터 (터미널 Dock): Tailwind classes로 완전 전환 (className="relative min-w-0 bg-background border-t border-border")
+// .footer 클래스 제거됨

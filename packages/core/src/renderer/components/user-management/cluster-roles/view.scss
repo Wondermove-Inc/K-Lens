@@ -1,0 +1,18 @@
+@use "../../table/table.mixins";
+@use "../../vars" as *;
+
+.ClusterRoles {
+  .help-icon {
+    margin-left: $margin * 0.5;
+  }
+
+  .TableCell {
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.age {
+      flex-grow: 0.4;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectionToken } from "@ogre-tools/injectable";
+
+import type { Pod } from "@skuberplus/kube-object";
+
+import type { SpecificKubeListLayoutColumn } from "./kube-list-layout-column";
+
+export const podListLayoutColumnInjectionToken = getInjectionToken<SpecificKubeListLayoutColumn<Pod>>({
+  id: "kube-object-list-layout-column",
+});

@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react",
+    "target": "ES2022",
+    "module": "ES2022",
+
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "ESNext"],
+
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "allowJs": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": false,
+    "traceResolution": false,
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
+  },
+
+  "ts-node": {
+    "transpileOnly": true,
+
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+
+  "include": ["./styles.d.ts"]
+}

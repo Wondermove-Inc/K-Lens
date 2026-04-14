@@ -1,0 +1,23 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "autoscaler.mixins";
+
+.VpaDetails {
+  .conditions {
+    @include autoscaler.vpa-status-bgc;
+  }
+
+  .metrics .Table {
+    .TableCell {
+      word-break: break-word;
+
+      &.name {
+        flex-grow: 2;
+      }
+    }
+  }
+}

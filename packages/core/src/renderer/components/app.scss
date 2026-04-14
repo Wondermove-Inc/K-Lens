@@ -1,0 +1,294 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "sass:meta";
+@use "../components/mixins";
+@use "../components/vars" as *;
+
+@include meta.load-css("tailwindcss");
+
+@include meta.load-css("flexbox");
+@include meta.load-css("fonts");
+
+@config "../../../tailwind.config.js";
+
+// 🎯 목적: SkuberPlus base 스타일을 @layer base로 이동하여 Tailwind utilities가 override 가능하도록 함
+// 📝 효과: Welcome shadcn UI가 Tailwind 클래스 적용됨, 기존 SkuberPlus UI는 변경 없음
+// 🔗 참고: docs/problem/2025-10-22-app-scss-global-reset-breaking-shadcn.md
+@layer base {
+  :root {
+    --flex-gap: #{$padding};
+    --unit: 12px;
+    --padding: var(--unit);
+    --margin: var(--unit);
+    --border-radius: 8px;
+    --font-main:
+      "Geist", "Pretendard", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Inter", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    --font-monospace:
+      Lucida Console, Monaco, Consolas, monospace; // some defaults
+    --font-terminal: var(
+      --font-monospace
+    ); // overridden in terminal.ts, managed by common/user-store.ts
+    --font-size-small: 0.875rem;
+    --font-size: 0.875rem;
+    --font-size-big: 1.125rem;
+    --font-weight-thin: 300;
+    --font-weight-normal: 400;
+    --font-weight-bold: 500;
+    --main-layout-header: 40px;
+
+    // 🎯 목적: shadcn CSS 변수는 webpack에서 globals.css 엔트리로 별도 처리됨
+    // 📝 주의: packages/core/webpack/renderer.ts에서 globals 엔트리가 먼저 로드되어야 함
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+  }
+} // @layer base 임시 종료 (scrollbar는 unlayered 유지)
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 15px; // Align sizes visually
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollBarColor);
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-right-width: 5px;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+@layer base {
+  // 재시작
+
+  *:target {
+    color: var(--textColorAccent);
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    // 🎯 FIX-042: ShadCN --foreground 변수 사용 (Soft Contrast)
+    // 📝 기존 var(--textColorPrimary)는 Lens 테마에서 오버라이드하여 버튼 등에 영향
+    color: var(--foreground);
+    font-size: var(--font-size);
+    font-family: var(--font-main);
+    line-height: 1.5;
+  }
+} // @layer base 임시 종료 (ID 스타일은 unlayered 유지)
+
+#terminal-init {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  min-height: 100%;
+  background-color: var(--mainBackground);
+  // ❌ 2026-01-18: Issue 1 - padding-right 제거
+  // 문제: #app에 padding-right 적용 시 TopBar/StatusBar도 함께 줄어듦
+  // 해결: ClusterManager의 main 영역에만 AI 패널 공간 반영 (.main-layout-wrapper)
+  // CSS 변수 --ai-panel-width는 여전히 ai-chat-panel.tsx에서 설정되지만
+  // 이제 cluster-manager.scss의 .main-layout-wrapper에서 사용됨
+
+  &:empty {
+    background-color: transparent;
+  }
+
+  > * {
+    height: inherit;
+  }
+}
+
+@layer base {
+  // 재시작
+
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  label {
+    color: var(--textColorSecondary);
+  }
+
+  ol,
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  h1 {
+    color: var(--textColorPrimary);
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  h2 {
+    @extend h1;
+    font-size: 24px;
+  }
+
+  h3 {
+    @extend h2;
+    font-size: 20px;
+  }
+
+  h4 {
+    @extend h3;
+    font-size: 18px;
+  }
+
+  h5 {
+    @extend h4;
+    padding: $padding * 0.5 0;
+    font-size: 16px;
+  }
+
+  h6 {
+    @extend h5;
+    font-size: 12px;
+  }
+
+  small {
+    font-size: $font-size-small;
+  }
+
+  // 🔄 THEME-031: 코드 블록 색상 → CSS 변수
+  code {
+    display: inline-block;
+    padding: 0.2em;
+    vertical-align: middle;
+    border-radius: $radius;
+    font-family: $font-monospace;
+    font-size: calc(var(--font-size) * 0.9);
+    color: var(--code-fg, oklch(0.72 0 0));
+
+    &.block {
+      @include mixins.hidden-scrollbar;
+      background: var(--code-bg, oklch(0.12 0 0));
+      display: block;
+      white-space: pre;
+      padding: $padding * 2;
+    }
+  }
+
+  a {
+    color: inherit;
+    cursor: pointer;
+
+    [href] {
+      text-decoration: underline;
+    }
+
+    &:not([href]) {
+      border-bottom: 1px dotted;
+      text-decoration: none;
+    }
+  }
+
+  iframe {
+    // Remove default white background on iframes
+    color-scheme: auto;
+  }
+} // @layer base 종료
+
+// colors
+.success {
+  color: var(--colorSuccess);
+}
+
+.info {
+  color: var(--colorInfo);
+}
+
+.error {
+  color: var(--colorError);
+}
+
+.warning {
+  color: var(--colorWarning);
+}
+
+.contrast {
+  color: var(--textColorAccent);
+}
+
+.text-secondary {
+  color: var(--textColorSecondary);
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+.flow {
+  --flow-space: #{$margin * 1.5};
+
+  &:not(.column) {
+    > * + * {
+      margin-left: var(--flow-space);
+    }
+  }
+
+  &.column {
+    > * + * {
+      margin-top: var(--flow-space);
+    }
+  }
+}
+
+/*app's common loading indicator, displaying on the route transitions*/
+#loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -15px;
+  z-index: 1000;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+// hack-fix: remove crappy yellow background from auto-filled inputs in chrome
+@keyframes autofill-remove-bgc {
+  to {
+    color: inherit;
+    background: inherit;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill-remove-bgc;
+  -webkit-animation-fill-mode: both;
+}

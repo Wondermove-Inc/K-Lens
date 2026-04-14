@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SidebarCluster/> renders w/o errors 1`] = `
+<div>
+  <div
+    class="flex items-center p-[calc(var(--padding)*1.2)] cursor-pointer hover:bg-sidebar-accent focus-visible:outline-none focus-visible:shadow-[0_0_0_2px_var(--ring)]"
+    data-testid="sidebar-cluster-dropdown"
+    id="cluster-test-uid"
+    role="menubar"
+    tabindex="0"
+  >
+    <div
+      class="Avatar rounded font-medium mr-[calc(var(--margin)*1.5)]"
+      style="width: 40px; height: 40px; background: rgb(96, 130, 10);"
+    >
+      tc
+    </div>
+    <div
+      class="font-bold overflow-hidden break-words text-accent-foreground line-clamp-3"
+      id="tooltip-cluster-test-uid"
+    >
+      test-cluster
+    </div>
+    <i
+      class="Icon rounded-[3px] ml-[var(--margin)] material focusable"
+    >
+      <span
+        class="icon"
+        data-icon-name="arrow_drop_down"
+      >
+        arrow_drop_down
+      </span>
+    </i>
+  </div>
+</div>
+`;

@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "mixins.scss";
+@use "../vars" as *;
+
+.CustomResourceDefinitionDetails {
+  .conditions {
+    @include mixins.custom-resource-definitions-condition-colors;
+  }
+
+  .Table {
+    margin-left: -$margin * 2;
+    margin-right: -$margin * 2;
+
+    .TableRow {
+      cursor: default;
+    }
+
+    &.printer-columns {
+      .type {
+        flex: 0.5;
+      }
+
+      .json-path {
+        flex: 3;
+      }
+    }
+  }
+}

@@ -1,0 +1,150 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { withInjectables } from "@ogre-tools/injectable-react";
+import { Icon } from "@skuberplus/icon";
+import { Spinner } from "@skuberplus/spinner";
+import { action, runInAction } from "mobx";
+import { observer } from "mobx-react";
+import React from "react";
+import validateDirectoryInjectable from "../../../common/fs/validate-directory.injectable";
+import resolveTildeInjectable from "../../../common/path/resolve-tilde.injectable";
+import isWindowsInjectable from "../../../common/vars/is-windows.injectable";
+import openPathPickingDialogInjectable from "../../../features/path-picking-dialog/renderer/pick-paths.injectable";
+import { Gutter } from "../gutter";
+import { Input } from "../input";
+import { SubTitle } from "../layout/sub-title";
+import { notificationPanelStore } from "../status-bar/items/notification-panel.store";
+import localTerminalSettingPresenterInjectable from "./local-terminal-setting-presenter.injectable";
+
+import type { Cluster } from "../../../common/cluster/cluster";
+import type { ValidateDirectory } from "../../../common/fs/validate-directory.injectable";
+import type { ResolveTilde } from "../../../common/path/resolve-tilde.injectable";
+import type { OpenPathPickingDialog } from "../../../features/path-picking-dialog/renderer/pick-paths.injectable";
+import type { LocalTerminalSettingPresenter } from "./local-terminal-setting-presenter.injectable";
+
+export interface ClusterLocalTerminalSettingProps {
+  cluster: Cluster;
+}
+interface Dependencies {
+  validateDirectory: ValidateDirectory;
+  resolveTilde: ResolveTilde;
+  openPathPickingDialog: OpenPathPickingDialog;
+  isWindows: boolean;
+  presenter: LocalTerminalSettingPresenter;
+}
+
+const NonInjectedClusterLocalTerminalSetting = observer((props: Dependencies & ClusterLocalTerminalSettingProps) => {
+  const { cluster, validateDirectory, resolveTilde, isWindows, openPathPickingDialog, presenter } = props;
+  const commitDirectory = async (directory: string) => {
+    if (!directory) {
+      runInAction(() => {
+        cluster.preferences.terminalCWD = undefined;
+      });
+
+      return;
+    }
+
+    const dir = resolveTilde(directory);
+    const result = await validateDirectory(dir);
+
+    if (result.callWasSuccessful) {
+      runInAction(() => {
+        cluster.preferences.terminalCWD = dir;
+        presenter.directory.set(dir);
+      });
+
+      return;
+    }
+
+    // 🎯 FIX-037: NotificationPanel으로 마이그레이션
+    notificationPanelStore.addError(
+      "cluster",
+      "Terminal Working Directory",
+      `Your changes were not saved because ${result.error}`,
+    );
+  };
+
+  const commitDefaultNamespace = action(() => {
+    cluster.preferences.defaultNamespace = presenter.defaultNamespace.get() || undefined;
+  });
+
+  const setAndCommitDirectory = (newPath: string) => {
+    presenter.directory.set(newPath);
+    commitDirectory(newPath);
+  };
+
+  const openFilePicker = () => {
+    openPathPickingDialog({
+      message: "Choose Working Directory",
+      buttonLabel: "Pick",
+      properties: ["openDirectory", "showHiddenFiles"],
+      onPick: ([directory]) => setAndCommitDirectory(directory),
+    });
+  };
+
+  return (
+    <>
+      <section className="working-directory">
+        <SubTitle title="Working Directory" />
+        <Input
+          theme="round-black"
+          value={presenter.directory.get()}
+          data-testid="working-directory"
+          onChange={(value) => presenter.directory.set(value)}
+          onBlur={() => commitDirectory(presenter.directory.get())}
+          placeholder={isWindows ? "$USERPROFILE" : "$HOME"}
+          iconRight={
+            <>
+              {presenter.directory.get() && (
+                <Icon
+                  material="close"
+                  title="Clear"
+                  onClick={() => setAndCommitDirectory("")}
+                  smallest
+                  style={{ marginRight: "var(--margin)" }}
+                />
+              )}
+              <Icon material="folder" title="Pick from filesystem" onClick={openFilePicker} smallest />
+            </>
+          }
+        />
+        <small className="hint">
+          An explicit start path where the terminal will be launched, this is used as the current working directory
+          (cwd) for the shell process.
+        </small>
+      </section>
+      <Gutter />
+      <section className="default-namespace">
+        <SubTitle title="Default Namespace" />
+        <Input
+          theme="round-black"
+          data-testid="default-namespace"
+          value={presenter.defaultNamespace.get()}
+          onChange={(value) => presenter.defaultNamespace.set(value)}
+          onBlur={commitDefaultNamespace}
+          placeholder={presenter.placeholderDefaultNamespace}
+        />
+        <small className="hint">Default namespace used for kubectl.</small>
+      </section>
+    </>
+  );
+});
+
+export const ClusterLocalTerminalSetting = withInjectables<Dependencies, ClusterLocalTerminalSettingProps>(
+  NonInjectedClusterLocalTerminalSetting,
+  {
+    getPlaceholder: () => <Spinner center />,
+    getProps: async (di, props) => ({
+      ...props,
+      validateDirectory: di.inject(validateDirectoryInjectable),
+      resolveTilde: di.inject(resolveTildeInjectable),
+      isWindows: di.inject(isWindowsInjectable),
+      openPathPickingDialog: di.inject(openPathPickingDialogInjectable),
+      presenter: await di.inject(localTerminalSettingPresenterInjectable, props.cluster),
+    }),
+  },
+);

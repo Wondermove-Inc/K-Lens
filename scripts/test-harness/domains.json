@@ -1,0 +1,52 @@
+{
+  "domains": [
+    {
+      "id": "ai-common",
+      "label": "AI Assistant Common",
+      "pattern": "features/ai-assistant/common/",
+      "package": "packages/core"
+    },
+    {
+      "id": "ai-main",
+      "label": "AI Assistant Main",
+      "pattern": "features/ai-assistant/main",
+      "package": "packages/core"
+    },
+    {
+      "id": "ai-renderer",
+      "label": "AI Assistant Renderer",
+      "pattern": "features/ai-assistant/renderer",
+      "package": "packages/core"
+    },
+    {
+      "id": "ai-chat",
+      "label": "AI Chat Components",
+      "pattern": "renderer/components/ai-chat",
+      "package": "packages/core"
+    },
+    {
+      "id": "security",
+      "label": "Security",
+      "pattern": "features/security|renderer/components/security|common/security",
+      "package": "packages/core"
+    },
+    {
+      "id": "k8s-api",
+      "label": "K8s API & Utils",
+      "pattern": "common/k8s-api|common/utils",
+      "package": "packages/core"
+    },
+    {
+      "id": "main-core",
+      "label": "Main Process Core",
+      "pattern": "src/main/",
+      "package": "packages/core"
+    },
+    {
+      "id": "preferences",
+      "label": "Preferences & Settings",
+      "pattern": "preferences-dialog|features/preferences|features/user-preferences",
+      "package": "packages/core"
+    }
+  ]
+}

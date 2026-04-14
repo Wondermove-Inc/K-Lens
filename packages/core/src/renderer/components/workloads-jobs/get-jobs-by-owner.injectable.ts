@@ -1,0 +1,23 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import jobStoreInjectable from "./store.injectable";
+
+import type { CronJob, Job } from "@skuberplus/kube-object";
+
+export type GetJobsByOwner = (cronJob: CronJob) => Job[];
+
+const getJobsByOwnerInjectable = getInjectable({
+  id: "get-jobs-by-owner",
+  instantiate: (di): GetJobsByOwner => {
+    const store = di.inject(jobStoreInjectable);
+
+    return (cronJob) => store.getJobsByOwner(cronJob);
+  },
+});
+
+export default getJobsByOwnerInjectable;

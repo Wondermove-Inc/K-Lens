@@ -1,0 +1,73 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.ClusterManager {
+  display: grid;
+  grid-template-areas:
+    "topbar"
+    "main"
+    "status-bar";
+  grid-template-rows: auto 1fr min-content;
+  grid-template-columns: 1fr; // 단일 컬럼
+
+  main {
+    grid-area: main;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .error {
+    z-index: 1;
+  }
+
+  // 🎯 메인 레이아웃 wrapper - #lens-views와 AI 패널을 나란히 배치
+  // 📝 2026-01-18: Issue 1 - AI 패널 공간 반영을 main 영역에만 적용
+  // 이전: #app에 padding-right → TopBar/StatusBar도 줄어듦 (잘못됨)
+  // 현재: .main-layout-wrapper에 padding-right → main 콘텐츠만 밀림 (정상)
+  .main-layout-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    // 🎯 AI 패널 열릴 때 main 콘텐츠만 밀기
+    // 📝 2026-01-20: - transition 제거 (즉시 반응)
+    padding-right: var(--ai-panel-width, 0px);
+  }
+
+  #lens-views {
+    position: relative; // 🎯 absolute → relative로 변경하여 flex 레이아웃에 참여
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    // 🎯 목적: shadcn 테마 CSS token 사용하여 테마 일관성 확보
+    // 변경: var(--mainBackground) → var(--background)
+    background-color: var(--background);
+
+    iframe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex: 1;
+
+      // when updating font settings in the "Preferences -> Terminal" cluster's iframe
+      // must be accessible in DOM (e.g. elem.getBoundingClientRect() must work)
+      &.hidden {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    }
+  }
+}

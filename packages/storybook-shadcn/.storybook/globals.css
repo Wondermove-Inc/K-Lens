@@ -1,0 +1,591 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind dark mode variant: .dark 클래스를 가진 요소와 그 자식 모두에 적용 */
+@custom-variant dark (&:where(.dark, .dark *, [class*="-dark"], [class*="-dark"] *));
+
+/* 🎯 Security grade/severity colors - @source inline for Tailwind v4 purge bypass */
+@source inline("border-l-4");
+@source inline("text-blue-600 bg-blue-50 border-l-blue-500 text-blue-400 bg-blue-900/30 border-l-blue-400 dark:text-blue-400");
+@source inline("text-green-600 bg-green-50 border-l-green-500 text-green-400 bg-green-900/30 border-l-green-400 dark:text-green-400");
+@source inline("text-amber-600 bg-amber-50 border-l-amber-500 text-amber-500 bg-amber-900/30 border-l-amber-400 dark:text-amber-500");
+@source inline("text-orange-500 bg-orange-50 border-l-orange-500 text-orange-400 bg-orange-900/25 border-l-orange-400 dark:text-orange-400");
+@source inline("text-red-600 bg-red-50 border-l-red-500 text-red-400 bg-red-900/30 border-l-red-500 dark:text-red-400");
+@source inline("text-orange-500 text-green-600 text-green-400 text-zinc-500 text-zinc-400 dark:text-green-400 dark:text-zinc-400");
+@source inline("bg-green-400 bg-green-500 bg-green-700/55 bg-green-800/55 bg-zinc-400 bg-zinc-600/45 dark:bg-green-700/55 dark:bg-green-800/55 dark:bg-orange-900/25");
+@source inline("text-green-100/90 text-zinc-200/80 text-green-700/80 text-cyan-100/90 dark:bg-green-800/55 dark:text-green-100/90 dark:bg-zinc-600/45 dark:text-zinc-200/80 dark:bg-orange-700/50 dark:text-orange-100");
+
+/* 🎯 목적: 기본 테마 변수 정의 (:root 레벨)
+ * 📝 주의: @theme inline에서 var() 참조가 작동하려면 :root에 원본 변수 필요
+ * 🔄 동작: html.theme-* 선택자가 이 값들을 오버라이드
+ */
+:root {
+  --radius: 0.65rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* 테마별 CSS 변수 정의 - html.theme-* 선택자로 :root 값 오버라이드 */
+html.theme-default-light {
+  --radius: 0.65rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+html.theme-default-dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  /* 🎯 목적: 트리 라인 가시성 향상 (hover/active 시에도 명확히 보이도록) */
+  /* 📝 변경: 10% → 25% 투명도 (2.5배 더 밝게) */
+  --sidebar-border: oklch(1 0 0 / 25%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+html.theme-red-light {
+  /* 🎯 목적: Red 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-light에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-light theme-red-light')
+   */
+  --primary: var(--color-red-600);
+  --primary-foreground: var(--color-red-50);
+  --ring: var(--color-red-400);
+  --chart-1: var(--color-red-300);
+  --chart-2: var(--color-red-500);
+  --chart-3: var(--color-red-600);
+  --chart-4: var(--color-red-700);
+  --chart-5: var(--color-red-800);
+  --sidebar-primary: var(--color-red-600);
+  --sidebar-primary-foreground: var(--color-red-50);
+  --sidebar-ring: var(--color-red-400);
+}
+html.theme-red-dark {
+  /* 🎯 목적: Red 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-dark에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-dark theme-red-dark')
+   */
+  --primary: var(--color-red-600);
+  --primary-foreground: var(--color-red-50);
+  --ring: var(--color-red-400);
+  --chart-1: var(--color-red-300);
+  --chart-2: var(--color-red-500);
+  --chart-3: var(--color-red-600);
+  --chart-4: var(--color-red-700);
+  --chart-5: var(--color-red-800);
+  --sidebar-primary: var(--color-red-600);
+  --sidebar-primary-foreground: var(--color-red-50);
+  --sidebar-ring: var(--color-red-400);
+}
+html.theme-orange-light {
+  /* 🎯 목적: Orange 테마 전용 변수 최소 정의 (11개) */
+  --primary: var(--color-orange-600);
+  --primary-foreground: var(--color-orange-50);
+  --ring: var(--color-orange-400);
+  --chart-1: var(--color-orange-300);
+  --chart-2: var(--color-orange-500);
+  --chart-3: var(--color-orange-600);
+  --chart-4: var(--color-orange-700);
+  --chart-5: var(--color-orange-800);
+  --sidebar-primary: var(--color-orange-600);
+  --sidebar-primary-foreground: var(--color-orange-50);
+  --sidebar-ring: var(--color-orange-400);
+}
+html.theme-orange-dark {
+  /* 🎯 목적: Orange 테마 전용 변수 최소 정의 (11개) */
+  --primary: var(--color-orange-600);
+  --primary-foreground: var(--color-orange-50);
+  --ring: var(--color-orange-400);
+  --chart-1: var(--color-orange-300);
+  --chart-2: var(--color-orange-500);
+  --chart-3: var(--color-orange-600);
+  --chart-4: var(--color-orange-700);
+  --chart-5: var(--color-orange-800);
+  --sidebar-primary: var(--color-orange-600);
+  --sidebar-primary-foreground: var(--color-orange-50);
+  --sidebar-ring: var(--color-orange-400);
+}
+html.theme-green-light {
+  /* 🎯 목적: Green 테마 전용 변수 최소 정의 (11개) */
+  --primary: var(--color-lime-600);
+  --primary-foreground: var(--color-lime-50);
+  --ring: var(--color-lime-400);
+  --chart-1: var(--color-green-300);
+  --chart-2: var(--color-green-500);
+  --chart-3: var(--color-green-600);
+  --chart-4: var(--color-green-700);
+  --chart-5: var(--color-green-800);
+  --sidebar-primary: var(--color-lime-600);
+  --sidebar-primary-foreground: var(--color-lime-50);
+  --sidebar-ring: var(--color-lime-400);
+}
+html.theme-green-dark {
+  /* 🎯 목적: Green 테마 전용 변수 최소 정의 (11개) */
+  --primary: var(--color-lime-600);
+  --primary-foreground: var(--color-lime-50);
+  --ring: var(--color-lime-400);
+  --chart-1: var(--color-green-300);
+  --chart-2: var(--color-green-500);
+  --chart-3: var(--color-green-600);
+  --chart-4: var(--color-green-700);
+  --chart-5: var(--color-green-800);
+  --sidebar-primary: var(--color-lime-600);
+  --sidebar-primary-foreground: var(--color-lime-50);
+  --sidebar-ring: var(--color-lime-400);
+}
+html.theme-blue-light {
+  /* 🎯 목적: Blue 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-light에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-light theme-blue-light')
+   */
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-blue-50);
+  --ring: var(--color-blue-400);
+  --chart-1: var(--color-blue-300);
+  --chart-2: var(--color-blue-500);
+  --chart-3: var(--color-blue-600);
+  --chart-4: var(--color-blue-700);
+  --chart-5: var(--color-blue-800);
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-blue-50);
+  --sidebar-ring: var(--color-blue-400);
+}
+html.theme-blue-dark {
+  /* 🎯 목적: Blue 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-dark에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-dark theme-blue-dark')
+   */
+  --primary: var(--color-blue-700);
+  --primary-foreground: var(--color-blue-50);
+  --ring: var(--color-blue-400);
+  --chart-1: var(--color-blue-300);
+  --chart-2: var(--color-blue-500);
+  --chart-3: var(--color-blue-600);
+  --chart-4: var(--color-blue-700);
+  --chart-5: var(--color-blue-800);
+  --sidebar-primary: var(--color-blue-600);
+  --sidebar-primary-foreground: var(--color-blue-50);
+  --sidebar-ring: var(--color-blue-400);
+}
+html.theme-yellow-light {
+  /* 🎯 목적: Yellow 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-light에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-light theme-yellow-light')
+   */
+  --primary: var(--color-yellow-600);
+  --primary-foreground: var(--color-yellow-50);
+  --ring: var(--color-yellow-400);
+  --chart-1: var(--color-yellow-300);
+  --chart-2: var(--color-yellow-500);
+  --chart-3: var(--color-yellow-600);
+  --chart-4: var(--color-yellow-700);
+  --chart-5: var(--color-yellow-800);
+  --sidebar-primary: var(--color-yellow-600);
+  --sidebar-primary-foreground: var(--color-yellow-50);
+  --sidebar-ring: var(--color-yellow-400);
+}
+html.theme-yellow-dark {
+  /* 🎯 목적: Yellow 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-dark에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-dark theme-yellow-dark')
+   */
+  --primary: var(--color-yellow-600);
+  --primary-foreground: var(--color-yellow-50);
+  --ring: var(--color-yellow-400);
+  --chart-1: var(--color-yellow-300);
+  --chart-2: var(--color-yellow-500);
+  --chart-3: var(--color-yellow-600);
+  --chart-4: var(--color-yellow-700);
+  --chart-5: var(--color-yellow-800);
+  --sidebar-primary: var(--color-yellow-600);
+  --sidebar-primary-foreground: var(--color-yellow-50);
+  --sidebar-ring: var(--color-yellow-400);
+}
+html.theme-violet-light {
+  /* 🎯 목적: Violet 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-light에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-light theme-violet-light')
+   */
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-violet-50);
+  --ring: var(--color-violet-400);
+  --chart-1: var(--color-violet-300);
+  --chart-2: var(--color-violet-500);
+  --chart-3: var(--color-violet-600);
+  --chart-4: var(--color-violet-700);
+  --chart-5: var(--color-violet-800);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-violet-50);
+  --sidebar-ring: var(--color-violet-400);
+}
+html.theme-violet-dark {
+  /* 🎯 목적: Violet 테마 전용 변수 최소 정의 (11개)
+   * 📝 로직: 나머지 31개 변수는 theme-default-dark에서 폴백
+   * 🔄 동작: withThemeByClassName('theme-default-dark theme-violet-dark')
+   */
+  --primary: var(--color-violet-600);
+  --primary-foreground: var(--color-violet-50);
+  --ring: var(--color-violet-400);
+  --chart-1: var(--color-violet-300);
+  --chart-2: var(--color-violet-500);
+  --chart-3: var(--color-violet-600);
+  --chart-4: var(--color-violet-700);
+  --chart-5: var(--color-violet-800);
+  --sidebar-primary: var(--color-violet-600);
+  --sidebar-primary-foreground: var(--color-violet-50);
+  --sidebar-ring: var(--color-violet-400);
+}
+
+/* 🎯 목적: Tailwind v4 테마 시스템 설정 - 폰트와 radius만 정의
+ * 📝 주의: 색상 변수는 @theme inline 블록에서 동적 참조로 정의
+ * 🔄 변경이력: 2025-10-12 - @theme inline으로 색상 변수 이동 (다중 테마 지원)
+ */
+@theme {
+  --font-sans:
+    "Geist", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --radius: 0.65rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* 🎯 커스텀 애니메이션: sidebar-cluster 로딩 효과 */
+  --animate-waiting: waiting 1.5s infinite linear;
+}
+
+/* 🎯 목적: Sidebar Cluster 로딩 애니메이션
+ * 📝 사용: animate-waiting 클래스
+ * 🔄 변경이력: 2025-10-26 - SCSS에서 Tailwind로 마이그레이션
+ */
+@keyframes waiting {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  50% {
+    left: 25%;
+    width: 75%;
+  }
+  75% {
+    left: 100%;
+    width: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 🎯 목적: Tailwind v4 동적 테마 시스템 - 모든 색상 변수를 동적 참조로 정의
+ * 📝 주의: @theme inline은 CSS 변수 참조를 허용하여 html.theme-* 클래스로 값 변경 가능
+ * 🔄 동작 원리: --color-primary: var(--primary) → html.theme-red-dark에서 --primary 오버라이드
+ */
+@theme inline {
+  /* 기본 색상 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* 카드 */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* 팝오버 */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* 프라이머리 */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* 세컨더리 */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* 뮤티드 */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* 액센트 */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* 디스트럭티브 */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* 보더 및 인풋 */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* 차트 */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* 사이드바 */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* 표면 및 코드 */
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-highlight: var(--code-highlight);
+  --color-code-number: var(--code-number);
+
+  /* 선택 영역 */
+  --color-selection: var(--selection);
+  --color-selection-foreground: var(--selection-foreground);
+
+  /* Tailwind 컬러 테마 전용 색상 */
+
+  /* Red theme colors - Tailwind 공식 팔레트 */
+  --color-red-50: oklch(0.971 0.013 17.38);
+  --color-red-100: oklch(0.936 0.032 17.717);
+  --color-red-200: oklch(0.885 0.062 18.334);
+  --color-red-300: oklch(0.808 0.114 19.571);
+  --color-red-400: oklch(0.704 0.191 22.216);
+  --color-red-500: oklch(0.637 0.237 25.331);
+  --color-red-600: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.505 0.213 27.518);
+  --color-red-800: oklch(0.444 0.177 26.899);
+  --color-red-900: oklch(0.396 0.141 25.723);
+  --color-red-950: oklch(0.258 0.092 26.042);
+
+  /* Orange theme colors - Tailwind 공식 팔레트 */
+  --color-orange-50: oklch(0.98 0.016 73.684);
+  --color-orange-100: oklch(0.954 0.038 75.164);
+  --color-orange-200: oklch(0.901 0.076 70.697);
+  --color-orange-300: oklch(0.837 0.128 66.29);
+  --color-orange-400: oklch(0.75 0.183 55.934);
+  --color-orange-500: oklch(0.705 0.213 47.604);
+  --color-orange-600: oklch(0.646 0.222 41.116);
+  --color-orange-700: oklch(0.553 0.195 38.402);
+  --color-orange-800: oklch(0.47 0.157 37.304);
+  --color-orange-900: oklch(0.408 0.123 38.172);
+  --color-orange-950: oklch(0.266 0.079 36.259);
+
+  /* Yellow theme colors - Tailwind 공식 팔레트 */
+  --color-yellow-50: oklch(0.987 0.026 102.212);
+  --color-yellow-100: oklch(0.973 0.071 103.193);
+  --color-yellow-200: oklch(0.945 0.129 101.54);
+  --color-yellow-300: oklch(0.905 0.182 98.111);
+  --color-yellow-400: oklch(0.852 0.199 91.936);
+  --color-yellow-500: oklch(0.795 0.184 86.047);
+  --color-yellow-600: oklch(0.681 0.162 75.834);
+  --color-yellow-700: oklch(0.554 0.135 66.442);
+  --color-yellow-800: oklch(0.476 0.114 61.907);
+  --color-yellow-900: oklch(0.421 0.095 57.708);
+  --color-yellow-950: oklch(0.286 0.066 53.813);
+
+  /* Green theme colors - Tailwind 공식 팔레트 */
+  --color-green-50: oklch(0.982 0.018 155.826);
+  --color-green-100: oklch(0.962 0.044 156.743);
+  --color-green-200: oklch(0.925 0.084 155.995);
+  --color-green-300: oklch(0.871 0.15 154.449);
+  --color-green-400: oklch(0.792 0.209 151.711);
+  --color-green-500: oklch(0.723 0.219 149.579);
+  --color-green-600: oklch(0.627 0.194 149.214);
+  --color-green-700: oklch(0.527 0.154 150.069);
+  --color-green-800: oklch(0.448 0.119 151.328);
+  --color-green-900: oklch(0.393 0.095 152.535);
+  --color-green-950: oklch(0.266 0.065 152.934);
+
+  /* Lime theme colors - Tailwind 공식 팔레트 (Green primary용) */
+  --color-lime-50: oklch(0.986 0.031 120.757);
+  --color-lime-100: oklch(0.967 0.067 122.328);
+  --color-lime-200: oklch(0.938 0.127 124.321);
+  --color-lime-300: oklch(0.897 0.196 126.665);
+  --color-lime-400: oklch(0.841 0.238 128.85);
+  --color-lime-500: oklch(0.768 0.233 130.85);
+  --color-lime-600: oklch(0.648 0.2 131.684);
+  --color-lime-700: oklch(0.532 0.157 131.589);
+  --color-lime-800: oklch(0.453 0.124 130.933);
+  --color-lime-900: oklch(0.405 0.101 131.063);
+  --color-lime-950: oklch(0.274 0.072 132.109);
+
+  /* Violet theme colors - Tailwind 공식 팔레트 */
+  --color-violet-50: oklch(0.969 0.016 293.756);
+  --color-violet-100: oklch(0.943 0.029 294.588);
+  --color-violet-200: oklch(0.894 0.057 293.283);
+  --color-violet-300: oklch(0.811 0.111 293.571);
+  --color-violet-400: oklch(0.702 0.183 293.541);
+  --color-violet-500: oklch(0.606 0.25 292.717);
+  --color-violet-600: oklch(0.541 0.281 293.009);
+  --color-violet-700: oklch(0.491 0.27 292.581);
+  --color-violet-800: oklch(0.432 0.232 292.759);
+  --color-violet-900: oklch(0.38 0.189 293.745);
+  --color-violet-950: oklch(0.283 0.141 291.089);
+
+  /* Blue theme colors - Tailwind 공식 팔레트 */
+  --color-blue-50: oklch(0.984 0.007 254.604);
+  --color-blue-100: oklch(0.959 0.021 255.388);
+  --color-blue-200: oklch(0.925 0.048 255.585);
+  --color-blue-300: oklch(0.796 0.099 250.366);
+  --color-blue-400: oklch(0.71 0.156 255);
+  --color-blue-500: oklch(0.623 0.214 259.815);
+  --color-blue-600: oklch(0.546 0.245 262.881);
+  --color-blue-700: oklch(0.488 0.243 264.376);
+  --color-blue-800: oklch(0.45 0.197 265.522);
+  --color-blue-900: oklch(0.398 0.143 266.996);
+  --color-blue-950: oklch(0.296 0.093 269.542);
+}
+
+/* 🎯 목적: 텍스트 색상 유틸리티 클래스 명시적 정의
+ * 📝 이유: Tailwind v4에서 자동 생성되지 않는 text-* 유틸리티 강제 추가
+ * 🔄 변경이력: 2025-11-18 - FieldDescription 등에서 text-muted-foreground 사용을 위해 추가
+ */
+@layer utilities {
+  .text-foreground {
+    color: var(--color-foreground);
+  }
+
+  .text-muted-foreground {
+    color: var(--color-muted-foreground);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary-foreground {
+    color: var(--color-secondary-foreground);
+  }
+
+  .text-accent-foreground {
+    color: var(--color-accent-foreground);
+  }
+
+  .text-destructive {
+    color: var(--color-destructive);
+  }
+
+  .text-card-foreground {
+    color: var(--color-card-foreground);
+  }
+
+  .text-popover-foreground {
+    color: var(--color-popover-foreground);
+  }
+}
+
+/* 🎯 Security grade/severity dark mode text colors
+ * @custom-variant dark가 theme-default-dark를 인식 못하는 문제 우회
+ * :where() 대신 직접 selector 사용 (specificity 확보)
+ */
+html[class*="-dark"] .text-green-600 {
+  color: var(--color-green-400) !important;
+}
+html[class*="-dark"] .text-orange-500 {
+  color: var(--color-orange-400) !important;
+}
+html[class*="-dark"] .text-amber-600 {
+  color: var(--color-amber-500) !important;
+}
+html[class*="-dark"] .text-green-600 {
+  color: var(--color-green-400) !important;
+}
+html[class*="-dark"] .text-zinc-500 {
+  color: var(--color-zinc-400) !important;
+}

@@ -1,0 +1,20 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.DrawerTitle {
+  margin: $margin * 3 (-$margin * 3);
+  background: var(--drawerSubtitleBackground);
+}
+
+.DrawerTitle.title {
+  padding: $padding * 1.5 $padding * 3;
+}
+
+.DrawerTitle.sub-title {
+  padding: $padding $padding * 2;
+}

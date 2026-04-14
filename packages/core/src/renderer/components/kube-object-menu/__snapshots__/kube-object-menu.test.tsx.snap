@@ -1,0 +1,993 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`kube-object-menu given kube object renders 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              />
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Ok
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-uid"
+        id="menu-actions-for-kube-object-menu-for-some-uid"
+      >
+        <li>
+          Some menu item
+        </li>
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/foo"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given kube object when removing kube object renders 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+        open=""
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+            data-testid="confirmation-dialog"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              >
+                <p>
+                  Delete some-kind 
+                  <b>
+                    some-namespace/some-name
+                  </b>
+                   from 
+                  <b>
+                    some-context-name
+                  </b>
+                  ?
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Delete
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-uid"
+        id="menu-actions-for-kube-object-menu-for-some-uid"
+      >
+        <li>
+          Some menu item
+        </li>
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/foo"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given kube object when rerendered with different kube object renders 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              />
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Ok
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-other-uid"
+        id="menu-actions-for-kube-object-menu-for-some-other-uid"
+      >
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/some-other-api-version/some-other-kind/some-other-namespace/some-other-name"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given kube object when rerendered with different kube object when removing new kube object renders 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+        open=""
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+            data-testid="confirmation-dialog"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              >
+                <p>
+                  Delete some-other-kind 
+                  <b>
+                    some-other-namespace/some-other-name
+                  </b>
+                   from 
+                  <b>
+                    some-context-name
+                  </b>
+                  ?
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Delete
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-other-uid"
+        id="menu-actions-for-kube-object-menu-for-some-other-uid"
+      >
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/some-other-api-version/some-other-kind/some-other-namespace/some-other-name"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given kube object with namespace when removing kube object, renders confirmation dialog with namespace 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+        open=""
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+            data-testid="confirmation-dialog"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              >
+                <p>
+                  Delete some-kind 
+                  <b>
+                    some-namespace/some-name
+                  </b>
+                   from 
+                  <b>
+                    some-context-name
+                  </b>
+                  ?
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Delete
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-uid"
+        id="menu-actions-for-kube-object-menu-for-some-uid"
+      >
+        <li>
+          Some menu item
+        </li>
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/foo"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given kube object without namespace when removing kube object, renders confirmation dialog without namespace 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        data-mock="@radix-ui/react-alert-dialog"
+        open=""
+      >
+        <div
+          data-mock="@radix-ui/react-alert-dialog"
+        >
+          <div
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[9999] bg-black/50 dark:bg-black/70"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-overlay"
+          />
+          <div
+            class="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-[9999] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg ConfirmDialog"
+            data-mock="@radix-ui/react-alert-dialog"
+            data-slot="alert-dialog-content"
+            data-testid="confirmation-dialog"
+          >
+            <button
+              class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </button>
+            <div
+              class="flex text-center sm:text-left flex-row items-center gap-2"
+              data-slot="alert-dialog-header"
+            >
+              <div
+                class="text-lg font-semibold"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-slot="alert-dialog-title"
+              >
+                <p>
+                  Delete some-kind 
+                  <b>
+                    some-name
+                  </b>
+                   from 
+                  <b>
+                    some-context-name
+                  </b>
+                  ?
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+              data-slot="alert-dialog-footer"
+            >
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive text-foreground border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+              >
+                Cancel
+              </div>
+              <div
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary !text-primary-foreground [color:white] hover:bg-primary/90 h-9 px-4 py-2 has-[>svg]:px-3"
+                data-mock="@radix-ui/react-alert-dialog"
+                data-testid="confirm"
+              >
+                Delete
+              </div>
+            </div>
+            <div
+              class="absolute top-4 right-4 rounded-xs opacity-70 hover:opacity-100 focus:outline-hidden cursor-pointer [&_svg]:size-4"
+              data-mock="@radix-ui/react-alert-dialog"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-x"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6 6 18"
+                />
+                <path
+                  d="m6 6 12 12"
+                />
+              </svg>
+              <span
+                class="sr-only"
+              >
+                Close
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul
+        class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+        data-testid="menu-actions-for-kube-object-menu-for-some-uid"
+        id="menu-actions-for-kube-object-menu-for-some-uid"
+      >
+        <li>
+          Some menu item
+        </li>
+        <li
+          class="MenuItem"
+          data-testid="menu-action-delete-for-/foo"
+          tabindex="0"
+        >
+          <i
+            class="Icon material interactive focusable"
+            tabindex="0"
+          >
+            <span
+              class="icon"
+              data-icon-name="delete"
+            >
+              delete
+            </span>
+          </i>
+          <div>
+            Delete
+          </div>
+          <span
+            class="title"
+          >
+            Delete
+          </span>
+          <kbd
+            class="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto"
+          >
+            ⌃D
+          </kbd>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`kube-object-menu given no kube object, renders 1`] = `
+<body>
+  <div>
+    <ul
+      class="Menu MenuActions flex KubeObjectMenu toolbar gaps right bottom"
+      data-testid="menu-actions-for-kube-object-menu-for-undefined"
+      id="menu-actions-for-kube-object-menu-for-undefined"
+    />
+  </div>
+</body>
+`;

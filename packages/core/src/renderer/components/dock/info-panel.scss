@@ -1,0 +1,36 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../mixins";
+
+.InfoPanel {
+  @include mixins.hidden-scrollbar;
+
+  // 🎯 수정: shadcn 테마 변수를 fallback으로 사용
+  // --dockInfoBackground가 없으면 shadcn의 --muted 사용 (라이트: 밝은 회색, 다크: 어두운 회색)
+  background: var(--dockInfoBackground, var(--muted));
+  // 🎯 추가: 텍스트 색상 명시 (shadcn 변수 사용)
+  color: var(--textColorPrimary, var(--foreground));
+  padding: var(--padding) calc(var(--padding) * 2);
+  flex-shrink: 0;
+  min-width: 0; // Flexbox shrink 허용 - 사이드바 리사이즈 시 오버플로우 방지
+
+  .Spinner {
+    margin-right: var(--padding);
+  }
+
+  > .controls {
+    white-space: nowrap;
+    flex: 1 1;
+    min-width: 0; // 콘텐츠가 넘칠 때 shrink 허용
+
+    &:not(:empty) + .info {
+      min-height: 25px;
+      padding-left: var(--padding);
+      padding-right: var(--padding);
+    }
+  }
+}

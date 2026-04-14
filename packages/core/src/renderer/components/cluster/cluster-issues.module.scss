@@ -1,0 +1,70 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.ClusterIssues {
+  min-height: 350px;
+  position: relative;
+  grid-area: issues;
+  padding: calc(var(--margin) * 2) 0;
+  background: var(--contentColor);
+
+  &:global(.OnlyClusterIssues) {
+    grid-row: row1-start / row2-end;
+  }
+
+  @media (max-width: 1150px) {
+    grid-area: unset;
+
+    &:global(.OnlyClusterIssues) {
+      grid-row: auto;
+    }
+  }
+
+  .SubHeader {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    :global(.Icon) {
+      font-size: 130%;
+      color: var(--colorError);
+    }
+  }
+
+  // 🔄 THEME-031: white → CSS 변수
+  .noIssues {
+    .Icon {
+      color: var(--status-badge-text, oklch(1 0 0));
+    }
+
+    .title {
+      font-size: large;
+      color: var(--textColorAccent);
+      font-weight: bold;
+    }
+  }
+
+  .TableCell {
+    &.message {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      flex-grow: 3;
+    }
+
+    &.object {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      flex-grow: 1.5;
+    }
+
+    &.kind {
+      flex-grow: 1;
+    }
+
+    &.age {
+      flex-grow: 0.3;
+    }
+  }
+}

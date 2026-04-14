@@ -1,0 +1,4 @@
+Types: deb
+URIs: https://github.com/Wondermove-Inc/skuberplus-client/releases/latest/download
+Suites: ./
+Signed-By: /etc/apt/keyrings/skuberplus.asc

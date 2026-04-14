@@ -1,0 +1,29 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+@use "../vars" as *;
+
+.PodDetailsContainer {
+  margin: $margin * 2 0;
+
+  .pod-container-title {
+    font-weight: bold;
+    margin-bottom: $margin;
+
+    .StatusBrick {
+      margin-right: $margin;
+
+      @include workloads-mixins.pod-status-bgs;
+    }
+  }
+
+  .status {
+    color: var(--colorTerminated);
+
+    @include workloads-mixins.pod-status-colors;
+  }
+}

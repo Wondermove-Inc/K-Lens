@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2025 Wondermove Inc. -->
+<component type="desktop-application">
+  <id>app.skuberplus.SkuberPlus</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>SkuberPlus</name>
+  <summary>Enterprise Kubernetes IDE with AI-powered SRE</summary>
+  <developer_name>Wondermove Inc.</developer_name>
+  <url type="homepage">https://skuberplus.app/</url>
+  <url type="bugtracker">https://github.com/Wondermove-Inc/skuberplus-client/issues</url>
+  <url type="vcs-browser">https://github.com/Wondermove-Inc/skuberplus-client</url>
+  <url type="contribute">https://github.com/Wondermove-Inc/skuberplus-client/blob/main/CONTRIBUTING.md</url>
+  <description>
+    <p>SkuberPlus is an enterprise Kubernetes IDE that provides a graphical interface for managing and monitoring Kubernetes clusters with AI-powered SRE capabilities.</p>
+    <p>It simplifies cluster operations by offering:</p>
+    <ul>
+      <li>A dashboard with real-time cluster insights</li>
+      <li>Support for multiple clusters</li>
+      <li>Built-in terminal access to nodes and pods</li>
+      <li>Visualization of workloads, networking, storage, and configurations</li>
+      <li>AI-powered SRE diagnostics and recommendations</li>
+      <li>Extension support to add custom functionality</li>
+    </ul>
+    <p>SkuberPlus is developed and maintained by Wondermove Inc.</p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Troubleshooting the pod</caption>
+      <image>https://skuberplus.app/images/skuberplus-screenshot-linux.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Cluster overview</caption>
+      <image>https://skuberplus.app/images/skuberplus-screenshot-linux-cluster.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Catalog</caption>
+      <image>https://skuberplus.app/images/skuberplus-screenshot-linux-catalog.png</image>
+    </screenshot>
+  </screenshots>
+  <branding>
+    <color type="primary" scheme_preference="light">#f1f1f1</color>
+    <color type="primary" scheme_preference="dark">#37383e</color>
+  </branding>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </recommends>
+  <requires>
+    <display_length compare="ge">768</display_length>
+  </requires>
+  <launchable type="desktop-id">skuberplus-client.desktop</launchable>
+  <provides>
+    <binary>skuberplus-client</binary>
+  </provides>
+  <categories>
+    <category>Development</category>
+    <category>Network</category>
+  </categories>
+  <keywords>
+    <keyword>cloud</keyword>
+    <keyword>cluster</keyword>
+    <keyword>devops</keyword>
+    <keyword>helm</keyword>
+    <keyword>ide</keyword>
+    <keyword>kubernetes</keyword>
+    <keyword>sre</keyword>
+    <keyword>ai</keyword>
+  </keywords>
+  <icon type="stock">skuberplus-client</icon>
+  <icon type="remote">https://skuberplus.app/images/skuberplus-logo-512.png</icon>
+  <content_rating type="oars-1.1"></content_rating>
+  <releases>
+    <release version="1.5.4-0" date="2025-08-18">
+      <description translatable="no">The latest release.</description>
+    </release>
+  </releases>
+</component>

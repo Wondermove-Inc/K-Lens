@@ -1,0 +1,7 @@
+// "assets/*.svg" 는 제거를 권장하는데 지워도 되는건지?
+// 현재는 SVG 파일을 직접 참조하는 코드가 없어 제거해도 무방할 것으로 보임
+{
+  "extends": "@skuberplus/typescript/config/base.json",
+  "files": ["assets/custom.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}

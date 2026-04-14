@@ -1,0 +1,46 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.TabLayout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  // 🚨 중요: MainTab이 있을 때 기존 TabLayout 완전 숨김 처리
+  // 🎯 목적: 크롬 스타일 탭과 기존 TabLayout 간의 UI 중복 방지
+  &.hidden-by-main-tabs {
+    display: none;
+  }
+
+  > .Tabs {
+    background: var(--layoutTabsBackground);
+    flex-shrink: 0;
+    height: 34px;
+  }
+
+  main {
+    $spacing: $margin * 2;
+
+    flex-grow: 1;
+    min-height: 0; // flex 컨테이너에서 자식 스크롤 가능하도록 보장
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin: $spacing;
+
+    // 🔄 변경사항: MainTab과의 여백 충돌 방지
+    // MainTab이 없고 기존 TabLayout이 표시될 때만 상단 여백 적용
+    &:not(.hidden-by-main-tabs) {
+      margin-top: $spacing;
+    }
+
+    &.scrollable {
+      overflow-y: auto;
+      margin-right: 0;
+    }
+  }
+}

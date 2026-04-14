@@ -1,0 +1,76 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "@xterm/xterm/css/xterm.css" as *;
+
+.TerminalWindow {
+  --spacing: calc(var(--unit) * 2);
+
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .terminal-content {
+    flex: 1;
+    overflow: hidden;
+
+    .terminal.xterm {
+      padding: calc(var(--padding) * 2);
+    }
+  }
+}
+
+// 🎯 터미널 컨텍스트 헤더 스타일링
+.TerminalContextHeader {
+  background: var(--contentColor);
+  color: var(--textColorPrimary);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  border-bottom: 1px solid var(--borderColor);
+  flex-shrink: 0;
+  user-select: none;
+
+  .context-info {
+    font-weight: 500;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    // 🎨 다크/라이트 테마별 색상 조정
+    .TerminalWindow.dark & {
+      color: var(--textColorAccent);
+    }
+
+    .TerminalWindow.light & {
+      color: var(--textColorSecondary);
+    }
+
+    // 🔴🟢 상태 점 색상 설정
+    // 🔄 THEME-031: 하드코딩 색상 → CSS 변수
+    .status-dot {
+      font-size: 8px;
+      line-height: 1;
+
+      &.connected {
+        color: var(--terminal-status-success, oklch(0.70 0.18 145));
+      }
+
+      &.disconnected {
+        color: var(--terminal-status-error, oklch(0.55 0.22 25));
+      }
+    }
+  }
+
+  // 🔄 호버 효과로 살짝 하이라이트
+  &:hover {
+    .context-info {
+      opacity: 1;
+    }
+  }
+}

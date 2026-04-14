@@ -1,0 +1,11 @@
+static/build
+# ARM64 바이너리는 Git에 포함 (빌드 환경 관계없이 항상 사용 가능하도록)
+binaries/*
+!binaries/client/
+binaries/client/*
+!binaries/client/darwin/
+binaries/client/darwin/*
+!binaries/client/darwin/arm64/
+dist/
+*.mjs
+*.mjs.map

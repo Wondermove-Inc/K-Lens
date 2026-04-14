@@ -1,0 +1,109 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../../components/mixins.scss";
+
+// 🔄 THEME-031: hsl → CSS 변수
+.Switch {
+  --thumb-size: 20px;
+  --thumb-color: var(--switch-thumb-color, oklch(1 0 0));
+  --thumb-color-highlight: var(--switch-thumb-highlight, oklch(1 0 0 / 25%));
+
+  --track-size: calc(var(--thumb-size) * 2);
+  --track-padding: 2px;
+  --track-color-inactive: var(--switch-track-inactive, oklch(0.45 0 0));
+  --track-color-active: var(--switch-track-active, oklch(0.65 0.20 145));
+
+  --thumb-position: 0%;
+  --thumb-transition-duration: 0.25s;
+
+  --hover-highlight-size: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  color: var(--textColorAccent);
+  font-weight: 500;
+
+  & > input {
+    padding: var(--track-padding);
+    background: var(--track-color-inactive);
+    inline-size: var(--track-size);
+    block-size: var(--thumb-size);
+    border-radius: var(--track-size);
+
+    appearance: none;
+    pointer-events: none;
+    border: none;
+    outline-offset: 5px;
+    box-sizing: content-box;
+
+    flex-shrink: 0;
+    display: grid;
+    align-items: center;
+    grid: [track] 1fr / [track] 1fr;
+
+    transition: background-color 0.25s ease;
+
+    &::before {
+      content: "";
+      cursor: pointer;
+      pointer-events: auto;
+      grid-area: track;
+      inline-size: var(--thumb-size);
+      block-size: var(--thumb-size);
+      background: var(--thumb-color);
+      box-shadow: 0 0 0 var(--hover-highlight-size) var(--thumb-color-highlight);
+      border-radius: 50%;
+      transform: translateX(var(--thumb-position));
+      transition:
+        transform var(--thumb-transition-duration) ease,
+        box-shadow 0.25s ease;
+    }
+
+    &:not(:disabled):hover::before {
+      --hover-highlight-size: 0.3rem;
+    }
+
+    &:checked {
+      background: var(--track-color-active);
+      --thumb-position: 100%;
+    }
+
+    &:disabled {
+      --track-color-inactive: var(--switch-disabled-track, oklch(0.40 0 0));
+      --thumb-color: transparent;
+
+      &::before {
+        cursor: not-allowed;
+        box-shadow: inset 0 0 0 2px var(--switch-disabled-shadow, oklch(0 0 0 / 40%));
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+}
+
+@include mixins.theme-light {
+  .Switch {
+    --thumb-color-highlight: var(--switch-thumb-highlight-light, oklch(0 0 0 / 25%));
+
+    & > input {
+      &:disabled {
+        --track-color-inactive: var(--switch-disabled-track-light, oklch(0.80 0 0));
+      }
+    }
+  }
+}

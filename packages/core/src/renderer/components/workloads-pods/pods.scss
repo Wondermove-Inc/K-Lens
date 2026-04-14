@@ -1,0 +1,59 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+@use "../table/table.mixins";
+
+.Pods {
+  .TableCell {
+    &.name {
+      flex-grow: 2.5;
+    }
+
+    &.age {
+      flex-grow: 0.5;
+    }
+
+    &.ip {
+      flex-grow: 1;
+    }
+
+    &.qos {
+      flex-grow: 0.8;
+    }
+
+    &.cpu {
+      flex-grow: 0.4;
+      justify-content: right;
+
+      &.sorting {
+        justify-content: left;
+      }
+    }
+
+    &.memory {
+      flex-grow: 0.6;
+      justify-content: right;
+
+      &.sorting {
+        justify-content: left;
+      }
+    }
+
+    &.restarts {
+      flex-grow: 0.3;
+    }
+
+    &.warning {
+      @include table.table-cell-warning;
+    }
+
+    &.status {
+      @include workloads-mixins.pod-status-colors;
+      flex-grow: 0.7;
+    }
+  }
+}

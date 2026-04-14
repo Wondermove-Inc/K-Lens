@@ -1,0 +1,22 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🎯 완전한 빈 화면 스타일링
+ *
+ * 📝 설명: 모든 탭이 닫혔을 때 표시되는 완전히 빈 화면
+ * - 아무 내용도 표시하지 않음
+ * - 배경색만 설정하여 깔끔한 UI 제공
+ *
+ * 🔄 변경이력: 2025-09-26 - 빈 화면으로 단순화 (모든 내용 제거)
+ */
+
+// 🎯 완전한 빈 화면
+.emptyTabsScreen {
+  width: 100%;
+  height: 100%;
+  background: var(--contentColor);
+}

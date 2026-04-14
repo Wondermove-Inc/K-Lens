@@ -1,0 +1,155 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+@use "sass:color";
+@use "sass:math";
+
+.Button {
+  position: relative;
+  overflow: hidden; // required for transition effect on hover
+  // 🎯 FIX-042: 기본 color 제거 - plain/outlined 버튼이 foreground 상속하도록
+  // 배경색 있는 버튼(.primary, .accent 등)에서만 white 적용
+  font-family: var(--font-main);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  background: var(--buttonDefaultBackground);
+  padding: math.round(8px * 0.9) 8px * 1.5;
+  flex-shrink: 0;
+  line-height: 1;
+  font-size: var(--font-size);
+  user-select: none;
+
+  &[href] {
+    display: inline-block;
+  }
+
+  // 🎯 FIX-042: 배경색 있는 버튼만 white 텍스트
+  // 🔄 THEME-031: #ffffff → CSS 변수
+  &:not(.plain):not(.outlined):not(.light) {
+    color: var(--button-filled-text, oklch(1 0 0)) !important;
+  }
+
+  &.primary {
+    background: var(--buttonPrimaryBackground);
+  }
+
+  &.accent {
+    background: var(--buttonAccentBackground);
+  }
+
+  &.light {
+    background-color: var(--buttonLightBackground);
+    // 🔄 THEME-031: #505050 → CSS 변수
+    color: var(--button-light-text, oklch(0.35 0 0)) !important;
+  }
+
+  &.plain {
+    color: inherit !important;
+    background: transparent;
+    box-shadow: none;
+
+    &:disabled {
+      background: none;
+      opacity: 0.5;
+    }
+
+    &.active,
+    &:focus:not(:active) {
+      color: var(--buttonPrimaryBackground);
+      box-shadow: 0 0 0 1px inset;
+    }
+  }
+
+  &.outlined {
+    color: inherit !important;
+    background: transparent;
+
+    &.active,
+    &:focus {
+      color: inherit !important;
+      box-shadow: 0 0 0 1px inset;
+    }
+  }
+
+  &.big {
+    font-size: 2.2 * 8px;
+    border-radius: 50px;
+    padding: 0.75em 1em;
+  }
+
+  &.round {
+    border-radius: 50%;
+    padding: 0.7em;
+  }
+
+  form:not([novalidate]):invalid &[type="submit"]:not(.active),
+  &:disabled {
+    opacity: 50%;
+    pointer-events: none;
+  }
+
+  &.waiting {
+    pointer-events: none;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      // 🔄 THEME-031: color.adjust(white) → CSS 변수
+      background: var(--button-waiting-overlay, oklch(1 0 0 / 15%));
+      animation: waiting 1.5s infinite linear;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus:not(:active) {
+    transition: box-shadow 350ms;
+    // 🔄 THEME-031: rgba(255,255,255,0.5) → CSS 변수
+    box-shadow: inset 0 0 0 2px var(--button-focus-ring, oklch(1 0 0 / 50%));
+  }
+
+  &:active:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    // 🔄 THEME-031: color.adjust(white) → CSS 변수
+    background: var(--button-active-overlay, oklch(1 0 0 / 15%));
+    transform-origin: left top;
+    transition: transform 150ms;
+    transform: rotate(0deg);
+    // hackfix: safari prevents clicks on button when click-target is a child element nor button itself
+    pointer-events: none;
+  }
+
+  &:before {
+    content: "";
+    transform: rotate(-90deg);
+  }
+}
+
+@keyframes waiting {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  50% {
+    left: 25%;
+    width: 75%;
+  }
+  75% {
+    left: 100%;
+    width: 0;
+  }
+}

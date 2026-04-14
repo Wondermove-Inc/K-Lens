@@ -1,0 +1,41 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🎯 목적: Header 컴포넌트의 window dragging 스타일 정의
+ * 참고: packages/core/src/renderer/components/layout/top-bar/top-bar.module.scss
+ *
+ * 🔄 변경이력: 2025-10-25 - TopBar 방식 적용하여 drag 기능 추가
+ */
+
+/**
+ * 🎯 헤더를 드래그 가능한 영역으로 설정 (TopBar와 동일한 방식)
+ * - Electron 앱의 창 이동을 위해 -webkit-app-region: drag 사용
+ * - user-select: none으로 텍스트 선택 방지
+ * - -webkit-user-drag: none으로 드래그 안정성 확보
+ * - z-index: 2로 레이어 우선순위 확보 (TopBar와 동일)
+ */
+.header {
+  /* TopBar와 동일한 drag 영역 설정 */
+  -webkit-app-region: drag;
+  user-select: none;
+
+  /* 추가: Tailwind와의 충돌 방지 및 안정성 확보 */
+  -webkit-user-drag: none;
+  cursor: default;
+
+  /* TopBar와 동일한 z-index */
+  z-index: 2;
+}
+
+/**
+ * 🎯 클릭/입력 가능한 요소들에 적용 (TopBar와 동일)
+ * - 버튼, 입력창 등은 드래그 기능을 비활성화하여 정상적인 인터랙션 보장
+ */
+.noDrag {
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}

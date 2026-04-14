@@ -1,0 +1,99 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.ClusterMetrics {
+  position: relative;
+  min-height: 400px;
+  padding: 16px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  background: var(--contentColor);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .buttonGroup {
+    display: flex;
+    background: var(--layoutBackground);
+    border-radius: 8px;
+    padding: 4px;
+    gap: 2px;
+  }
+
+  .metricButton {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--textColorPrimary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+
+    /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+    &:hover {
+      background: var(--metric-button-hover-bg);
+      color: var(--textColorPrimary);
+    }
+
+    /* 🔄 THEME-040: rgba 하드코딩 → CSS 변수 */
+    &.active {
+      background: var(--metric-button-active-bg);
+      color: var(--textColorPrimary);
+      font-weight: 600;
+      border: 1px solid var(--metric-button-active-border);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .chartArea {
+    flex: 1;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chartContainer {
+    flex: 1;
+    position: relative;
+
+    :global(.chart-container) {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+    }
+  }
+
+  .emptyChart {
+    width: 100%;
+    height: 300px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .noData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: var(--textColorSecondary);
+    font-size: 16px;
+  }
+}

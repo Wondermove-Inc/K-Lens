@@ -1,0 +1,7 @@
+{
+  "extends": "@skuberplus/typescript/config/base.json",
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "moduleResolution": "node"
+  }
+}

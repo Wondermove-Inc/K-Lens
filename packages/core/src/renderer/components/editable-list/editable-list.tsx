@@ -1,0 +1,93 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import "./editable-list.scss";
+
+import { Icon } from "@skuberplus/icon";
+import autoBindReact from "auto-bind/react";
+import { observer } from "mobx-react";
+import React, { Component } from "react";
+import { Input } from "../input";
+
+import type { SingleOrMany, StrictReactNode } from "@skuberplus/utilities";
+
+import type { InputProps, InputValidator } from "../input";
+
+export interface EditableListProps<T> {
+  items: T[];
+  separator?: string;
+  add: (newItem: string) => void;
+  remove: (info: { oldItem: T; index: number }) => void;
+  placeholder?: string;
+  validators?: SingleOrMany<InputValidator<boolean>>;
+
+  // An optional prop used to convert T to a displayable string
+  // defaults to `String`
+  renderItem?: (item: T, index: number) => StrictReactNode;
+  inputTheme?: InputProps["theme"];
+}
+
+const defaultProps = {
+  placeholder: "Add new items...",
+  renderItem: (item: any, index: number) => <React.Fragment key={index}>{item}</React.Fragment>,
+  inputTheme: "round",
+};
+
+@observer
+class DefaultedEditableList<T> extends Component<EditableListProps<T> & typeof defaultProps> {
+  static defaultProps = defaultProps as EditableListProps<any>;
+
+  constructor(props: EditableListProps<T> & typeof defaultProps) {
+    super(props);
+    autoBindReact(this);
+  }
+
+  onSubmit(val: string, evt: React.KeyboardEvent) {
+    if (val) {
+      evt.preventDefault();
+      if (this.props.separator) {
+        val.split(this.props.separator).forEach((v) => this.props.add(v));
+      } else {
+        this.props.add(val);
+      }
+    }
+  }
+
+  render() {
+    const { items, remove, renderItem, placeholder, validators, inputTheme } = this.props;
+
+    return (
+      <div className="EditableList">
+        <div className="el-header">
+          <Input
+            theme={inputTheme}
+            onSubmit={this.onSubmit}
+            validators={validators}
+            placeholder={placeholder}
+            blurOnEnter={false}
+            iconRight={({ isDirty }) => (isDirty ? <Icon material="keyboard_return" size={16} /> : null)}
+          />
+        </div>
+        <div className="el-contents">
+          {items.map((item, index) => (
+            <div key={`${item}${index}`} className="el-item">
+              <div className="el-value-container">
+                <div className="el-value">{renderItem(item, index)}</div>
+              </div>
+              <div className="el-value-remove">
+                <Icon material="delete_outline" onClick={() => remove({ index, oldItem: item })} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+export function EditableList<T>(props: EditableListProps<T>) {
+  return <DefaultedEditableList {...(props as object)} />;
+}

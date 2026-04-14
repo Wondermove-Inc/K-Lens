@@ -1,0 +1,40 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// 🔄 THEME-031: 하드코딩 색상 → CSS 변수
+$node-status-color-list: (
+  OutOfDisk: var(--node-status-out-of-disk),
+  NetworkUnavailable: var(--node-status-network-unavailable),
+  MemoryPressure: var(--node-status-memory-pressure),
+  DiskPressure: var(--node-status-disk-pressure),
+  PidPressure: var(--node-status-pid-pressure),
+  Ready: var(--colorSuccess),
+  SchedulingDisabled: var(--node-status-scheduling-disabled),
+  InvalidLicense: var(--node-status-out-of-disk),
+  Cordoned: var(--colorWarning),
+  KernelReady: var(--colorOk),
+  ContainerRuntimeReady: var(--colorOk),
+  StorageReady: var(--colorOk),
+  NetworkingReady: var(--colorOk),
+);
+
+@mixin node-status-bgs {
+  @each $status, $color in $node-status-color-list {
+    .#{$status} {
+      background: $color;
+      // 🔄 THEME-031: white → CSS 변수
+      color: var(--node-status-text, oklch(1 0 0));
+    }
+  }
+}
+
+@mixin node-status-colors {
+  @each $status, $color in $node-status-color-list {
+    &.#{$status} {
+      color: $color;
+    }
+  }
+}

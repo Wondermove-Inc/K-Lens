@@ -1,0 +1,39 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🎯 목적: TailwindCSS로 완전 교체됨 (더 이상 불필요)
+ *
+ * @remarks
+ * - shadcn UI 마이그레이션 후 SCSS 제거
+ * - TailwindCSS 클래스로 모든 스타일 처리
+ *
+ * 🔄 변경이력:
+ * - 2025-10-31: SCSS 주석 처리 (shadcn UI 마이그레이션)
+ */
+
+/*
+@use "release.mixins";
+@use "../vars" as *;
+
+.HelmReleases {
+  .TableCell {
+    &.status {
+      @include release.release-status-colors;
+    }
+
+    &.version {
+      > .Icon {
+        margin-left: $margin;
+
+        &.new-version {
+          color: var(--colorInfo);
+        }
+      }
+    }
+  }
+}
+*/

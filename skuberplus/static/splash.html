@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      /* 🎯 기본 스타일 리셋 */
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 🎯 배경: 스플래시 이미지로 전체 채움 */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* 배경 이미지를 body에 직접 적용 */
+        background-image: url('./images/apps/splash-bg.png');
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* 🎯 스플래시 컨텐츠 컨테이너 (배경 없이 컨텐츠만) */
+      .splash-modal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 28px;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+      }
+
+      /* 🎯 로고 + 브랜드명 그룹 */
+      .brand-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* 🎯 로고 컨테이너 */
+      .logo {
+        width: 48px;
+        height: 48px;
+      }
+
+      .logo svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      /* 🎯 브랜드명: text-3xl font-light text-white */
+      .brand-name {
+        font-size: 1.875rem; /* 30px = text-3xl */
+        line-height: 2.25rem; /* 36px */
+        font-weight: 300; /* font-light */
+        color: white;
+        margin: 0;
+      }
+
+      /* 🎯 로딩 인디케이터 */
+      .loading-indicator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        width: 100%;
+      }
+
+      /* 🎯 회전 스피너 아이콘 */
+      .spinner {
+        width: 16px;
+        height: 16px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 🎯 로딩 텍스트 */
+      .loading-text {
+        font-size: 0.875rem; /* 14px = text-sm */
+        line-height: 1;
+        font-weight: 300; /* font-light */
+        color: white;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="splash-modal">
+      <!-- 로고 + 브랜드명 그룹 -->
+      <div class="brand-group">
+        <!-- DAIVE 로고 (파란색 원형) -->
+        <div class="logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="24" fill="#125AED"/>
+            <circle cx="24" cy="24" r="24" fill="white" fill-opacity="0.05"/>
+            <path
+              d="M24.4274 5C13.6935 5 5 13.7016 5 24.4274C5 35.1532 13.7016 43.8548 24.4274 43.8548C35.1532 43.8548 43.8548 35.1532 43.8548 24.4274C43.8548 13.7016 35.1613 5 24.4274 5ZM33.3226 22L26.8548 15.5323L29.1935 13.1936C30.9758 11.4113 33.871 11.4113 35.6613 13.1936C37.4435 14.9758 37.4435 17.871 35.6613 19.6613L33.3226 22ZM35.6613 29.1855C37.4435 30.9677 37.4435 33.8629 35.6613 35.6532C33.879 37.4355 30.9839 37.4355 29.1935 35.6532L26.8548 33.3145L33.3226 26.8468L35.6613 29.1855ZM24.4274 30.8871L21.2016 27.6613H24.4274L17.9758 24.4355L17.9597 24.4194L24.4274 17.9516L27.6613 21.1855H24.4274L30.8871 24.4194L24.4193 30.8871H24.4274ZM13.1936 35.6613C11.4113 33.879 11.4113 30.9839 13.1936 29.1935L15.5403 26.8468L22.0081 33.3145L19.6613 35.6613C17.879 37.4435 14.9839 37.4435 13.1936 35.6613ZM13.1936 19.6532C11.4113 17.871 11.4113 14.9758 13.1936 13.1855C14.9758 11.4032 17.871 11.4032 19.6613 13.1855L22.0081 15.5323L15.5403 22L13.1936 19.6532ZM29.1532 9.1371C28.2903 9.52419 27.4839 10.0645 26.7742 10.7742L24.4355 13.1129L22.0968 10.7742C21.3871 10.0645 20.5806 9.52419 19.7177 9.1371C21.2097 8.67742 22.7903 8.42742 24.4355 8.42742C26.0806 8.42742 27.6613 8.67742 29.1613 9.1371H29.1532ZM9.14516 19.6935C9.53226 20.5564 10.0726 21.371 10.7823 22.0806L13.121 24.4194L10.7823 26.7581C10.0726 27.4677 9.53226 28.2823 9.14516 29.1532C8.68548 27.6613 8.43548 26.0726 8.43548 24.4274C8.43548 22.7823 8.68548 21.1935 9.14516 19.6935ZM19.7097 39.7177C20.5726 39.3306 21.3871 38.7903 22.1048 38.0806L24.4435 35.7419L26.7823 38.0806C27.4919 38.7903 28.3064 39.3306 29.1693 39.7177C27.6774 40.1774 26.0887 40.4274 24.4355 40.4274C22.7823 40.4274 21.2016 40.1774 19.7097 39.7177ZM39.7339 29.1452C39.3468 28.2823 38.8064 27.4758 38.0968 26.7661L35.7581 24.4274L38.0968 22.0887C38.8064 21.379 39.3468 20.5726 39.7339 19.7097C40.1935 21.2016 40.4435 22.7903 40.4435 24.4355C40.4435 26.0806 40.1935 27.6613 39.7339 29.1532V29.1452Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+
+        <!-- 브랜드명 -->
+        <h1 class="brand-name">Skuber⁺ Client</h1>
+      </div>
+
+      <!-- 로딩 인디케이터 -->
+      <div class="loading-indicator">
+        <!-- 회전 스피너 아이콘 -->
+        <svg class="spinner" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14 8.00029C13.9999 9.26735 13.5988 10.5019 12.854 11.5269C12.1092 12.552 11.059 13.3149 9.85392 13.7064C8.64886 14.0979 7.3508 14.0979 6.14576 13.7063C4.94073 13.3147 3.89059 12.5517 3.14584 11.5266C2.4011 10.5016 1.99999 9.26702 2 7.99996C2.00001 6.7329 2.40114 5.49837 3.14589 4.47329C3.89065 3.44822 4.9408 2.68523 6.14584 2.29368C7.35088 1.90212 8.64895 1.90211 9.854 2.29363"
+            stroke="#FAFAFA"
+            stroke-width="1.33"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <!-- 로딩 텍스트 -->
+        <span class="loading-text">Loading...</span>
+      </div>
+    </div>
+  </body>
+</html>

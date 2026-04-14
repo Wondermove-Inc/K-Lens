@@ -1,0 +1,25 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+// ref: https://github.com/kubernetes/apiextensions-apiserver/blob/master/pkg/apis/apiextensions/types.go
+$custom-resource-definitions-condition-colors: (
+  Established: var(--colorSuccess),
+  Finalizing: var(--colorTerminated),
+  NamesAccepted: var(--colorOk),
+  NonStructuralSchema: var(--colorError),
+  Terminating: var(--colorTerminated),
+  KubernetesAPIApprovalPolicyConformant: var(--colorWarning),
+);
+
+// 🔄 THEME-031: white → CSS 변수
+@mixin custom-resource-definitions-condition-colors {
+  @each $status, $color in $custom-resource-definitions-condition-colors {
+    .#{$status} {
+      background: $color;
+      color: var(--status-badge-text, oklch(1 0 0));
+    }
+  }
+}

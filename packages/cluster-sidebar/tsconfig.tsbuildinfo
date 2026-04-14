@@ -1,0 +1,1 @@
+{"root":["./index.ts","./dist/index.d.ts","./dist/src/feature.d.ts","./dist/src/sidebar-items.injectable.d.ts","./dist/src/tokens.d.ts","./src/feature.ts","./src/order-of-sidebar-items.test.ts","./src/sidebar-items.injectable.ts","./src/tokens.ts"],"version":"5.9.3"}

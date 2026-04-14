@@ -1,0 +1,272 @@
+/**
+ * 🎯 목적: shadcn 테마를 사용할 때 폰트/기본 텍스트 크기를 Tailwind 기준으로 정렬
+ */
+
+.shadcn-font-sans {
+  font-family: var(--font-sans);
+}
+
+html.theme-default-light,
+html.theme-default-dark,
+html.theme-blue-light,
+html.theme-blue-dark {
+  font-family: var(--font-sans) !important;
+}
+
+html.theme-default-light body,
+html.theme-default-dark body,
+html.theme-blue-light body,
+html.theme-blue-dark body {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  line-height: var(--text-sm--line-height) !important;
+}
+
+/* DataTable 헤더/셀 기본값 맞춤 */
+[data-slot="table-head"],
+[data-slot="table-cell"] {
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  line-height: var(--text-sm--line-height) !important;
+}
+
+[data-slot="table-head"] button[data-slot="button"] {
+  padding-inline: calc(var(--spacing) * 4) !important;
+  padding-block: calc(var(--spacing) * 2) !important;
+  height: calc(var(--spacing) * 9) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-sm) !important;
+  line-height: var(--text-sm--line-height) !important;
+}
+
+/*
+ * 🎯 목적: Tailwind bg- 클래스를 가진 모든 shadcn 컴포넌트에서 올바른 foreground 색상 자동 적용
+ *
+ * 문제: SkuberPlus의 body { color: var(--textColorPrimary) }가 상속되어
+ *       shadcn 컴포넌트 텍스트가 회색(#8e9297)으로 표시됨
+ *
+ * 해결: Tailwind bg- 클래스 패턴을 활용하여 shadcn 컴포넌트 자동 감지
+ *       - 새 컴포넌트 추가 시 별도 CSS 작업 불필요
+ *       - bg-card, bg-background, bg-primary 등 모든 bg- 패턴 자동 적용
+ *
+ * 적용 범위:
+ *   - Card: bg-card 클래스 사용 → 자동 적용
+ *   - Button: bg-primary, bg-secondary 등 사용 → 자동 적용
+ *   - Dialog, Popover 등: bg-background 사용 → 자동 적용
+ */
+
+/*
+ * Tailwind bg- 클래스를 가진 모든 요소와 그 자식들
+ * 제외 대상:
+ *   - SVG, 체크박스, muted 텍스트, 명시적 색상 클래스
+ *   - 버튼 (bg-primary, bg-destructive, bg-secondary 등 자체 foreground 색상 사용)
+ *   - Badge (자체 foreground 색상 사용)
+ */
+[class*="bg-"]:not(
+    :is(
+        [data-shadcn-skip-bg],
+        [data-shadcn-skip-bg] *,
+        [data-slot="checkbox"],
+        [data-slot="checkbox"] *,
+        [class*="text-muted"],
+        [class*="text-amber"],
+        [class*="text-green"],
+        [class*="text-red"],
+        [class*="text-blue"],
+        [class*="text-yellow"],
+        [class*="text-orange"],
+        [class*="text-orange"],
+        [class*="text-zinc"],
+        /* 🔴 FIX: 버튼 및 Badge 제외 - Light theme에서 텍스트가 검정색으로 표시되는 문제 해결 */
+          button,
+        [role="button"],
+        [data-slot="button"],
+        [class*="bg-primary"],
+        [class*="bg-destructive"],
+        [class*="bg-secondary"],
+        [data-slot="badge"],
+        /* 🎯 구문 강조 코드 블록 제외 */
+          [data-syntax-highlight],
+        [data-syntax-highlight] *
+      )
+  ),
+[class*="bg-"]:not(
+    :is(
+        [data-shadcn-skip-bg],
+        [data-shadcn-skip-bg] *,
+        button,
+        [role="button"],
+        [data-slot="button"],
+        [class*="bg-primary"],
+        [class*="bg-destructive"],
+        [class*="bg-secondary"],
+        [data-slot="badge"],
+        /* 🎯 구문 강조 코드 블록 제외 */
+          [data-syntax-highlight],
+        [data-syntax-highlight] *
+      )
+  )
+  *:not(
+    :is(
+        svg,
+        svg *,
+        [data-slot="checkbox"],
+        [data-slot="checkbox"] *,
+        [data-slot="checkbox-indicator"],
+        [data-slot="checkbox-indicator"] *,
+        [class*="text-muted"],
+        [class*="text-muted"] *,
+        [class*="text-amber"],
+        [class*="text-green"],
+        [class*="text-red"],
+        [class*="text-blue"],
+        [class*="text-yellow"],
+        [class*="text-orange"],
+        [class*="text-orange"],
+        [class*="text-zinc"],
+        /* 🎯 FIX-042: 모든 버튼과 버튼 자식 요소 제외 - Light 모드에서 버튼 텍스트가 검정색으로 표시되는 문제 해결 */
+          button,
+        button *,
+        [role="button"],
+        [role="button"] *,
+        [data-slot="button"],
+        [data-slot="button"] *,
+        .Button,
+        .Button *,
+        /* 🎯 구문 강조 코드 블록 제외 */
+          [data-syntax-highlight],
+        [data-syntax-highlight] *
+      )
+  ):not([class^="mtk"]):not(:is([data-shadcn-skip-bg], [data-shadcn-skip-bg] *)) {
+  color: var(--foreground) !important;
+}
+
+/* 🔴 FIX-042: 버튼 텍스트 색상 강제 적용 - --color-* 변수 사용 (Tailwind v4 호환) */
+button[class*="bg-primary"],
+[role="button"][class*="bg-primary"],
+[data-slot="button"][class*="bg-primary"],
+/* 🎯 FIX-042: Lens 레거시 Button.primary 클래스도 포함 */
+  button.Button.primary,
+.Button.primary {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 - THEME-002 */
+}
+
+button[class*="bg-destructive"],
+[role="button"][class*="bg-destructive"],
+[data-slot="button"][class*="bg-destructive"] {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 - THEME-002 */
+}
+
+button[class*="bg-secondary"],
+[role="button"][class*="bg-secondary"],
+[data-slot="button"][class*="bg-secondary"] {
+  color: var(--color-secondary-foreground) !important;
+}
+
+/* Card 전용 foreground (더 구체적인 색상, 명시적 색상 클래스 제외) */
+[class*="bg-card"]:not(
+    :is(
+        [data-shadcn-skip-bg],
+        [data-shadcn-skip-bg] *,
+        [class*="text-muted"],
+        [class*="text-amber"],
+        [class*="text-green"],
+        [class*="text-red"],
+        [class*="text-blue"],
+        [class*="text-yellow"],
+        [class*="text-orange"],
+        [class*="text-orange"],
+        [class*="text-green"],
+        [class*="text-zinc"]
+      )
+  ),
+[class*="bg-card"]:not(:is([data-shadcn-skip-bg], [data-shadcn-skip-bg] *))
+  *:not(
+    :is(
+        svg,
+        svg *,
+        [class*="text-muted"],
+        [class*="text-amber"],
+        [class*="text-green"],
+        [class*="text-red"],
+        [class*="text-blue"],
+        [class*="text-yellow"],
+        [class*="text-orange"],
+        [class*="text-orange"],
+        [class*="text-green"],
+        [class*="text-zinc"]
+      )
+  ) {
+  color: var(--card-foreground) !important;
+}
+
+/*
+ * 🎯 FIX-042: Muted 영역 (CardDescription 등)
+ *
+ * 주의: [class*="text-muted"]는 "placeholder:text-muted-foreground" 클래스까지 매칭하여
+ *       input/textarea의 실제 텍스트까지 회색으로 만드는 문제가 있었음.
+ *
+ * 해결: input, textarea, [data-slot="command-input"] 제외
+ */
+[class*="text-muted"]:not(:is(input, textarea, [data-slot="command-input"], [data-slot="select-trigger"])),
+[class*="text-muted"]:not(:is(input, textarea, [data-slot="command-input"], [data-slot="select-trigger"]))
+  *:not(:is(svg, svg *, input, textarea)) {
+  color: var(--muted-foreground) !important;
+}
+
+/*
+ * 🎯 목적: Status Bar용 토큰 변수 정의
+ * - Shadcn 기반 하단 바 요소가 일관되도록 height/배경/테마 색상 제공
+ * - VSCode 스타일 벤치마킹 (hover, warning, error 상태 강조)
+ */
+:root {
+  /* 🎯 2026-01-18: --spacing 변수 의존성 제거 - Tailwind 초기화 전에도 동작하도록 고정값 사용 */
+  --daive-status-bar-height: 24px;
+  --daive-status-bar-border-color: var(--sidebar-border);
+  --daive-status-bar-bg: var(--sidebar);
+  --daive-status-bar-foreground: var(--muted-foreground);
+  --daive-status-bar-hover-bg: color-mix(in srgb, var(--sidebar-foreground) 8%, transparent);
+  --daive-status-bar-warning-bg: color-mix(in srgb, var(--color-yellow-500) 25%, var(--sidebar) 75%);
+  --daive-status-bar-warning-fg: color-mix(in srgb, var(--color-yellow-700) 80%, var(--sidebar-foreground) 20%);
+  --daive-status-bar-error-bg: color-mix(in srgb, var(--destructive) 25%, var(--sidebar) 75%);
+  --daive-status-bar-error-fg: var(--destructive-foreground);
+}
+
+html.theme-default-dark,
+html.theme-blue-dark {
+  --daive-status-bar-hover-bg: color-mix(in srgb, var(--sidebar-foreground) 12%, transparent);
+  --daive-status-bar-warning-bg: color-mix(in srgb, var(--color-yellow-500) 30%, var(--sidebar) 70%);
+  --daive-status-bar-warning-fg: color-mix(in srgb, var(--color-yellow-300) 80%, var(--sidebar-foreground) 20%);
+  --daive-status-bar-error-bg: color-mix(in srgb, var(--destructive) 35%, var(--sidebar) 65%);
+}
+
+/*
+ * 🎯 FIX-042: DAIVE 컴포넌트 배경색 강제 적용
+ * 문제: CSS 변수가 인라인 스타일에서 제대로 해석되지 않음
+ * 해결: CSS 선택자로 배경색 명시적 지정 (테마별)
+ */
+
+/* 기본값: CSS 변수 참조 */
+[data-slot="tool-approval-compact"],
+[data-slot="node-progress-card"] {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+/* Light 테마: 밝은 배경 (#FAFAFA) + 어두운 텍스트 (#212121) */
+html.theme-default-light [data-slot="tool-approval-compact"],
+html.theme-default-light [data-slot="node-progress-card"],
+html.theme-blue-light [data-slot="tool-approval-compact"],
+html.theme-blue-light [data-slot="node-progress-card"] {
+  background-color: oklch(0.985 0 0) !important;
+  color: oklch(0.15 0 0) !important;
+}
+
+/* Dark 테마: 어두운 배경 (#0D0D0D) + 밝은 텍스트 (#EDEDED) */
+html.theme-default-dark [data-slot="tool-approval-compact"],
+html.theme-default-dark [data-slot="node-progress-card"],
+html.theme-blue-dark [data-slot="tool-approval-compact"],
+html.theme-blue-dark [data-slot="node-progress-card"] {
+  background-color: oklch(0.1 0 0) !important;
+  color: oklch(0.93 0 0) !important;
+}

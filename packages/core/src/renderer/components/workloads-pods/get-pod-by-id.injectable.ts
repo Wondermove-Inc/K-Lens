@@ -1,0 +1,23 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { getInjectable } from "@ogre-tools/injectable";
+import podStoreInjectable from "./store.injectable";
+
+import type { Pod } from "@skuberplus/kube-object";
+
+export type GetPodById = (id: string) => Pod | undefined;
+
+const getPodByIdInjectable = getInjectable({
+  id: "get-pod-by-id",
+  instantiate: (di): GetPodById => {
+    const store = di.inject(podStoreInjectable);
+
+    return (id) => store.getById(id);
+  },
+});
+
+export default getPodByIdInjectable;

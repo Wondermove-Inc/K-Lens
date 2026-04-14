@@ -1,0 +1,172 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.StatusBar {
+  --status-item-gap: calc(var(--spacing) * 2);
+  --status-item-padding-inline: calc(var(--spacing) * 4);
+
+  grid-area: status-bar;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--spacing) * 2);
+
+  min-height: var(--daive-status-bar-height);
+  height: var(--daive-status-bar-height);
+  padding-inline: calc(var(--spacing) * 4);
+
+  background-color: var(--daive-status-bar-bg);
+  color: var(--daive-status-bar-foreground);
+  border-top: 1px solid var(--daive-status-bar-border-color);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+  letter-spacing: var(--tracking-tight);
+}
+
+.StatusBar[data-status="warning"] {
+  background-color: var(--daive-status-bar-warning-bg);
+  color: var(--daive-status-bar-warning-fg);
+}
+
+.StatusBar[data-status="error"] {
+  background-color: var(--daive-status-bar-error-bg);
+  color: var(--daive-status-bar-error-fg);
+}
+
+.leftSide {
+  display: flex;
+  align-items: center;
+  gap: var(--status-item-gap);
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: var(--status-item-gap);
+  flex: 0 0 auto;
+}
+
+.flashMessage {
+  flex: 0 0 auto;
+  padding-inline: calc(var(--spacing) * 3);
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0.85;
+  animation: flashIn 0.15s ease-out;
+}
+
+@keyframes flashIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+
+  to {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  max-width: 40vw;
+}
+
+.itemBody {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+  padding-inline: var(--status-item-padding-inline);
+  padding-block: 0;
+  height: 100%;
+  border-radius: calc(var(--radius) - 4px);
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+  max-width: inherit;
+  background: transparent;
+  border: none;
+  transition: background-color var(--default-transition-duration) var(--default-transition-timing-function);
+}
+
+.itemBody:focus-visible {
+  outline: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  outline-offset: 0;
+}
+
+.itemBody:hover {
+  background-color: var(--daive-status-bar-hover-bg);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.badgePill {
+  margin-inline-start: calc(var(--spacing) * 1.5);
+  padding-inline: calc(var(--spacing) * 1.5);
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, currentColor 90%, transparent);
+  color: var(--daive-status-bar-bg);
+  font-size: calc(var(--text-xs) * 0.9);
+  line-height: 1.2;
+  min-width: calc(var(--spacing) * 5);
+  text-align: center;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 1.5);
+}
+
+.icon {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.muted {
+  opacity: 0.65;
+}
+
+.itemBody :global(a) {
+  color: inherit;
+}
+
+.itemBody :global(svg) {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.item[data-state="warning"] .itemBody {
+  color: var(--daive-status-bar-warning-fg);
+}
+
+.item[data-state="warning"] .badgePill {
+  background-color: var(--daive-status-bar-warning-fg);
+  color: var(--daive-status-bar-bg);
+}
+
+.item[data-state="error"] .itemBody {
+  color: var(--daive-status-bar-error-fg);
+}
+
+.item[data-state="error"] .badgePill {
+  background-color: var(--daive-status-bar-error-fg);
+  color: var(--daive-status-bar-bg);
+}

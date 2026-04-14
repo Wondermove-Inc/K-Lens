@@ -1,0 +1,68 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import React from "react";
+import { getDiForUnitTesting } from "../../getDiForUnitTesting";
+import { type DiRender, renderFor } from "../test-utils/renderFor";
+import { DrawerParamToggler } from "./drawer-param-toggler";
+
+import type { RenderResult } from "@testing-library/react";
+
+describe("<DrawerParamToggler />", () => {
+  let result: RenderResult;
+  let render: DiRender;
+
+  beforeEach(() => {
+    const di = getDiForUnitTesting();
+
+    render = renderFor(di);
+    result = render(
+      <DrawerParamToggler label="Foo">
+        <div data-testid="drawer-child"></div>
+      </DrawerParamToggler>,
+    );
+  });
+
+  it("renders", () => {
+    expect(result.baseElement).toMatchSnapshot();
+  });
+
+  it("does not render children by default", () => {
+    expect(result.queryByTestId("drawer-child")).toBeNull();
+  });
+
+  describe("after clicking the toggle", () => {
+    beforeEach(async () => {
+      await userEvent.click(result.getByTestId("drawer-param-toggler"));
+    });
+
+    it("renders", () => {
+      expect(result.baseElement).toMatchSnapshot();
+    });
+
+    it("renders children", async () => {
+      await waitFor(() => {
+        expect(result.queryByTestId("drawer-child")).not.toBeNull();
+      });
+    });
+
+    describe("after clicking the toggle again", () => {
+      beforeEach(async () => {
+        await userEvent.click(result.getByTestId("drawer-param-toggler"));
+      });
+
+      it("renders", () => {
+        expect(result.baseElement).toMatchSnapshot();
+      });
+
+      it("does not children", () => {
+        expect(result.queryByTestId("drawer-child")).toBeNull();
+      });
+    });
+  });
+});

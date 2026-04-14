@@ -1,0 +1,35 @@
+{
+  "name": "@skuberplus/generate-tray-icons",
+  "version": "1.5.4-0",
+  "description": "CLI generating tray icons for building a lens-like application",
+  "license": "MIT",
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "build": "tsc --pretty --project .",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "start": "node --experimental-import-meta-resolve ./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "arg": "^5.0.2",
+    "jsdom": "^27.0.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@skuberplus/icon": "workspace:^",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "~22.16.5",
+    "typescript": "^5.9.2"
+  },
+  "bin": {
+    "generate-tray-icons": "bin/generate-tray-icons.js"
+  }
+}

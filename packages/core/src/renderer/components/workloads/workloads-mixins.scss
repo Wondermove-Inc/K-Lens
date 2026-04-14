@@ -1,0 +1,136 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "sass:map";
+
+// 🔄 THEME-040: Unified Semantic Colors
+// 📝 레거시 --colorOk 등을 --semantic-* 변수로 마이그레이션
+// Pods - Semantic 변수 사용
+$pod-status-running-color: var(--semantic-running, var(--colorOk));
+$pod-status-pending-color: var(--semantic-warning, var(--colorWarning));
+$pod-status-restarted-color: var(--semantic-neutral, var(--colorOk));
+$pod-status-evicted-color: var(--semantic-error, var(--colorError));
+$pod-status-succeeded-color: var(--semantic-success, var(--colorSuccess));
+$pod-status-failed-color: var(--semantic-error, var(--colorError));
+$pod-status-terminated-color: var(--semantic-neutral, var(--colorTerminated));
+$pod-status-finalizing-color: var(--semantic-neutral, var(--colorTerminated));
+$pod-status-terminating-color: var(--semantic-neutral, var(--colorTerminated));
+$pod-status-unknown-color: var(--semantic-neutral, var(--colorVague));
+$pod-status-complete-color: var(--semantic-success, var(--colorSuccess));
+$pod-status-crash-loop-color: var(--semantic-error, var(--colorError));
+$pod-scheduled: var(--semantic-success, var(--colorOk));
+$pod-ready: var(--semantic-success, var(--colorOk));
+$pod-initialized: var(--semantic-success, var(--colorOk));
+$pod-unschedulable: var(--semantic-error, var(--colorError));
+$pod-containers-ready: var(--semantic-running, var(--colorInfo));
+$pod-error: var(--semantic-error, var(--colorError));
+$pod-container-creating: var(--semantic-running, var(--colorInfo));
+$pod-container-ephemeral: var(--semantic-running, var(--colorInfo));
+
+// Deployments
+$deployment-available: var(--colorOk);
+$deployment-progressing: var(--colorInfo);
+$deployment-replicafailure: var(--colorError);
+
+// Jobs
+$job-complete: var(--colorSuccess);
+$job-failed: var(--colorError);
+
+// Cronjob
+$cronjob-scheduled: var(--colorSuccess);
+$cronjob-suspended: var(--colorTerminated);
+
+// Pod Statuses
+$pod-status-color-list: (
+  running: $pod-status-running-color,
+  pending: $pod-status-pending-color,
+  restarted: $pod-status-restarted-color,
+  evicted: $pod-status-evicted-color,
+  waiting: $pod-status-pending-color,
+  succeeded: $pod-status-succeeded-color,
+  failed: $pod-status-failed-color,
+  terminating: $pod-status-terminating-color,
+  finalizing: $pod-status-finalizing-color,
+  terminated: $pod-status-terminated-color,
+  completed: $pod-status-complete-color,
+  crash-loop-back-off: $pod-status-crash-loop-color,
+  error: $pod-error,
+  container-creating: $pod-container-creating,
+  container-ephemeral: $pod-container-ephemeral,
+);
+
+// Job Conditions
+$job-condition-color-list: (
+  Complete: $job-complete,
+  Failed: $job-failed,
+);
+
+// Cronjob Conditions
+$cronjob-condition-color-list: (
+  Scheduled: $cronjob-scheduled,
+  Suspended: $cronjob-suspended,
+);
+
+// 🔄 THEME-040: Semantic 텍스트 색상 매핑
+// 📝 배경 밝기에 따라 적절한 텍스트 색상 자동 적용
+$pod-status-text-color-map: (
+  running: var(--semantic-running-text, oklch(1 0 0)),
+  pending: var(--semantic-warning-text, oklch(0.20 0 0)),
+  restarted: var(--semantic-neutral-text, oklch(1 0 0)),
+  evicted: var(--semantic-error-text, oklch(1 0 0)),
+  waiting: var(--semantic-warning-text, oklch(0.20 0 0)),
+  succeeded: var(--semantic-success-text, oklch(1 0 0)),
+  failed: var(--semantic-error-text, oklch(1 0 0)),
+  terminating: var(--semantic-neutral-text, oklch(1 0 0)),
+  finalizing: var(--semantic-neutral-text, oklch(1 0 0)),
+  terminated: var(--semantic-neutral-text, oklch(1 0 0)),
+  completed: var(--semantic-success-text, oklch(1 0 0)),
+  crash-loop-back-off: var(--semantic-error-text, oklch(1 0 0)),
+  error: var(--semantic-error-text, oklch(1 0 0)),
+  container-creating: var(--semantic-running-text, oklch(1 0 0)),
+  container-ephemeral: var(--semantic-running-text, oklch(1 0 0)),
+);
+
+// 🔄 THEME-040: Auto text color from semantic system
+@mixin pod-status-bgs {
+  @each $status, $color in $pod-status-color-list {
+    &.#{$status} {
+      $text-color: map.get($pod-status-text-color-map, $status);
+      @if $text-color {
+        color: $text-color;
+      } @else {
+        color: var(--status-badge-text, oklch(1 0 0));
+      }
+      background: $color;
+    }
+  }
+}
+
+@mixin pod-status-colors {
+  @each $status, $color in $pod-status-color-list {
+    &.#{$status} {
+      color: $color;
+    }
+  }
+}
+
+// 🔄 THEME-031: white → CSS 변수
+@mixin job-condition-bgs {
+  @each $condition, $color in $job-condition-color-list {
+    .#{$condition} {
+      color: var(--status-badge-text, oklch(1 0 0));
+      background: $color;
+    }
+  }
+}
+
+@mixin job-condition-colors {
+  @each $condition, $color in $job-condition-color-list {
+    &.#{$condition} {
+      color: $color;
+    }
+  }
+}

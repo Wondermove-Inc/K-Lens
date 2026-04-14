@@ -1,0 +1,19 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../workloads/workloads-mixins";
+
+.OverviewWorkloadStatus {
+  --workload-status-running: #{workloads-mixins.$pod-status-running-color};
+  --workload-status-pending: #{workloads-mixins.$pod-status-pending-color};
+  --workload-status-evicted: #{workloads-mixins.$pod-status-evicted-color};
+  --workload-status-succeeded: #{workloads-mixins.$pod-status-succeeded-color};
+  --workload-status-scheduled: #{workloads-mixins.$cronjob-scheduled};
+  --workload-status-suspended: #{workloads-mixins.$cronjob-suspended};
+  --workload-status-failed: #{workloads-mixins.$pod-status-failed-color};
+  --workload-status-terminated: #{workloads-mixins.$pod-status-terminated-color};
+  --workload-status-unknown: #{workloads-mixins.$pod-status-unknown-color};
+}

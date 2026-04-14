@@ -1,0 +1,32 @@
+{
+  "name": "@skuberplus/cluster-settings",
+  "version": "1.5.4-0",
+  "description": "Injection token exporter for cluster settings configuration",
+  "license": "MIT",
+  "type": "commonjs",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "pnpm dlx rimraf@6.0.1 dist",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "build": "lens-webpack-build"
+  },
+  "dependencies": {
+    "@ogre-tools/injectable": "^17.11.1"
+  },
+  "devDependencies": {
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@types/react": "^18.3.3",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.101.3"
+  }
+}

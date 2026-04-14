@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CustomResourceDetails /> with a CRD with a boolean field should display false in an additionalPrinterColumn as 'false' 1`] = `
+<div>
+  <div
+    class="CustomResourceDetails MyCrd"
+  >
+    <div
+      class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+    >
+      <span
+        class="text-sm text-muted-foreground"
+      >
+        My Field
+      </span>
+      <div
+        class="text-sm text-foreground"
+      >
+        <span
+          class="focus-visible:border-ring aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3 bg-destructive [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 border-transparent !text-destructive-foreground"
+          data-slot="badge"
+        >
+          False
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CustomResourceDetails /> with a CRD with a boolean field should display true in an additionalPrinterColumn as 'true' 1`] = `
+<div>
+  <div
+    class="CustomResourceDetails MyCrd"
+  >
+    <div
+      class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+    >
+      <span
+        class="text-sm text-muted-foreground"
+      >
+        My Field
+      </span>
+      <div
+        class="text-sm text-foreground"
+      >
+        <span
+          class="focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3 bg-primary !text-primary-foreground [a&]:hover:bg-primary/90 border-transparent"
+          data-slot="badge"
+        >
+          True
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CustomResourceDetails /> with a CRD with a number field should display 0 in an additionalPrinterColumn as '0' 1`] = `
+<div>
+  <div
+    class="CustomResourceDetails MyCrd"
+  >
+    <div
+      class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+    >
+      <span
+        class="text-sm text-muted-foreground"
+      >
+        My Field
+      </span>
+      <div
+        class="text-sm text-foreground"
+      >
+        0
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<CustomResourceDetails /> with a CRD with a number field should display 1234 in an additionalPrinterColumn as '1234' 1`] = `
+<div>
+  <div
+    class="CustomResourceDetails MyCrd"
+  >
+    <div
+      class="grid grid-cols-[140px_1fr] gap-x-4 py-3 border-b border-border last:border-b-0"
+    >
+      <span
+        class="text-sm text-muted-foreground"
+      >
+        My Field
+      </span>
+      <div
+        class="text-sm text-foreground"
+      >
+        1234
+      </div>
+    </div>
+  </div>
+</div>
+`;

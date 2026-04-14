@@ -1,0 +1,30 @@
+.extensionName {
+  font-weight: 700;
+  color: var(--textColorAccent);
+}
+
+.extensionDescription {
+  margin-top: 0.25rem;
+}
+
+.enabled {
+  color: var(--colorOk);
+}
+
+.invalid {
+  color: var(--colorWarning);
+}
+
+.title {
+  margin-bottom: 0 !important;
+}
+
+.noItemsIcon {
+  opacity: 0.1;
+  --size: 180px;
+}
+
+.frozenRow {
+  opacity: 0.3;
+  pointer-events: none;
+}

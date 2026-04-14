@@ -1,0 +1,722 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* 🎯 2026-01-18: Issue 5 - Streamdown 스타일 포함
+ * Streamdown 라이브러리가 Tailwind 클래스를 사용하므로 @source로 포함
+ * 참고: https://streamdown.ai/docs - Tailwind 통합 섹션
+ */
+@source "../../../node_modules/streamdown/dist/*.js";
+
+/* 🎯 THEME-040: Semantic/Status 유틸리티 클래스 강제 포함
+ * 📝 문제: @utility로 정의된 커스텀 유틸리티는 JIT가 사용처를 찾지 못하면 생성 안 함
+ * 🔄 해결: @source inline()으로 명시적 포함 - getStatusClasses() 반환값과 일치해야 함
+ */
+@source inline("bg-semantic-running bg-semantic-success bg-semantic-warning bg-semantic-error bg-semantic-neutral");
+@source inline("text-semantic-running-text text-semantic-success-text text-semantic-warning-text text-semantic-error-text text-semantic-neutral-text");
+@source inline("bg-status-success bg-status-error bg-status-warning");
+/* 🎯 Security grade colors — light + dark (Tailwind v4 @source inline, JIT purge bypass) */
+@source inline("border-l-4");
+@source inline("text-blue-600 bg-blue-50 border-l-blue-500 text-blue-400 bg-blue-900/30 border-l-blue-400");
+@source inline("text-teal-600 bg-teal-50 border-l-teal-500 text-teal-400 bg-teal-900/30 border-l-teal-400");
+@source inline("text-amber-600 bg-amber-50 border-l-amber-500 text-amber-500 bg-amber-900/30 border-l-amber-400");
+@source inline("text-rose-500 bg-rose-50 border-l-rose-500 text-rose-400 bg-rose-900/25 border-l-rose-400");
+@source inline("text-red-600 bg-red-50 border-l-red-700 text-red-400 bg-red-900/30 border-l-red-500");
+
+/* 🎯 score-weighting-modal SEV_COLOR (text) + barColor (bg) */
+@source inline("text-orange-500 text-emerald-600 text-emerald-400 text-slate-500 text-slate-400 text-emerald-100/90 text-slate-200/80 text-emerald-700/80 text-emerald-500/80 text-slate-600/80 text-slate-400/80");
+@source inline("bg-emerald-400 bg-emerald-700/55 bg-slate-400 bg-slate-600/45");
+/* 🎯 Low severity teal + timeout alert orange */
+@source inline("bg-teal-400 bg-teal-700/55 text-teal-100/90 text-teal-600");
+@source inline("bg-orange-50 bg-orange-950/30 border-orange-200 border-orange-800/50 text-orange-700 text-orange-400");
+
+/* Tailwind dark mode variant: .dark 클래스를 가진 요소와 그 자식 모두에 적용 */
+@custom-variant dark (&:where(.dark, .dark *, [class*="-dark"], [class*="-dark"] *));
+
+/* 🎯 목적: 공통 변수만 정의 (:root 레벨)
+ * 📝 주의: 테마별로 달라지는 색상 변수는 html.theme-* 에서만 정의
+ * 🔄 수정: --primary 등 테마 변수를 :root에서 제거하여 테마별 값이 적용되도록 함
+ */
+:root {
+  --radius: 0.65rem;
+
+  /* 🎯 DAIVE StatusBar 변수 - 공통 값 (테마별 색상은 아래에서 오버라이드)
+   * 📝 2026-01-18: - AI Panel과 StatusBar 높이 동기화
+   * - AI Panel의 bottom 계산에 사용됨
+   * - StatusBar의 height/min-height에 사용됨
+   */
+  --daive-status-bar-height: 24px;
+
+  /* 🎯 FIX-042: Soft Contrast 범용 폴백 - 눈 피로 감소
+   * 📝 문제: JavaScript 테마 적용 전 또는 CSS 테마 규칙이 없는 경우 색상 미정의
+   * 🔄 해결: :root에서 기본값 정의하여 항상 유효한 값 보장
+   */
+  --foreground: oklch(0.15 0 0); /* 기본: near-black #212121 (Light 모드 가정) */
+  --primary-foreground: oklch(1 0 0); /* 기본: 순수 흰색 (버튼 텍스트) */
+  --card-foreground: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* 🎯 THEME-040: Semantic 색상 폴백 - Pod Status 및 Badge 색상
+   * 📝 문제: JavaScript 테마 적용 전 또는 html.theme-* 클래스 누락 시 색상 미정의
+   * 🔄 해결: :root에서 Light 테마 기본값 정의
+   */
+  --semantic-running: oklch(0.55 0.2 260); /* Blue - Running/Active */
+  --semantic-running-text: oklch(1 0 0);
+  --semantic-success: oklch(0.55 0.18 145); /* Green - Success/Succeeded */
+  --semantic-success-text: oklch(1 0 0);
+  --semantic-warning: oklch(0.7 0.18 85); /* Amber - Warning/Pending */
+  --semantic-warning-text: oklch(0.2 0 0);
+  --semantic-error: oklch(0.55 0.22 25); /* Red - Error/Failed */
+  --semantic-error-text: oklch(1 0 0);
+  --semantic-neutral: oklch(0.55 0.02 286); /* Gray - Unknown/Neutral */
+  --semantic-neutral-text: oklch(1 0 0);
+
+  /* 🎯 THEME-040: Status 색상 폴백 - Sidebar 클러스터 상태 점 */
+  --status-success: oklch(0.6 0.18 145); /* Green - Connected */
+  --status-error: oklch(0.55 0.22 25); /* Red - Disconnected */
+  --status-warning: oklch(0.7 0.18 85); /* Amber - Connecting */
+}
+
+/* 🎯 FIX-042: Dark 모드 범용 폴백 - Soft Contrast
+ * 📝 .dark 클래스 또는 theme-*-dark 클래스가 있는 경우 off-white 텍스트 적용
+ */
+html:where(.dark),
+html:where([class*="-dark"]) {
+  --foreground: oklch(0.93 0 0); /* Dark: off-white #EDEDED */
+  --card-foreground: oklch(0.93 0 0);
+  --popover-foreground: oklch(0.93 0 0);
+}
+
+/* 테마별 CSS 변수 정의 - html:where(.theme-*) 선택자로 :root 값 오버라이드 */
+
+/* 🎯 목적: Tailwind v4 테마 시스템 설정 - 폰트와 radius만 정의
+ * 📝 주의: 색상 변수는 @theme inline 블록에서 동적 참조로 정의
+ * 🔄 변경이력: 2025-10-12 - @theme inline으로 색상 변수 이동 (다중 테마 지원)
+ */
+@theme {
+  --font-sans:
+    "Geist", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --radius: 0.65rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* 🎯 커스텀 애니메이션: sidebar-cluster 로딩 효과 */
+  --animate-waiting: waiting 1.5s infinite linear;
+}
+
+/* 🎯 목적: Sidebar Cluster 로딩 애니메이션
+ * 📝 사용: animate-waiting 클래스
+ * 🔄 변경이력: 2025-10-26 - SCSS에서 Tailwind로 마이그레이션
+ */
+@keyframes waiting {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  50% {
+    left: 25%;
+    width: 75%;
+  }
+  75% {
+    left: 100%;
+    width: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 🎯 목적: Tailwind v4 동적 테마 시스템 - 모든 색상 변수를 동적 참조로 정의
+ * 📝 주의: @theme inline은 CSS 변수 참조를 허용하여 html.theme-* 클래스로 값 변경 가능
+ * 🔄 동작 원리: --color-primary: var(--primary) → html.theme-red-dark에서 --primary 오버라이드
+ */
+@theme inline {
+  /* 기본 색상 */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* 카드 */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* 팝오버 */
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* 프라이머리 */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* 세컨더리 */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* 뮤티드 */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* 액센트 */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* 디스트럭티브 */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* 보더 및 인풋 */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* 차트 */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* 사이드바 */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* 🎯 THEME-024: Status Colors - Tailwind 참조용 */
+  --color-status-success: var(--status-success);
+  --color-status-success-muted: var(--status-success-muted);
+  --color-status-success-border: var(--status-success-border);
+  --color-status-warning: var(--status-warning);
+  --color-status-warning-muted: var(--status-warning-muted);
+  --color-status-warning-border: var(--status-warning-border);
+  --color-status-error: var(--status-error);
+  --color-status-error-muted: var(--status-error-muted);
+  --color-status-error-border: var(--status-error-border);
+  --color-status-info: var(--status-info);
+  --color-status-info-muted: var(--status-info-muted);
+  --color-status-info-border: var(--status-info-border);
+  --color-status-pending: var(--status-pending);
+  --color-status-pending-muted: var(--status-pending-muted);
+  --color-status-pending-border: var(--status-pending-border);
+
+  /* 🎯 THEME-024: Badge Colors - Tailwind 참조용 */
+  --color-badge-success-bg: var(--badge-success-bg);
+  --color-badge-success-text: var(--badge-success-text);
+  --color-badge-warning-bg: var(--badge-warning-bg);
+  --color-badge-warning-text: var(--badge-warning-text);
+  --color-badge-error-bg: var(--badge-error-bg);
+  --color-badge-error-text: var(--badge-error-text);
+  --color-badge-info-bg: var(--badge-info-bg);
+  --color-badge-info-text: var(--badge-info-text);
+  --color-badge-neutral-bg: var(--badge-neutral-bg);
+  --color-badge-neutral-text: var(--badge-neutral-text);
+
+  /* 🎯 THEME-040: Semantic Colors - Tailwind 참조용 */
+  --color-semantic-running: var(--semantic-running);
+  --color-semantic-running-text: var(--semantic-running-text);
+  --color-semantic-running-muted: var(--semantic-running-muted);
+  --color-semantic-success: var(--semantic-success);
+  --color-semantic-success-text: var(--semantic-success-text);
+  --color-semantic-success-muted: var(--semantic-success-muted);
+  --color-semantic-warning: var(--semantic-warning);
+  --color-semantic-warning-text: var(--semantic-warning-text);
+  --color-semantic-warning-muted: var(--semantic-warning-muted);
+  --color-semantic-error: var(--semantic-error);
+  --color-semantic-error-text: var(--semantic-error-text);
+  --color-semantic-error-muted: var(--semantic-error-muted);
+  --color-semantic-neutral: var(--semantic-neutral);
+  --color-semantic-neutral-text: var(--semantic-neutral-text);
+  --color-semantic-neutral-muted: var(--semantic-neutral-muted);
+
+  /* 🎯 THEME-040: Badge Component Tokens - Tailwind 참조용 */
+  --color-badge-running-bg: var(--badge-running-bg);
+  --color-badge-running-fg: var(--badge-running-fg);
+  --color-badge-succeeded-bg: var(--badge-succeeded-bg);
+  --color-badge-succeeded-fg: var(--badge-succeeded-fg);
+  --color-badge-pending-bg: var(--badge-pending-bg);
+  --color-badge-pending-fg: var(--badge-pending-fg);
+  --color-badge-failed-bg: var(--badge-failed-bg);
+  --color-badge-failed-fg: var(--badge-failed-fg);
+  --color-badge-unknown-bg: var(--badge-unknown-bg);
+  --color-badge-unknown-fg: var(--badge-unknown-fg);
+
+  /* 🎯 THEME-024: Highlight & Misc Colors - Tailwind 참조용 */
+  --color-highlight-bg: var(--highlight-bg);
+  --color-highlight-text: var(--highlight-text);
+  --color-modified-bg: var(--modified-bg);
+  --color-modified-text: var(--modified-text);
+
+  /* 🎯 THEME-012: Tailwind 컬러 팔레트 (사용되는 변수만 유지)
+   * 📝 Storybook 테마 시스템에서 사용되는 색상 변수
+   * 🔄 2026-01-31: 미사용 변수 제거 (100, 200, 900, 950 variants)
+   */
+
+  /* Red theme colors - 사용되는 것만 유지 */
+  --color-red-50: oklch(0.971 0.013 17.38);
+  --color-red-300: oklch(0.808 0.114 19.571);
+  --color-red-400: oklch(0.704 0.191 22.216);
+  --color-red-500: oklch(0.637 0.237 25.331);
+  --color-red-600: oklch(0.577 0.245 27.325);
+  --color-red-700: oklch(0.505 0.213 27.518);
+  --color-red-800: oklch(0.444 0.177 26.899);
+
+  /* Orange theme colors - 사용되는 것만 유지 */
+  --color-orange-50: oklch(0.98 0.016 73.684);
+  --color-orange-300: oklch(0.837 0.128 66.29);
+  --color-orange-400: oklch(0.75 0.183 55.934);
+  --color-orange-500: oklch(0.705 0.213 47.604);
+  --color-orange-600: oklch(0.646 0.222 41.116);
+  --color-orange-700: oklch(0.553 0.195 38.402);
+  --color-orange-800: oklch(0.47 0.157 37.304);
+
+  /* Yellow theme colors - 사용되는 것만 유지 (shadcn-theme-overrides.css에서 사용) */
+  --color-yellow-50: oklch(0.987 0.026 102.212);
+  --color-yellow-300: oklch(0.905 0.182 98.111);
+  --color-yellow-400: oklch(0.852 0.199 91.936);
+  --color-yellow-500: oklch(0.795 0.184 86.047);
+  --color-yellow-600: oklch(0.681 0.162 75.834);
+  --color-yellow-700: oklch(0.554 0.135 66.442);
+  --color-yellow-800: oklch(0.476 0.114 61.907);
+
+  /* Green theme colors - 사용되는 것만 유지 */
+  --color-green-300: oklch(0.871 0.15 154.449);
+  --color-green-500: oklch(0.723 0.219 149.579);
+  --color-green-600: oklch(0.627 0.194 149.214);
+  --color-green-700: oklch(0.527 0.154 150.069);
+  --color-green-800: oklch(0.448 0.119 151.328);
+
+  /* Lime theme colors - 사용되는 것만 유지 */
+  --color-lime-50: oklch(0.986 0.031 120.757);
+  --color-lime-400: oklch(0.841 0.238 128.85);
+  --color-lime-600: oklch(0.648 0.2 131.684);
+
+  /* Violet theme colors - 사용되는 것만 유지 */
+  --color-violet-50: oklch(0.969 0.016 293.756);
+  --color-violet-300: oklch(0.811 0.111 293.571);
+  --color-violet-400: oklch(0.702 0.183 293.541);
+  --color-violet-500: oklch(0.606 0.25 292.717);
+  --color-violet-600: oklch(0.541 0.281 293.009);
+  --color-violet-700: oklch(0.491 0.27 292.581);
+  --color-violet-800: oklch(0.432 0.232 292.759);
+
+  /* Blue theme colors - 사용되는 것만 유지 */
+  --color-blue-50: oklch(0.984 0.007 254.604);
+  --color-blue-300: oklch(0.796 0.099 250.366);
+  --color-blue-400: oklch(0.71 0.156 255);
+  --color-blue-500: oklch(0.623 0.214 259.815);
+  --color-blue-600: oklch(0.546 0.245 262.881);
+  --color-blue-700: oklch(0.488 0.243 264.376);
+  --color-blue-800: oklch(0.45 0.197 265.522);
+
+  /* 🎯 Additional missing color variables */
+  /* Amber - C등급, Medium severity */
+  --color-amber-50: oklch(0.987 0.022 95.277);
+  --color-amber-400: oklch(0.828 0.189 84.429);
+  --color-amber-500: oklch(0.769 0.188 70.08);
+  --color-amber-600: oklch(0.666 0.179 58.318);
+  --color-amber-900: oklch(0.414 0.112 45.904);
+
+  /* Blue-900 - A등급 dark bg */
+  --color-blue-900: oklch(0.379 0.146 265.522);
+
+  /* Red-900 - F등급 dark bg */
+  --color-red-900: oklch(0.369 0.132 25.331);
+
+  /* 🎯 Security grade/severity colors — teal(B등급,Low), rose(D등급), slate(Unknown), emerald(Low텍스트) */
+  /* Teal - B등급, Low severity 배지 */
+  --color-teal-50: oklch(0.984 0.014 180.72);
+  --color-teal-100: oklch(0.953 0.051 180.801);
+  --color-teal-400: oklch(0.777 0.135 181.912);
+  --color-teal-500: oklch(0.704 0.14 182.503);
+  --color-teal-600: oklch(0.6 0.118 184.704);
+  --color-teal-700: oklch(0.511 0.096 186.391);
+  --color-teal-900: oklch(0.386 0.063 188.416);
+
+  /* Rose - D등급 */
+  --color-rose-50: oklch(0.969 0.015 12.422);
+  --color-rose-400: oklch(0.712 0.194 13.428);
+  --color-rose-500: oklch(0.645 0.246 16.439);
+  --color-rose-900: oklch(0.41 0.159 10.272);
+
+  /* Slate - Unknown severity */
+  --color-slate-50: oklch(0.984 0.003 247.858);
+  --color-slate-100: oklch(0.968 0.007 247.896);
+  --color-slate-200: oklch(0.929 0.013 255.508);
+  --color-slate-400: oklch(0.704 0.04 256.788);
+  --color-slate-500: oklch(0.622 0.043 257.396);
+  --color-slate-600: oklch(0.56 0.049 261.322);
+  --color-slate-800: oklch(0.351 0.039 265.755);
+  --color-slate-900: oklch(0.267 0.03 264.663);
+
+  /* Emerald - Low severity 텍스트 */
+  --color-emerald-100: oklch(0.95 0.052 163.051);
+  --color-emerald-400: oklch(0.765 0.177 163.223);
+  --color-emerald-500: oklch(0.696 0.17 162.48);
+  --color-emerald-600: oklch(0.596 0.145 163.225);
+  --color-emerald-700: oklch(0.508 0.118 165.612);
+}
+
+/* 🎯 목적: Tailwind v4 커스텀 유틸리티 정의
+ * 📝 이유: v4에서 @layer utilities 대신 @utility 디렉티브 사용 필요
+ * 🔄 변경이력: 2025-11-30 - @utility 디렉티브로 마이그레이션
+ * 참고: https://tailwindcss.com/docs/adding-custom-styles
+ */
+
+/* 🎯 FIX-041: 입력 텍스트 색상 유틸리티
+ * 📝 !important 사용: 상속된 색상을 오버라이드하여 순수 검정/흰색 보장
+ */
+@utility text-foreground {
+  color: var(--color-foreground) !important;
+}
+
+@utility text-muted-foreground {
+  color: var(--color-muted-foreground);
+}
+
+@utility text-primary {
+  color: var(--color-primary);
+}
+
+/* 🎯 FIX-041: Primary 버튼 텍스트 색상 유틸리티 추가
+ * 📝 !important 사용: body의 text-foreground 상속을 오버라이드하기 위함
+ */
+@utility text-primary-foreground {
+  color: var(--color-primary-foreground) !important;
+}
+
+@utility text-secondary-foreground {
+  color: var(--color-secondary-foreground);
+}
+
+@utility text-accent-foreground {
+  color: var(--color-accent-foreground);
+}
+
+@utility text-destructive {
+  color: var(--color-destructive);
+}
+
+/* 🎯 FIX-041: Destructive 버튼 텍스트 색상 유틸리티 추가 */
+@utility text-destructive-foreground {
+  color: var(--color-destructive-foreground);
+}
+
+@utility text-card-foreground {
+  color: var(--color-card-foreground);
+}
+
+@utility text-popover-foreground {
+  color: var(--color-popover-foreground);
+}
+
+/* 🎯 목적: Switch 컴포넌트 비활성 상태 배경색 */
+@utility bg-input {
+  background-color: var(--color-input);
+}
+
+/* 🎯 THEME-024: Status 배경색 유틸리티
+ * 📝 bg-green-500 → bg-status-success 대체
+ */
+@utility bg-status-success {
+  background-color: var(--color-status-success);
+}
+@utility bg-status-success-muted {
+  background-color: var(--color-status-success-muted);
+}
+@utility bg-status-warning {
+  background-color: var(--color-status-warning);
+}
+@utility bg-status-warning-muted {
+  background-color: var(--color-status-warning-muted);
+}
+@utility bg-status-error {
+  background-color: var(--color-status-error);
+}
+@utility bg-status-error-muted {
+  background-color: var(--color-status-error-muted);
+}
+@utility bg-status-info {
+  background-color: var(--color-status-info);
+}
+@utility bg-status-info-muted {
+  background-color: var(--color-status-info-muted);
+}
+@utility bg-status-pending {
+  background-color: var(--color-status-pending);
+}
+@utility bg-status-pending-muted {
+  background-color: var(--color-status-pending-muted);
+}
+
+/* 🎯 THEME-024: Status 텍스트 색상 유틸리티 */
+@utility text-status-success {
+  color: var(--color-status-success);
+}
+@utility text-status-warning {
+  color: var(--color-status-warning);
+}
+@utility text-status-error {
+  color: var(--color-status-error);
+}
+@utility text-status-info {
+  color: var(--color-status-info);
+}
+@utility text-status-pending {
+  color: var(--color-status-pending);
+}
+
+/* 🎯 THEME-024: Status 보더 색상 유틸리티 */
+@utility border-status-success {
+  border-color: var(--color-status-success-border);
+}
+@utility border-status-warning {
+  border-color: var(--color-status-warning-border);
+}
+@utility border-status-error {
+  border-color: var(--color-status-error-border);
+}
+@utility border-status-info {
+  border-color: var(--color-status-info-border);
+}
+@utility border-status-pending {
+  border-color: var(--color-status-pending-border);
+}
+
+/* 🎯 THEME-024: Badge 유틸리티 */
+@utility bg-badge-success {
+  background-color: var(--color-badge-success-bg);
+  color: var(--color-badge-success-text);
+}
+@utility bg-badge-warning {
+  background-color: var(--color-badge-warning-bg);
+  color: var(--color-badge-warning-text);
+}
+@utility bg-badge-error {
+  background-color: var(--color-badge-error-bg);
+  color: var(--color-badge-error-text);
+}
+@utility bg-badge-info {
+  background-color: var(--color-badge-info-bg);
+  color: var(--color-badge-info-text);
+}
+@utility bg-badge-neutral {
+  background-color: var(--color-badge-neutral-bg);
+  color: var(--color-badge-neutral-text);
+}
+
+/* 🎯 THEME-040: Unified Semantic Color Utilities
+ * 📝 bg-semantic-*, text-semantic-*-text 유틸리티 클래스
+ */
+@utility bg-semantic-running {
+  background-color: var(--semantic-running);
+}
+@utility bg-semantic-success {
+  background-color: var(--semantic-success);
+}
+@utility bg-semantic-warning {
+  background-color: var(--semantic-warning);
+}
+@utility bg-semantic-error {
+  background-color: var(--semantic-error);
+}
+@utility bg-semantic-neutral {
+  background-color: var(--semantic-neutral);
+}
+
+@utility text-semantic-running-text {
+  color: var(--semantic-running-text);
+}
+@utility text-semantic-success-text {
+  color: var(--semantic-success-text);
+}
+@utility text-semantic-warning-text {
+  color: var(--semantic-warning-text);
+}
+@utility text-semantic-error-text {
+  color: var(--semantic-error-text);
+}
+@utility text-semantic-neutral-text {
+  color: var(--semantic-neutral-text);
+}
+
+/* 🎯 THEME-040: Badge Component Token Utilities */
+@utility bg-badge-running-bg {
+  background-color: var(--badge-running-bg);
+}
+@utility text-badge-running-fg {
+  color: var(--badge-running-fg);
+}
+@utility bg-badge-succeeded-bg {
+  background-color: var(--badge-succeeded-bg);
+}
+@utility text-badge-succeeded-fg {
+  color: var(--badge-succeeded-fg);
+}
+@utility bg-badge-pending-bg {
+  background-color: var(--badge-pending-bg);
+}
+@utility text-badge-pending-fg {
+  color: var(--badge-pending-fg);
+}
+@utility bg-badge-failed-bg {
+  background-color: var(--badge-failed-bg);
+}
+@utility text-badge-failed-fg {
+  color: var(--badge-failed-fg);
+}
+@utility bg-badge-unknown-bg {
+  background-color: var(--badge-unknown-bg);
+}
+@utility text-badge-unknown-fg {
+  color: var(--badge-unknown-fg);
+}
+
+/* 🎯 THEME-024: Highlight & Modified Utility Classes */
+@utility bg-highlight {
+  background-color: var(--color-highlight-bg);
+  color: var(--color-highlight-text);
+}
+@utility bg-modified {
+  background-color: var(--color-modified-bg);
+  color: var(--color-modified-text);
+}
+
+/* 🎯 목적: Radix ScrollArea 내부 wrapper 스타일 오버라이드
+ * 📝 문제: Radix가 display: table; min-width: 100%를 inline style로 추가하여 flex shrink 방해
+ * 🔄 해결: !important로 오버라이드하여 flex 컨테이너 내에서 정상 shrink 허용
+ * 참고: https://css-tricks.com/flexbox-truncated-text/
+ */
+[data-radix-scroll-area-viewport] > div {
+  min-width: 0 !important;
+  display: block !important;
+}
+
+/* 🎯 목적: ClusterSelector 스크롤 복원
+ * 📝 문제: 위의 display: block이 Radix ScrollArea의 스크롤 메커니즘을 방해
+ * 🔄 해결: ClusterSelector 영역에만 Radix 기본값(display: table) 복원
+ * 참고: 다른 영역의 flex shrink 문제는 유지하면서 스크롤만 복원
+ */
+[data-component="cluster-selector"] [data-radix-scroll-area-viewport] > div {
+  display: table !important;
+  min-width: 100% !important;
+}
+
+/* 🎯 FIX-042: 입력 요소 텍스트 색상 강제 적용
+ * 📝 문제: textarea/input에서 상속받은 회색 텍스트가 표시됨
+ * 🔄 해결: 모든 입력 요소에 --foreground 색상 강제 적용
+ * - Light: #212121 (near-black)
+ * - Dark: #EDEDED (off-white)
+ */
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="tel"],
+[contenteditable="true"] {
+  color: var(--foreground) !important;
+  caret-color: var(--foreground);
+}
+
+/* 🎯 FIX-042: Placeholder 색상 보장 */
+textarea::placeholder,
+input::placeholder {
+  color: var(--muted-foreground) !important;
+  opacity: 1;
+}
+
+/* 🎯 FIX-042: Primary/Destructive 버튼 텍스트 색상 강제 (순수 흰색)
+ * 📝 문제: body의 color 상속이 버튼 텍스트를 검정색으로 오버라이드
+ * 🔄 해결: bg-primary, bg-destructive 버튼에 흰색 텍스트 강제
+ * 🔄 THEME-002: #ffffff → oklch(1 0 0) 마이그레이션
+ */
+[data-slot="button"].bg-primary,
+[data-slot="button"][class*="bg-primary"],
+button.bg-primary,
+.Button.primary,
+.Button:not(.plain):not(.outlined):not(.light) {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 */
+}
+
+[data-slot="button"].bg-destructive,
+[data-slot="button"][class*="bg-destructive"],
+button.bg-destructive {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 */
+}
+
+/* 🎯 FIX-042: text-primary-foreground 클래스 강제
+ * 🔄 THEME-002: #ffffff → oklch(1 0 0) 마이그레이션
+ */
+.text-primary-foreground,
+.\!text-primary-foreground {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 */
+}
+
+.text-destructive-foreground,
+.\!text-destructive-foreground {
+  color: oklch(1 0 0) !important; /* #FFFFFF 순수 흰색 */
+}
+
+/* ============================================
+ * 🎯 FIX-042: DAIVE 컴포넌트 테마별 배경색 강제 적용
+ * 문제: bg-background 클래스와 CSS 변수가 Light 모드에서 검정색으로 렌더링
+ * 해결: 테마 클래스 기반 하드코딩 색상 적용
+ * ============================================ */
+
+/* 기본값 (CSS 변수 참조) */
+[data-slot="tool-approval-compact"],
+[data-slot="node-progress-card"] {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+/* Light 테마: 밝은 배경 (#FAFAFA) + 어두운 텍스트 (#212121) */
+html:where(.theme-default-light) [data-slot="tool-approval-compact"],
+html:where(.theme-default-light) [data-slot="node-progress-card"],
+html:where(.theme-blue-light) [data-slot="tool-approval-compact"],
+html:where(.theme-blue-light) [data-slot="node-progress-card"] {
+  background-color: oklch(0.985 0 0) !important;
+  color: oklch(0.15 0 0) !important;
+}
+
+/* Dark 테마: 어두운 배경 (#1F1F1F) + 밝은 텍스트 (#EDEDED) */
+html:where(.theme-default-dark) [data-slot="tool-approval-compact"],
+html:where(.theme-default-dark) [data-slot="node-progress-card"],
+html:where(.theme-blue-dark) [data-slot="tool-approval-compact"],
+html:where(.theme-blue-dark) [data-slot="node-progress-card"] {
+  background-color: oklch(0.16 0 0) !important;
+  color: oklch(0.93 0 0) !important;
+}
+
+/* 🎯 FIX-042: code 요소 스타일 - 명령어 표시 영역 */
+/* 🔄 THEME-040: HEX 하드코딩 → CSS 변수 (테마 자동 대응) */
+[data-slot="tool-approval-compact"] code,
+[data-slot="node-progress-card"] code {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* 🎯 FIX-042: tool-approval-compact 내 버튼 텍스트 색상 */
+/* 🔄 THEME-040: HEX 하드코딩 → CSS 변수 (테마 자동 대응) */
+[data-slot="tool-approval-compact"] button[data-slot="button"]:not(.bg-primary) {
+  color: var(--foreground) !important;
+}
+[data-slot="tool-approval-compact"] button[data-slot="button"]:not(.bg-primary) svg {
+  color: var(--foreground) !important;
+}

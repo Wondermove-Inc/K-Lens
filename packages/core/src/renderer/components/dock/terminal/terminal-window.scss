@@ -1,0 +1,152 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ *
+ * 🎯 목적: Terminal 스타일 정의 (SkuberPlus 변수 제거, CSS 변수 기반)
+ * 📝 주의: xterm.css는 view.tsx에서 import
+ * 🔄 변경이력: 2025-10-26 - SkuberPlus 변수 제거, 직접 값으로 대체
+ */
+
+/**
+ * 🎯 목적: Terminal 컨테이너 레이아웃
+ * 📝 주의: SkuberPlus 변수 제거, 순수 CSS/Tailwind 사용
+ */
+.TerminalWindow {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative; // 🎯 PopoverAnchor의 absolute positioning 기준점
+  /* 🔄 THEME-040: HEX fallback 제거 (global.css에 정의됨) */
+  background-color: var(--terminalBackground);
+
+  .terminal-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+
+    .terminal.xterm {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-color: inherit;
+      /* 🔄 THEME-040: HEX fallback 제거 (global.css에 정의됨) */
+      color: var(--terminalForeground);
+      scrollbar-color: var(--scrollBarColor) transparent;
+      scrollbar-width: thin;
+      scrollbar-gutter: stable both-edges;
+
+      &::-webkit-scrollbar {
+        width: 12px;
+        background: transparent;
+      }
+
+      /* 🔄 THEME-040: HEX fallback 제거 */
+      &::-webkit-scrollbar-thumb {
+        background: var(--scrollBarColor);
+        border-radius: 12px;
+        border: 3px solid transparent;
+        background-clip: padding-box;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      // 🎯 Phase 3: Gutter System (shadcn 토큰 기반)
+      // - 기존 padding 제거 후 개별 설정
+      // - 좌측 20px Gutter: 명령어 데코레이션 공간 확보
+      padding: 0;
+      padding-left: 20px; // 좌측 Gutter 공간
+      padding-top: 12px; // 상단 여백
+
+      // 🎯 Phase 3: High contrast focus ring (shadcn 토큰 기반)
+      // - 접근성: 키보드 포커스 시 명확한 시각적 피드백
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        outline: 2px solid transparent;
+        outline-offset: -2px;
+      }
+
+      &:focus::before {
+        outline-color: var(--ring); // shadcn 포커스 링 색상
+
+        @media (forced-colors: active) {
+          outline-color: Highlight; // OS 고대비 모드 지원
+        }
+      }
+
+      // 🎯 Phase 1: Z-Index 계층 구조 (VSCode 기반)
+      // - xterm 내부 요소들의 올바른 렌더링 순서 보장
+      // - helper-textarea는 숨김 처리하되 접근성 유지
+
+      .xterm-helpers {
+        z-index: 5;
+      }
+
+      .xterm-helper-textarea {
+        z-index: -5;
+        opacity: 0 !important;
+
+        &:focus {
+          opacity: 0 !important;
+          outline: 0 !important;
+        }
+      }
+
+      .xterm-viewport {
+        z-index: 30;
+        box-sizing: border-box;
+
+        // 🎯 Phase 2: Viewport absolute positioning (shadcn 토큰 기반)
+        // - scrollbar-gutter를 활용해 플랫폼별 스크롤 폭과 동기화
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        scrollbar-gutter: stable both-edges;
+        background-color: inherit;
+      }
+
+      .xterm-screen {
+        z-index: 31;
+        position: relative;
+        cursor: text;
+        padding-right: env(safe-area-inset-right, 0);
+      }
+
+      // 🎯 Phase 2: Scrollbar shadow 효과 (shadcn 토큰 기반)
+      // - 다크/라이트 모드 자동 대응 (var(--border) 사용)
+      .xterm-scrollable-element {
+        z-index: 11;
+        background-color: inherit;
+
+        // 🎯 Phase 3: Gutter offset (shadcn 토큰 기반)
+        // - 좌측 Gutter 영역만큼 마진 상쇄
+        margin-left: -20px; // Gutter offset
+
+        .xterm-scroll-area {
+          background-color: inherit;
+        }
+
+        > .shadow.top {
+          box-shadow: var(--border) 0 6px 6px -6px inset;
+        }
+
+        > .shadow.bottom {
+          box-shadow: var(--border) 0 -6px 6px -6px inset;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+/* 🔄 THEME-031: 하드코딩 색상 → CSS 변수 */
+.warning {
+  display: flex;
+  margin-top: var(--margin);
+  padding: calc(var(--padding) * 2) calc(var(--padding) * 3);
+  border-radius: 4px;
+  align-items: center;
+  background: var(--dialog-warning-bg, oklch(0.92 0.08 25));
+  color: var(--dialog-warning-text, oklch(0.50 0 0));
+}
+
+.warningIcon {
+  margin-right: calc(var(--margin) * 2.4);
+  font-size: 26px;
+}
+
+/* 🔄 THEME-031: white → CSS 변수 */
+.dialog {
+  > div {
+    border-radius: 4px;
+    background-color: var(--dialog-content-bg, oklch(1 0 0));
+    max-width: 600px;
+    min-width: calc(45 * var(--unit));
+  }
+
+  b {
+    word-break: break-all;
+  }
+}
+
+.dialogContent {
+  padding: calc(var(--padding) * 2) calc(var(--padding) * 3);
+}
+
+/* 🔄 THEME-031: #f4f4f4 → CSS 변수 */
+.dialogButtons {
+  display: flex;
+  border-radius: 4px;
+  justify-content: flex-end;
+  padding: calc(var(--padding) * 2);
+  background: var(--dialog-footer-bg, oklch(0.96 0 0));
+
+  > * {
+    margin-left: var(--margin);
+  }
+}
+
+/* 🔄 THEME-031: #dfdfdf80 → CSS 변수 */
+.hr {
+  margin-top: calc(var(--margin) * 3);
+  height: 1px;
+  background: var(--dialog-hr-color, oklch(0.87 0 0 / 50%));
+}

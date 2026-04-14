@@ -1,0 +1,39 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+import { Icon } from "@skuberplus/icon";
+import { DetailPanelSection } from "@skuberplus/storybook-shadcn/src/components/ui/detail-panel-section";
+import { observer } from "mobx-react";
+import React from "react";
+import { VolumeVariant } from "./variant";
+
+import type { Pod } from "@skuberplus/kube-object";
+
+export interface PodVolumesProps {
+  pod: Pod;
+}
+
+export const PodVolumes = observer(({ pod }: PodVolumesProps) => {
+  const volumes = pod.getVolumes() ?? [];
+
+  if (volumes.length === 0) {
+    return null;
+  }
+
+  return (
+    <DetailPanelSection title="Volumes">
+      {volumes.map((volume) => (
+        <div key={volume.name} className="volume">
+          <div className="title flex gaps">
+            <Icon small material="storage" />
+            <span>{volume.name}</span>
+          </div>
+          <VolumeVariant pod={pod} volume={volume} />
+        </div>
+      ))}
+    </DetailPanelSection>
+  );
+});

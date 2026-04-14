@@ -1,0 +1,28 @@
+{
+  "name": "@skuberplus/typescript",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Typescript configuration for SkuberPlus packages.",
+  "type": "commonjs",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules"
+  },
+  "dependencies": {
+    "typescript": "^5.9.2",
+    "typescript-plugin-css-modules": "^5.2.0"
+  }
+}

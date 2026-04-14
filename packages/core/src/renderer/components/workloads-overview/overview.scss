@@ -1,0 +1,26 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+@use "../vars" as *;
+
+.WorkloadsOverview {
+  --flex-gap: #{$padding * 2};
+  min-height: 100%;
+
+  .header {
+    background: var(--contentColor);
+    position: relative;
+    padding: $padding * 2;
+
+    h5 {
+      color: var(--textColorPrimary);
+    }
+
+    .Icon.load-error {
+      color: var(--colorWarning);
+    }
+  }
+}

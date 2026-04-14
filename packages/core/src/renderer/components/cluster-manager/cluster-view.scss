@@ -1,0 +1,47 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+.ClusterView {
+  // 🎯 목적: 로딩/상태 화면을 전체 화면 오버레이로 표시
+  // 문제: flex: 1로 인해 왼쪽 공간만 차지, 오른쪽에 흰색 화면 발생
+  // 해결: position: absolute로 전체 화면 덮는 오버레이로 변경
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; // iframe 위에 표시
+
+  &:empty {
+    display: none;
+  }
+
+  &__placeholder {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    z-index: 0;
+    background: var(--background);
+  }
+
+  &__waiting {
+    margin-top: 64px;
+    gap: 16px;
+    color: var(--color-secondary-text);
+    text-align: center;
+  }
+
+  &__waitingSpinner {
+    width: 48px;
+    height: 48px;
+  }
+
+  &__waitingText {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

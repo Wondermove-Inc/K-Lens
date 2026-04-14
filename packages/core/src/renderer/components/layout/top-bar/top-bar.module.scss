@@ -1,0 +1,239 @@
+/**
+ * Copyright (c) Wondermove Inc.. All rights reserved.
+ * Copyright (c) OpenLens Authors. All rights reserved.
+ * Licensed under MIT License. See LICENSE in root directory for more information.
+ */
+
+/**
+ * 🔄 THEME-040: 모든 하드코딩 색상 제거
+ * 📝 모든 색상은 global.css에 정의된 CSS 변수 사용
+ */
+
+.topBar {
+  background-color: var(--sidebar);
+  border-bottom: 1px solid var(--sidebar-border);
+  z-index: 2;
+  grid-area: topbar;
+  height: var(--main-layout-header, 40px);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--padding, 12px));
+  padding: 0 calc(var(--padding, 12px));
+  user-select: none;
+  -webkit-app-region: drag;
+  overflow: hidden;
+}
+
+.topBar .items {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.preventedDragging {
+  display: flex;
+  align-items: center;
+  -webkit-app-region: no-drag;
+
+  &.expandToFill {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.leadingItems,
+.trailingItems {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.trailingItems {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.centerItems {
+  flex: 0 1 580px;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.navigationControls {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  -webkit-app-region: no-drag;
+}
+
+.navigationGroup {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 0.75rem;
+  padding: 0 4px;
+  min-height: 36px;
+}
+
+.navigationButton {
+  height: 32px;
+  width: 32px;
+  border-radius: 0.5rem;
+  padding: 0;
+  color: var(--muted-foreground);
+  background: transparent;
+  -webkit-app-region: no-drag;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-foreground);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+
+.searchItem {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 200px;
+  max-width: 580px;
+  -webkit-app-region: no-drag;
+}
+
+.searchInputGroup {
+  height: 32px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--sidebar-border);
+  background-color: var(--input);
+  color: var(--foreground);
+}
+
+.searchInputAddon {
+  color: var(--muted-foreground);
+}
+
+.searchInput {
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+}
+
+:global(.is-mac) .topBar {
+  padding-left: calc(var(--hotbar-width) + (var(--padding, 12px) * 0.5));
+}
+
+.winMenu {
+  width: var(--hotbar-width);
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--main-layout-header, 40px);
+    height: var(--main-layout-header, 40px);
+    border-radius: 0.5rem;
+    color: var(--sidebar-foreground);
+
+    &:hover {
+      background-color: var(--sidebar-accent);
+    }
+
+    &:active {
+      background-color: var(--sidebar-border);
+    }
+  }
+}
+
+.windowButtons {
+  display: flex;
+  margin-right: calc(var(--padding, 12px) * -0.5);
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--main-layout-header, 40px);
+    height: var(--main-layout-header, 40px);
+    border-radius: 0.5rem;
+    color: var(--sidebar-foreground);
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &.linuxButtons {
+    > div {
+      width: 18px;
+      height: 18px;
+      border-radius: 9999px;
+      margin-right: var(--padding, 12px);
+      color: var(--sidebar-primary-foreground);
+
+      svg {
+        width: 8px;
+        height: 8px;
+      }
+    }
+
+    // 🔄 THEME-031: Ubuntu close button 색상 → CSS 변수
+    .close {
+      color: var(--window-control-close-text);
+      background-color: var(--window-control-close-bg);
+    }
+
+    .close:hover {
+      background-color: var(--window-control-close-hover-bg);
+    }
+  }
+}
+
+.minimize,
+.maximize {
+  &:hover {
+    background-color: var(--sidebar-accent);
+  }
+
+  &:active {
+    background-color: var(--sidebar-border);
+  }
+}
+
+// 🔄 THEME-031: Windows close button 색상 → CSS 변수
+.close {
+  &:hover {
+    color: var(--window-control-close-text);
+    background-color: var(--window-control-close-active-bg);
+  }
+}
+
+.panelControls {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--padding, 12px) * 0.25);
+  -webkit-app-region: no-drag;
+}

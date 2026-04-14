@@ -1,0 +1,65 @@
+{
+  "name": "@skuberplus/tooltip",
+  "private": false,
+  "version": "1.5.4-0",
+  "description": "Highly extendable tooltip in the SkuberPlus.",
+  "type": "commonjs",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wondermove-Inc/Skuberplus-Client-Community.git"
+  },
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./styles": "./dist/index.css"
+  },
+  "types": "dist/index.d.ts",
+  "author": {
+    "name": "SkuberPlus Authors",
+    "email": "starlord@wondermove.net"
+  },
+  "license": "MIT",
+  "homepage": "https://skuberplus.app",
+  "scripts": {
+    "build": "lens-webpack-build",
+    "clean:node_modules": "pnpm dlx rimraf@6.0.1 node_modules",
+    "test:unit": "jest --coverage --runInBand"
+  },
+  "dependencies": {
+    "@skuberplus/utilities": "workspace:^",
+    "auto-bind": "^4.0.0",
+    "lodash": "^4.17.21",
+    "mobx": "^6.13.7",
+    "mobx-react": "^7.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@skuberplus/jest": "workspace:^",
+    "@skuberplus/typescript": "workspace:^",
+    "@skuberplus/webpack": "workspace:^",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/lodash": "^4.17.20",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.3",
+    "css-loader": "^6.11.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss-loader": "^8.2.0",
+    "sass-loader": "^16.0.5",
+    "ts-jest": "^29.4.4",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3"
+  }
+}

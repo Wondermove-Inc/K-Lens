@@ -1,0 +1,3 @@
+{
+  "extends": "@skuberplus/typescript/config/base.json"
+}

@@ -1,0 +1,1 @@
+{"root":["./index.ts","./dist/index.d.ts","./dist/src/feature.d.ts","./dist/src/get-random-id.injectable.d.ts","./src/feature.ts","./src/get-random-id.injectable.ts"],"version":"5.9.3"}

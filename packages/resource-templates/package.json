@@ -1,0 +1,15 @@
+{
+  "name": "@skuberplus/resource-templates",
+  "version": "1.5.4-0",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "copyright": "© 2023 OpenLens Authors",
+  "license": "MIT",
+  "author": "OpenLens Authors <starlord@wondermove.net>",
+  "files": [
+    "templates/**/*"
+  ]
+}
