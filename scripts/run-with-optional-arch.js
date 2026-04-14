@@ -32,6 +32,7 @@ function runWithOptionalArch(args) {
   const result = spawnSync(command, commandParams, {
     stdio: "inherit",
     env: process.env,
+    shell: process.platform === "win32",
   });
 
   if (result.error) {
