@@ -1,11 +1,9 @@
 import { getInjectable } from "@ogre-tools/injectable";
-import * as keytar from "keytar";
 import { NotificationMessage } from "./types";
 
 import type { BaseMessengerAdapter } from "./BaseMessengerAdapter";
 
-const SERVICE_NAME = "skuberplus";
-const ACCOUNT_NAME = "slack-webhook";
+const STORAGE_KEY = "skuberplus-slack-webhook";
 
 interface Settings {
   enabled: boolean;
@@ -30,10 +28,14 @@ class NotificationService {
 
   async #loadSettings() {
     try {
-      const webhookUrl = await keytar.getPassword(SERVICE_NAME, ACCOUNT_NAME);
-      if (webhookUrl) {
-        this.#settings.webhookUrl = webhookUrl;
-        this.#settings.enabled = true;
+      const { safeStorage } = await import('electron');
+      const encrypted = localStorage.getItem(STORAGE_KEY);
+      if (encrypted) {
+        const webhookUrl = safeStorage.decryptString(Buffer.from(encrypted, 'base64'));
+        if (webhookUrl) {
+          this.#settings.webhookUrl = webhookUrl;
+          this.#settings.enabled = true;
+        }
       }
     } catch (error) {
       console.error("Failed to load notification settings:", error);
@@ -42,7 +44,9 @@ class NotificationService {
 
   async #saveSettings(webhookUrl: string) {
     try {
-      await keytar.setPassword(SERVICE_NAME, ACCOUNT_NAME, webhookUrl);
+      const { safeStorage } = await import('electron');
+      const encrypted = safeStorage.encryptString(webhookUrl);
+      localStorage.setItem(STORAGE_KEY, encrypted.toString('base64'));
       this.#settings.webhookUrl = webhookUrl;
       this.#settings.enabled = true;
     } catch (error) {
