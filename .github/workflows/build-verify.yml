@@ -47,7 +47,7 @@ jobs:
       - name: Install E2E dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 libasound2 libgbm1
+          sudo apt-get install -y xvfb libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 libasound2t64 libgbm1
 
       - name: Run E2E smoke test
         working-directory: skuberplus
