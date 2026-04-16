@@ -14,10 +14,14 @@ module.exports = {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        useESM: true,
+        useESM: false,
+        tsconfig: {
+          module: "commonjs",
+          moduleResolution: "node",
+        },
       },
     ],
   },
-  transformIgnorePatterns: ["node_modules/"],
+  transformIgnorePatterns: ["node_modules/(?!(@skuberplus|@ogre-tools)/)"],
   verbose: true,
 };

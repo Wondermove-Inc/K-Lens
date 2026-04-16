@@ -64,7 +64,7 @@
     "postdev:build": "pnpm build:resources",
     "dev:build:main": "cross-env NODE_ENV=development webpack --config webpack/main.ts --progress --watch",
     "dev:build:renderer": "cross-env NODE_ENV=development ts-node ./webpack/dev-server.ts",
-    "test:integration": "NODE_OPTIONS='--experimental-vm-modules' jest --config jest.integration.config.js --runInBand --detectOpenHandles --forceExit",
+    "test:integration": "jest --config jest.integration.config.js --runInBand --detectOpenHandles --forceExit",
     "version:build": "node ../scripts/update-build-version.js",
     "version:patch": "node ../scripts/update-build-version.js patch",
     "version:minor": "node ../scripts/update-build-version.js minor",
