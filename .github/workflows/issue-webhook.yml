@@ -1,10 +1,12 @@
-# 이슈 생성 시 Clawpod 웹훅 전송
+# 이슈 생성 + needs-more-info 이슈에 댓글 시 Clawpod 웹훅 전송
 
 name: Issue Webhook
 
 on:
   issues:
     types: [opened]
+  issue_comment:
+    types: [created]
 
 jobs:
   notify-opened:
@@ -30,6 +32,39 @@ jobs:
             --arg author "${{ github.event.issue.user.login }}" \
             --arg url "${{ github.event.issue.html_url }}" \
             '{event: $event, repo: $repo, issue_number: $issue_number, title: $title, body: $body, labels: $labels, author: $author, url: $url}')
+          SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | awk '{print $2}')
+          curl -f --retry 3 --max-time 30 \
+            -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -H "X-Hub-Signature-256: sha256=$SIGNATURE" \
+            -d "$PAYLOAD"
+
+  notify-reply:
+    name: Send Webhook (Issue Reply)
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'issue_comment' &&
+      contains(join(github.event.issue.labels.*.name, ','), 'needs-more-info') &&
+      github.event.comment.user.login != 'wondermovestarlord'
+    steps:
+      - name: Send webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.CLAWPOD_WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.CLAWPOD_WEBHOOK_SECRET }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+        run: |
+          PAYLOAD=$(jq -n -c \
+            --arg event "issue_reply" \
+            --arg repo "${{ github.repository }}" \
+            --arg issue_number "${{ github.event.issue.number }}" \
+            --arg title "$ISSUE_TITLE" \
+            --arg comment "$COMMENT_BODY" \
+            --arg labels "$ISSUE_LABELS" \
+            --arg author "${{ github.event.comment.user.login }}" \
+            --arg url "${{ github.event.comment.html_url }}" \
+            '{event: $event, repo: $repo, issue_number: $issue_number, title: $title, comment: $comment, labels: $labels, author: $author, url: $url}')
           SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | awk '{print $2}')
           curl -f --retry 3 --max-time 30 \
             -X POST "$WEBHOOK_URL" \
