@@ -1,4 +1,4 @@
-# 이슈 생성 + needs-more-info 이슈에 댓글 시 Clawpod 웹훅 전송
+# 이슈 생성 + needs-triage 이슈에 댓글 시 Clawpod 웹훅 전송
 
 name: Issue Webhook
 
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event_name == 'issue_comment' &&
-      contains(join(github.event.issue.labels.*.name, ','), 'needs-more-info') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'needs-triage') &&
       github.event.comment.user.login != 'wondermovestarlord'
     steps:
       - name: Send webhook
