@@ -81,7 +81,8 @@
     "test:unit:updatesnapshot": "corepack pnpm -r --no-bail test:unit -u",
     "test:integration": "cd skuberplus && corepack pnpm test:integration",
     "bump-version": "corepack pnpm version --no-commit-hooks --no-git-tag-version --workspaces --no-workspaces-update",
-    "compute-versions": "corepack pnpm -r compute-versions"
+    "compute-versions": "corepack pnpm -r compute-versions",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -96,10 +97,16 @@
       "mobx-react-lite": "3.4.3"
     }
   },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "pnpm biome check --no-errors-on-unmatched",
+    "*.{css,scss}": "pnpm stylelint:check"
+  },
   "devDependencies": {
     "braces": "^3.0.3",
     "chalk": "^4.1.2",
     "concurrently": "9.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "micromatch": "^4.0.8",
     "pnpm": "10.17.1",
     "prettier-plugin-tailwindcss": "^0.7.1",

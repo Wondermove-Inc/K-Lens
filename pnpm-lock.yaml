@@ -32,6 +32,12 @@ importers:
       concurrently:
         specifier: 9.2.1
         version: 9.2.1
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+      lint-staged:
+        specifier: ^16.4.0
+        version: 16.4.0
       micromatch:
         specifier: ^4.0.8
         version: 4.0.8
@@ -122,7 +128,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -131,13 +137,13 @@ importers:
         version: 6.15.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/cluster-settings:
     dependencies:
@@ -202,7 +208,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -211,13 +217,13 @@ importers:
         version: 4.17.21
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/core:
     dependencies:
@@ -1268,22 +1274,22 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       type-fest:
         specifier: ^5.0.1
         version: 5.0.1
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/kubectl-versions:
     devDependencies:
@@ -1402,19 +1408,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
       winston-transport:
         specifier: ^4.9.0
         version: 4.9.0
@@ -1718,7 +1724,7 @@ importers:
         version: 5.9.3
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6))
+        version: 5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.3))
 
   packages/technical-features/application/application:
     dependencies:
@@ -1740,7 +1746,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@skuberplus/jest':
         specifier: workspace:^
         version: link:../../../infrastructure/jest
@@ -1761,22 +1767,22 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/application/application-for-electron-main:
     dependencies:
@@ -1801,7 +1807,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@ogre-tools/test-utils':
         specifier: ^17.11.1
         version: 17.11.1(lodash@4.17.21)
@@ -1822,22 +1828,22 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/application/legacy-extensions:
     dependencies:
@@ -1859,19 +1865,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/feature-core:
     dependencies:
@@ -1893,19 +1899,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/kubernetes-metrics-server:
     dependencies:
@@ -2009,7 +2015,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -2024,16 +2030,16 @@ importers:
         version: 18.3.1
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/messaging/messaging:
     dependencies:
@@ -2079,7 +2085,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -2088,22 +2094,22 @@ importers:
         version: 4.17.21
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/messaging/messaging-fake-bridge:
     dependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@ogre-tools/fp':
         specifier: ^17.11.1
         version: 17.11.1(lodash@4.17.21)
@@ -2149,7 +2155,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -2158,16 +2164,16 @@ importers:
         version: 6.15.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/messaging/messaging-for-main:
     dependencies:
@@ -2195,7 +2201,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@skuberplus/jest':
         specifier: workspace:^
         version: link:../../../infrastructure/jest
@@ -2216,19 +2222,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/messaging/messaging-for-renderer:
     dependencies:
@@ -2253,7 +2259,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@ogre-tools/injectable-extension-for-mobx':
         specifier: ^17.11.1
         version: 17.11.1(@ogre-tools/fp@17.11.1(lodash@4.17.21))(@ogre-tools/injectable@17.11.1(@ogre-tools/fp@17.11.1(lodash@4.17.21))(lodash@4.17.21))(lodash@4.17.21)(mobx@6.15.0)
@@ -2274,7 +2280,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2283,16 +2289,16 @@ importers:
         version: 6.15.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/technical-features/prometheus:
     dependencies:
@@ -2405,7 +2411,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -2414,16 +2420,16 @@ importers:
         version: 4.17.21
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/transpilation/kubernetes-client-node:
     dependencies:
@@ -2978,34 +2984,34 @@ importers:
         version: 18.3.3(@types/react@18.3.3)
       css-loader:
         specifier: ^6.11.0
-        version: 6.11.0(webpack@5.102.1(@swc/core@1.13.5))
+        version: 6.11.0(webpack@5.102.1)
       identity-obj-proxy:
         specifier: ^3.0.0
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       postcss-loader:
         specifier: ^8.2.0
-        version: 8.2.0(postcss@8.5.8)(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 8.2.0(postcss@8.5.8)(typescript@5.9.3)(webpack@5.102.1)
       sass-loader:
         specifier: ^16.0.5
-        version: 16.0.5(sass@1.93.2)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 16.0.5(sass@1.93.2)(webpack@5.102.1)
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/utility-features/event-emitter:
     devDependencies:
@@ -3023,19 +3029,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/utility-features/json-api:
     dependencies:
@@ -3112,7 +3118,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@skuberplus/jest':
         specifier: workspace:^
         version: link:../../infrastructure/jest
@@ -3142,16 +3148,16 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       rfc6902:
         specifier: ^5.1.2
         version: 5.1.2
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       type-fest:
         specifier: ^5.0.1
         version: 5.0.1
@@ -3160,7 +3166,7 @@ importers:
         version: 5.9.3
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/utility-features/kube-api-specifics:
     dependencies:
@@ -3229,7 +3235,7 @@ importers:
     devDependencies:
       '@async-fn/jest':
         specifier: ^1.6.4
-        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))
+        version: 1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))
       '@ogre-tools/fp':
         specifier: ^17.11.1
         version: 17.11.1(lodash@4.17.21)
@@ -3256,7 +3262,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -3265,10 +3271,10 @@ importers:
         version: 6.15.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       type-fest:
         specifier: ^5.0.1
         version: 5.0.1
@@ -3277,7 +3283,7 @@ importers:
         version: 1.4.0
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/utility-features/startable-stoppable:
     devDependencies:
@@ -3295,19 +3301,19 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   packages/utility-features/test-utils:
     dependencies:
@@ -3426,7 +3432,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+        version: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
@@ -3435,16 +3441,16 @@ importers:
         version: 5.3.4(react@18.3.1)
       ts-jest:
         specifier: ^29.4.4
-        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3)
       ts-loader:
         specifier: ^9.5.4
-        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5))
+        version: 9.5.4(typescript@5.9.3)(webpack@5.102.1)
       type-fest:
         specifier: ^5.0.1
         version: 5.0.1
       webpack:
         specifier: ^5.101.3
-        version: 5.102.1(@swc/core@1.13.5)
+        version: 5.102.1
 
   skuberplus:
     dependencies:
@@ -7531,6 +7537,10 @@ packages:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}
     engines: {node: '>=8'}
 
+  ansi-escapes@7.3.0:
+    resolution: {integrity: sha512-BvU8nYgGQBxcmMuEeUEmNTvrMVjJNSH7RgW24vXexN4Ven6qCvy4TntnvlnwnMLTVlcRQQdbRY8NKnaIoeWDNg==}
+    engines: {node: '>=18'}
+
   ansi-html-community@0.0.8:
     resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==}
     engines: {'0': node >= 0.8.0}
@@ -8014,6 +8024,10 @@ packages:
     resolution: {integrity: sha512-n8fOixwDD6b/ObinzTrp1ZKFzbgvKZvuz/TvejnLn1aQfC6r52XEx85FmuC+3HI+JM7coBRXUvNqEU2PHVrHpg==}
     engines: {node: '>=8'}
 
+  cli-truncate@5.2.0:
+    resolution: {integrity: sha512-xRwvIOMGrfOAnM1JYtqQImuaNtDEv9v6oIYAs4LIHwTiKee8uwvIi363igssOC0O5U04i4AlENs79LQLu9tEMw==}
+    engines: {node: '>=20'}
+
   cli-width@4.1.0:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
     engines: {node: '>= 12'}
@@ -8121,6 +8135,10 @@ packages:
 
   commander@14.0.1:
     resolution: {integrity: sha512-2JkV3gUZUVrbNA+1sjBOYLsMZ5cEEl8GTFP2a4AVz5hvasAMCQ1D2l2le/cX+pV4N6ZU17zjUahLpIXRrnWL8A==}
+    engines: {node: '>=20'}
+
+  commander@14.0.3:
+    resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
     engines: {node: '>=20'}
 
   commander@2.20.3:
@@ -8898,6 +8916,10 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+  environment@1.1.0:
+    resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
+    engines: {node: '>=18'}
+
   err-code@2.0.3:
     resolution: {integrity: sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==}
 
@@ -9307,6 +9329,10 @@ packages:
     resolution: {integrity: sha512-QZjmEOC+IT1uk6Rx0sX22V6uHWVwbdbxf1faPqJ1QhLdGgsRGCZoyaQBm/piRdJy/D2um6hM1UP7ZEeQ4EkP+Q==}
     engines: {node: '>=18'}
 
+  get-east-asian-width@1.5.0:
+    resolution: {integrity: sha512-CQ+bEO+Tva/qlmw24dCejulK5pMzVnUOFOijVogd3KQs07HnRIgp8TGipvCCRT06xeYEbpbgwaCxglFyiuIcmA==}
+    engines: {node: '>=18'}
+
   get-intrinsic@1.3.0:
     resolution: {integrity: sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==}
     engines: {node: '>= 0.4'}
@@ -9634,6 +9660,11 @@ packages:
   humanize-ms@1.2.1:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
 
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   hyperdyperid@1.2.0:
     resolution: {integrity: sha512-Y93lCzHYgGWdrJ66yIktxiaGULYc6oGiABxhcO5AufBeOyoIdZF7bIfLaOrbM0iGIOXQQgxxRrFEnb+Y6w1n4A==}
     engines: {node: '>=10.18'}
@@ -9797,6 +9828,10 @@ packages:
   is-fullwidth-code-point@3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
+
+  is-fullwidth-code-point@5.1.0:
+    resolution: {integrity: sha512-5XHYaSyiqADb4RnZ1Bdad6cPp8Toise4TzEjcOYDHZkTCbKgiUl7WTUCpNWHuxmDt91wnsZBc9xinNzopv3JMQ==}
+    engines: {node: '>=18'}
 
   is-generator-fn@2.1.0:
     resolution: {integrity: sha512-cTIB4yPYL/Grw0EaSzASzg6bBy9gqCofvWN8okThAYIxKJZC+udlRAmGbM0XLeniEJSs8uEgHPGuHSe1XsOLSQ==}
@@ -10377,8 +10412,17 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  lint-staged@16.4.0:
+    resolution: {integrity: sha512-lBWt8hujh/Cjysw5GYVmZpFHXDCgZzhrOm8vbcUdobADZNOK/bRshr2kM3DfgrrtR1DQhfupW9gnIXOfiFi+bw==}
+    engines: {node: '>=20.17'}
+    hasBin: true
+
   listenercount@1.0.1:
     resolution: {integrity: sha512-3mk/Zag0+IJxeDrxSgaDPy4zZ3w05PRZeJNnlWhzFz5OkX49J4krc+A8X2d2M69vGMBEX0uyl8M+W+8gH+kBqQ==}
+
+  listr2@9.0.5:
+    resolution: {integrity: sha512-ME4Fb83LgEgwNw96RKNvKV4VTLuXfoKudAmm2lP8Kk87KaMK0/Xrx/aAkMWmT8mDb+3MlFDspfbCs7adjRxA2g==}
+    engines: {node: '>=20.0.0'}
 
   loader-runner@4.3.1:
     resolution: {integrity: sha512-IWqP2SCPhyVFTBtRcgMHdzlf9ul25NwaFx4wCEH/KjAXuuHY4yNjvPXsBokp8jCB936PyWRaPKUNh8NvylLp2Q==}
@@ -10424,6 +10468,10 @@ packages:
 
   log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
+    engines: {node: '>=18'}
+
+  log-update@6.1.0:
+    resolution: {integrity: sha512-9ie8ItPR6tjY5uYJh8K/Zrv/RMZ5VOlOWvtZdEHYSTFKZfIBPQa9tOAEeAWhd+AnIneLJ22w5fjOYtoutpWq5w==}
     engines: {node: '>=18'}
 
   logform@2.7.0:
@@ -11427,10 +11475,6 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
-  picomatch@4.0.3:
-    resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
-    engines: {node: '>=12'}
-
   picomatch@4.0.4:
     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
@@ -12138,6 +12182,9 @@ packages:
   rfc6902@5.1.2:
     resolution: {integrity: sha512-zxcb+PWlE8PwX0tiKE6zP97THQ8/lHmeiwucRrJ3YFupWEmp25RmFSlB1dNTqjkovwqG4iq+u1gzJMBS3um8mA==}
 
+  rfdc@1.4.1:
+    resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
+
   rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
     deprecated: Rimraf versions prior to v4 are no longer supported
@@ -12386,6 +12433,14 @@ packages:
     resolution: {integrity: sha512-pSyv7bSTC7ig9Dcgbw9AuRNUb5k5V6oDudjZoMBSr13qpLBG7tB+zgCkARjq7xIUgdz5P1Qe8u+rSGdouOOIyQ==}
     engines: {node: '>=8'}
 
+  slice-ansi@7.1.2:
+    resolution: {integrity: sha512-iOBWFgUX7caIZiuutICxVgX1SdxwAVFFKwt1EvMYYec/NWO5meOJ6K5uQxhrYBdQJne4KxiqZc+KptFOWFSI9w==}
+    engines: {node: '>=18'}
+
+  slice-ansi@8.0.0:
+    resolution: {integrity: sha512-stxByr12oeeOyY2BlviTNQlYV5xOj47GirPr4yA1hE9JCtxfQN0+tVbkxwCtYDQWhEKWFHsEK48ORg5jrouCAg==}
+    engines: {node: '>=20'}
+
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
@@ -12524,6 +12579,10 @@ packages:
     resolution: {integrity: sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==}
     engines: {node: '>=4'}
 
+  string-argv@0.3.2:
+    resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
+    engines: {node: '>=0.6.19'}
+
   string-length@4.0.2:
     resolution: {integrity: sha512-+l6rNN5fYHNhZZy41RXsYptCjA2Igmq4EG7kZAYFQI1E1VTXarr6ZPXBg6eq7Y6eK4FEhY6AJlyuFIb/v/S0VQ==}
     engines: {node: '>=10'}
@@ -12539,6 +12598,10 @@ packages:
   string-width@7.2.0:
     resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
     engines: {node: '>=18'}
+
+  string-width@8.2.0:
+    resolution: {integrity: sha512-6hJPQ8N0V0P3SNmP6h2J99RLuzrWz2gvT7VnK5tKvrNqJoyS9W4/Fb8mo31UiPvy00z7DQXkP2hnKBVav76thw==}
+    engines: {node: '>=20'}
 
   string_decoder@1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
@@ -12758,6 +12821,10 @@ packages:
 
   tinyexec@1.0.1:
     resolution: {integrity: sha512-5uC6DDlmeqiOwCPmK9jMSdOuZTh8bU39Ys6yidB+UTt5hfZUPGAypSgFRiEp+jbi9qH40BLDvy85jIU88wKSqw==}
+
+  tinyexec@1.1.1:
+    resolution: {integrity: sha512-VKS/ZaQhhkKFMANmAOhhXVoIfBXblQxGX1myCQ2faQrfmobMftXeJPcZGp0gS07ocvGJWDLZGyOZDadDBqYIJg==}
+    engines: {node: '>=18'}
 
   tinyglobby@0.2.15:
     resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
@@ -13468,6 +13535,10 @@ packages:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
 
+  wrap-ansi@9.0.2:
+    resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
+    engines: {node: '>=18'}
+
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
@@ -13542,6 +13613,11 @@ packages:
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  yaml@2.8.3:
+    resolution: {integrity: sha512-AvbaCLOO2Otw/lW5bmh9d/WEdcDFdQp2Z2ZUH3pX9U2ihyUY0nvLv7J6TrWowklRGPYbB/IuIMfYgxaCPg5Bpg==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
 
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
@@ -13699,6 +13775,10 @@ snapshots:
   '@async-fn/jest@1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)))':
     dependencies:
       jest: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+
+  '@async-fn/jest@1.6.4(patch_hash=e6f6298f958eb8e8255087ea54bff3f834b249e874070c5caca2ebfa13fe4562)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))':
+    dependencies:
+      jest: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
 
   '@babel/code-frame@7.27.1':
     dependencies:
@@ -14058,10 +14138,10 @@ snapshots:
       dotenv: 17.3.1
       eciesjs: 0.4.16
       execa: 5.1.1
-      fdir: 6.5.0(picomatch@4.0.3)
+      fdir: 6.5.0(picomatch@4.0.4)
       ignore: 5.3.2
       object-treeify: 1.1.33
-      picomatch: 4.0.3
+      picomatch: 4.0.4
       which: 4.0.0
 
   '@ecies/ciphers@0.2.4(@noble/ciphers@1.3.0)':
@@ -17391,6 +17471,10 @@ snapshots:
     dependencies:
       type-fest: 0.21.3
 
+  ansi-escapes@7.3.0:
+    dependencies:
+      environment: 1.1.0
+
   ansi-html-community@0.0.8: {}
 
   ansi-regex@5.0.1: {}
@@ -17979,6 +18063,11 @@ snapshots:
       string-width: 4.2.3
     optional: true
 
+  cli-truncate@5.2.0:
+    dependencies:
+      slice-ansi: 8.0.0
+      string-width: 8.2.0
+
   cli-width@4.1.0: {}
 
   clipboard-files@3.0.0:
@@ -18081,6 +18170,8 @@ snapshots:
   commander@12.1.0: {}
 
   commander@14.0.1: {}
+
+  commander@14.0.3: {}
 
   commander@2.20.3: {}
 
@@ -18301,19 +18392,6 @@ snapshots:
   css-box-model@1.2.1:
     dependencies:
       tiny-invariant: 1.3.3
-
-  css-loader@6.11.0(webpack@5.102.1(@swc/core@1.13.5)):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.6)
-      postcss: 8.5.6
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.6)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.6)
-      postcss-modules-scope: 3.2.1(postcss@8.5.6)
-      postcss-modules-values: 4.0.0(postcss@8.5.6)
-      postcss-value-parser: 4.2.0
-      semver: 7.7.3
-    optionalDependencies:
-      webpack: 5.102.1(@swc/core@1.13.5)
 
   css-loader@6.11.0(webpack@5.102.1):
     dependencies:
@@ -18964,6 +19042,8 @@ snapshots:
 
   envinfo@7.18.0: {}
 
+  environment@1.1.0: {}
+
   err-code@2.0.3: {}
 
   errno@0.1.8:
@@ -19328,14 +19408,9 @@ snapshots:
     dependencies:
       pend: 1.2.0
 
-  fdir@6.5.0(picomatch@4.0.3):
-    optionalDependencies:
-      picomatch: 4.0.3
-
   fdir@6.5.0(picomatch@4.0.4):
     optionalDependencies:
       picomatch: 4.0.4
-    optional: true
 
   fecha@4.2.3: {}
 
@@ -19511,6 +19586,8 @@ snapshots:
   get-caller-file@2.0.5: {}
 
   get-east-asian-width@1.4.0: {}
+
+  get-east-asian-width@1.5.0: {}
 
   get-intrinsic@1.3.0:
     dependencies:
@@ -19992,6 +20069,8 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
+  husky@9.1.7: {}
+
   hyperdyperid@1.2.0: {}
 
   iconv-corefoundation@1.1.7:
@@ -20113,6 +20192,10 @@ snapshots:
   is-extglob@2.1.1: {}
 
   is-fullwidth-code-point@3.0.0: {}
+
+  is-fullwidth-code-point@5.1.0:
+    dependencies:
+      get-east-asian-width: 1.4.0
 
   is-generator-fn@2.1.0: {}
 
@@ -20312,6 +20395,25 @@ snapshots:
       exit: 0.1.2
       import-local: 3.2.0
       jest-config: 29.7.0(@types/node@22.16.5)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@22.16.5)(typescript@5.9.3))
+      jest-util: 29.7.0
+      jest-validate: 29.7.0
+      yargs: 17.7.2
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
+  jest-cli@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+      '@jest/test-result': 29.7.0
+      '@jest/types': 29.6.3
+      chalk: 4.1.2
+      create-jest: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+      exit: 0.1.2
+      import-local: 3.2.0
+      jest-config: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.2
@@ -20688,6 +20790,18 @@ snapshots:
       - supports-color
       - ts-node
 
+  jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0):
+    dependencies:
+      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
+      '@jest/types': 29.6.3
+      import-local: 3.2.0
+      jest-cli: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - supports-color
+      - ts-node
+
   jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)):
     dependencies:
       '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3))
@@ -20964,7 +21078,25 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  lint-staged@16.4.0:
+    dependencies:
+      commander: 14.0.3
+      listr2: 9.0.5
+      picomatch: 4.0.4
+      string-argv: 0.3.2
+      tinyexec: 1.1.1
+      yaml: 2.8.3
+
   listenercount@1.0.1: {}
+
+  listr2@9.0.5:
+    dependencies:
+      cli-truncate: 5.2.0
+      colorette: 2.0.20
+      eventemitter3: 5.0.1
+      log-update: 6.1.0
+      rfdc: 1.4.1
+      wrap-ansi: 9.0.2
 
   loader-runner@4.3.1: {}
 
@@ -21006,6 +21138,14 @@ snapshots:
     dependencies:
       chalk: 5.6.2
       is-unicode-supported: 1.3.0
+
+  log-update@6.1.0:
+    dependencies:
+      ansi-escapes: 7.3.0
+      cli-cursor: 5.0.0
+      slice-ansi: 7.1.2
+      strip-ansi: 7.1.2
+      wrap-ansi: 9.0.2
 
   logform@2.7.0:
     dependencies:
@@ -22257,10 +22397,7 @@ snapshots:
 
   picomatch@2.3.1: {}
 
-  picomatch@4.0.3: {}
-
-  picomatch@4.0.4:
-    optional: true
+  picomatch@4.0.4: {}
 
   pify@4.0.1:
     optional: true
@@ -22322,17 +22459,6 @@ snapshots:
       postcss: 8.5.6
       ts-node: 10.9.2(@swc/core@1.13.5)(@types/node@24.7.2)(typescript@5.9.3)
 
-  postcss-loader@8.2.0(postcss@8.5.8)(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5)):
-    dependencies:
-      cosmiconfig: 9.0.0(typescript@5.9.3)
-      jiti: 2.6.1
-      postcss: 8.5.8
-      semver: 7.7.3
-    optionalDependencies:
-      webpack: 5.102.1(@swc/core@1.13.5)
-    transitivePeerDependencies:
-      - typescript
-
   postcss-loader@8.2.0(postcss@8.5.8)(typescript@5.9.3)(webpack@5.102.1):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.9.3)
@@ -22340,7 +22466,7 @@ snapshots:
       postcss: 8.5.8
       semver: 7.7.3
     optionalDependencies:
-      webpack: 5.102.1(@swc/core@1.13.5)(webpack-cli@6.0.1)
+      webpack: 5.102.1
     transitivePeerDependencies:
       - typescript
 
@@ -23046,6 +23172,8 @@ snapshots:
 
   rfc6902@5.1.2: {}
 
+  rfdc@1.4.1: {}
+
   rimraf@2.6.3:
     dependencies:
       glob: 7.2.3
@@ -23140,13 +23268,6 @@ snapshots:
   sanitize-filename@1.6.3:
     dependencies:
       truncate-utf8-bytes: 1.0.2
-
-  sass-loader@16.0.5(sass@1.93.2)(webpack@5.102.1(@swc/core@1.13.5)):
-    dependencies:
-      neo-async: 2.6.2
-    optionalDependencies:
-      sass: 1.93.2
-      webpack: 5.102.1(@swc/core@1.13.5)
 
   sass-loader@16.0.5(sass@1.93.2)(webpack@5.102.1):
     dependencies:
@@ -23435,6 +23556,16 @@ snapshots:
       is-fullwidth-code-point: 3.0.0
     optional: true
 
+  slice-ansi@7.1.2:
+    dependencies:
+      ansi-styles: 6.2.3
+      is-fullwidth-code-point: 5.1.0
+
+  slice-ansi@8.0.0:
+    dependencies:
+      ansi-styles: 6.2.3
+      is-fullwidth-code-point: 5.1.0
+
   smart-buffer@4.2.0: {}
 
   sockjs@0.3.24:
@@ -23600,6 +23731,8 @@ snapshots:
 
   strict-uri-encode@2.0.0: {}
 
+  string-argv@0.3.2: {}
+
   string-length@4.0.2:
     dependencies:
       char-regex: 1.0.2
@@ -23621,6 +23754,11 @@ snapshots:
     dependencies:
       emoji-regex: 10.6.0
       get-east-asian-width: 1.4.0
+      strip-ansi: 7.1.2
+
+  string-width@8.2.0:
+    dependencies:
+      get-east-asian-width: 1.5.0
       strip-ansi: 7.1.2
 
   string_decoder@1.1.1:
@@ -23810,17 +23948,6 @@ snapshots:
       type-fest: 0.16.0
       unique-string: 2.0.0
 
-  terser-webpack-plugin@5.3.14(@swc/core@1.13.5)(webpack@5.102.1(@swc/core@1.13.5)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 4.3.3
-      serialize-javascript: 6.0.2
-      terser: 5.44.0
-      webpack: 5.102.1(@swc/core@1.13.5)
-    optionalDependencies:
-      '@swc/core': 1.13.5
-
   terser-webpack-plugin@5.3.14(@swc/core@1.13.5)(webpack@5.102.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
@@ -23885,10 +24012,12 @@ snapshots:
 
   tinyexec@1.0.1: {}
 
+  tinyexec@1.1.1: {}
+
   tinyglobby@0.2.15:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
 
   tldts-core@7.0.17: {}
 
@@ -23999,15 +24128,25 @@ snapshots:
       babel-jest: 29.7.0(@babel/core@7.28.4)
       jest-util: 29.7.0
 
-  ts-loader@9.5.4(typescript@5.9.3)(webpack@5.102.1(@swc/core@1.13.5)):
+  ts-jest@29.4.5(@babel/core@7.28.4)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.4))(jest-util@29.7.0)(jest@29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0))(typescript@5.9.3):
     dependencies:
-      chalk: 4.1.2
-      enhanced-resolve: 5.18.3
-      micromatch: 4.0.8
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      handlebars: 4.7.8
+      jest: 29.7.0(@types/node@24.7.2)(babel-plugin-macros@3.1.0)
+      json5: 2.2.3
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
       semver: 7.7.3
-      source-map: 0.7.6
+      type-fest: 4.41.0
       typescript: 5.9.3
-      webpack: 5.102.1(@swc/core@1.13.5)
+      yargs-parser: 21.1.1
+    optionalDependencies:
+      '@babel/core': 7.28.4
+      '@jest/transform': 29.7.0
+      '@jest/types': 29.6.3
+      babel-jest: 29.7.0(@babel/core@7.28.4)
+      jest-util: 29.7.0
 
   ts-loader@9.5.4(typescript@5.9.3)(webpack@5.102.1):
     dependencies:
@@ -24416,18 +24555,18 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)):
+  vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.3)):
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.9.3)
     optionalDependencies:
-      vite: 7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)
+      vite: 7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6):
+  vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.1)(sass@1.93.2)(stylus@0.62.0)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.3):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.4)
@@ -24445,6 +24584,7 @@ snapshots:
       stylus: 0.62.0
       terser: 5.44.0
       tsx: 4.20.6
+      yaml: 2.8.3
     optional: true
 
   vscode-jsonrpc@8.2.0: {}
@@ -24634,38 +24774,6 @@ snapshots:
       - esbuild
       - uglify-js
 
-  webpack@5.102.1(@swc/core@1.13.5):
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.8
-      '@types/json-schema': 7.0.15
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.15.0
-      acorn-import-phases: 1.0.4(acorn@8.15.0)
-      browserslist: 4.26.3
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.18.3
-      es-module-lexer: 1.7.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.1
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 4.3.3
-      tapable: 2.3.0
-      terser-webpack-plugin: 5.3.14(@swc/core@1.13.5)(webpack@5.102.1(@swc/core@1.13.5))
-      watchpack: 2.4.4
-      webpack-sources: 3.3.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-
   webpack@5.102.1(@swc/core@1.13.5)(webpack-cli@6.0.1):
     dependencies:
       '@types/eslint-scope': 3.7.7
@@ -24804,6 +24912,12 @@ snapshots:
       string-width: 5.1.2
       strip-ansi: 7.1.2
 
+  wrap-ansi@9.0.2:
+    dependencies:
+      ansi-styles: 6.2.3
+      string-width: 7.2.0
+      strip-ansi: 7.1.2
+
   wrappy@1.0.2: {}
 
   write-file-atomic@4.0.2:
@@ -24840,6 +24954,8 @@ snapshots:
   yallist@5.0.0: {}
 
   yaml@1.10.2: {}
+
+  yaml@2.8.3: {}
 
   yargs-parser@21.1.1: {}
 
