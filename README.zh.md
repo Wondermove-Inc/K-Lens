@@ -49,15 +49,34 @@ K-Lens 将 Kubernetes 管理从终端切换的重复劳动转变为可视化、A
 
 ### 主要功能
 
-| 功能 | 说明 |
-|------|------|
-| **多集群管理** | 在单一界面中管理多个 Kubernetes 集群 |
-| **AI SRE 诊断** | 基于 LangChain 的自动故障分析与修复建议 |
-| **安全扫描 (DAIVE)** | CVE/KSV 漏洞扫描，提供 AI 驱动的自动修复建议 |
-| **实时监控** | 通过 Prometheus/Metrics Server 集成实现资源可视化 |
-| **集成终端** | 每个集群独立的 kubectl 会话与 Pod Shell 访问 |
-| **Helm Chart 管理** | 安装、升级和回滚 Helm 发布 |
-| **资源编辑器** | 基于 Monaco Editor 的 YAML 编辑，支持实时应用 |
+#### 1. 多集群管理
+在单一界面中管理多个 Kubernetes 集群。
+
+<img src="docs/images/feature-multi-cluster.png" alt="多集群管理" width="800">
+
+#### 2. AI SRE 诊断
+基于 LangChain 的自动故障分析与修复建议。
+
+#### 3. 安全扫描 (DAIVE)
+CVE/KSV 漏洞扫描，提供 AI 驱动的自动修复建议。
+
+<img src="docs/images/feature-security-scan.png" alt="安全扫描" width="800">
+
+#### 4. 实时监控
+通过 Prometheus/Metrics Server 集成实现资源可视化。
+
+#### 5. 集成终端
+每个集群独立的 kubectl 会话与 Pod Shell 访问。
+
+#### 6. Helm Chart 管理
+安装、升级和回滚 Helm 发布。
+
+<img src="docs/images/feature-helm-chart.png" alt="Helm Chart 管理" width="800">
+
+#### 7. 资源编辑器
+基于 Monaco Editor 的 YAML 编辑，支持实时应用。
+
+<img src="docs/images/feature-resource-editor.png" alt="资源编辑器" width="800">
 
 ### DAIVE — AI SRE 副驾驶
 

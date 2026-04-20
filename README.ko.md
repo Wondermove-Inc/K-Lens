@@ -49,15 +49,34 @@ K-Lens는 Kubernetes 관리를 터미널 전환의 반복에서 시각적이고 
 
 ### 주요 기능
 
-| 기능 | 설명 |
-|------|------|
-| **멀티 클러스터 관리** | 여러 Kubernetes 클러스터를 단일 인터페이스에서 관리 |
-| **AI SRE 진단** | LangChain 기반 자동 장애 분석 및 해결책 제안 |
-| **보안 스캔 (DAIVE)** | CVE/KSV 취약점 스캔, AI 기반 자동 수정 제안 및 적용 |
-| **실시간 모니터링** | Prometheus/Metrics Server 연동 리소스 시각화 |
-| **통합 터미널** | 클러스터별 kubectl 세션 및 Pod 셸 접속 |
-| **Helm 차트 관리** | Helm 릴리즈 설치, 업그레이드, 롤백 지원 |
-| **리소스 편집기** | Monaco Editor 기반 YAML 편집 및 실시간 적용 |
+#### 1. 멀티 클러스터 관리
+여러 Kubernetes 클러스터를 단일 인터페이스에서 관리합니다.
+
+<img src="docs/images/feature-multi-cluster.png" alt="멀티 클러스터 관리" width="800">
+
+#### 2. AI SRE 진단
+LangChain 기반 자동 장애 분석 및 해결책 제안.
+
+#### 3. 보안 스캔 (DAIVE)
+CVE/KSV 취약점 스캔, AI 기반 자동 수정 제안 및 적용.
+
+<img src="docs/images/feature-security-scan.png" alt="보안 스캔" width="800">
+
+#### 4. 실시간 모니터링
+Prometheus/Metrics Server 연동 리소스 시각화.
+
+#### 5. 통합 터미널
+클러스터별 kubectl 세션 및 Pod 셸 접속.
+
+#### 6. Helm 차트 관리
+Helm 릴리즈 설치, 업그레이드, 롤백 지원.
+
+<img src="docs/images/feature-helm-chart.png" alt="Helm 차트 관리" width="800">
+
+#### 7. 리소스 편집기
+Monaco Editor 기반 YAML 편집 및 실시간 적용.
+
+<img src="docs/images/feature-resource-editor.png" alt="리소스 편집기" width="800">
 
 ### DAIVE — AI SRE 코파일럿
 

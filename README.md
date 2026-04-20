@@ -50,15 +50,34 @@ Built on [Open Lens](https://github.com/lensapp/lens), enhanced with AI-powered 
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
-| **Multi-Cluster Management** | Manage multiple Kubernetes clusters from a single interface |
-| **AI SRE Diagnostics** | LangChain-based automatic failure analysis and remediation suggestions |
-| **Security Scan (DAIVE)** | CVE/KSV vulnerability scanning with AI-powered auto-fix suggestions |
-| **Real-time Monitoring** | Resource visualization via Prometheus/Metrics Server integration |
-| **Integrated Terminal** | Per-cluster kubectl sessions and Pod shell access |
-| **Helm Chart Management** | Install, upgrade, and rollback Helm releases |
-| **Resource Editor** | Monaco Editor-based YAML editing with live apply |
+#### 1. Multi-Cluster Management
+Manage multiple Kubernetes clusters from a single interface.
+
+<img src="docs/images/feature-multi-cluster.png" alt="Multi-Cluster Management" width="800">
+
+#### 2. AI SRE Diagnostics
+LangChain-based automatic failure analysis and remediation suggestions.
+
+#### 3. Security Scan (DAIVE)
+CVE/KSV vulnerability scanning with AI-powered auto-fix suggestions.
+
+<img src="docs/images/feature-security-scan.png" alt="Security Scan" width="800">
+
+#### 4. Real-time Monitoring
+Resource visualization via Prometheus/Metrics Server integration.
+
+#### 5. Integrated Terminal
+Per-cluster kubectl sessions and Pod shell access.
+
+#### 6. Helm Chart Management
+Install, upgrade, and rollback Helm releases.
+
+<img src="docs/images/feature-helm-chart.png" alt="Helm Chart Management" width="800">
+
+#### 7. Resource Editor
+Monaco Editor-based YAML editing with live apply.
+
+<img src="docs/images/feature-resource-editor.png" alt="Resource Editor" width="800">
 
 ### DAIVE — Your AI SRE Co-pilot
 
