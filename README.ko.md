@@ -59,6 +59,31 @@ K-Lens는 Kubernetes 관리를 터미널 전환의 반복에서 시각적이고 
 | **Helm 차트 관리** | Helm 릴리즈 설치, 업그레이드, 롤백 지원 |
 | **리소스 편집기** | Monaco Editor 기반 YAML 편집 및 실시간 적용 |
 
+### DAIVE — AI SRE 코파일럿
+
+> **Cursor가 코드를 위한 AI라면, DAIVE는 Kubernetes를 위한 AI입니다 — 문제를 먼저 진단합니다.**
+
+https://github.com/user-attachments/assets/85bb068e-c52d-475f-8914-68302af6d76a
+
+DAIVE는 K-Lens에 내장된 AI 엔진으로, 시니어 SRE처럼 클러스터를 분석합니다. LangChain 기반으로 다양한 모델(Claude, GPT, Gemini)을 지원합니다.
+
+| 기능 | 설명 |
+|------|------|
+| **트러블슈팅** | CrashLoopBackOff, OOMKilled, ImagePullBackOff, Pending 등 장애 자동 감지 및 연쇄 장애 분석 |
+| **근본 원인 분석** | 5 Whys, RCA/Ishikawa, 가설 기반 테스트 등 체계적 진단 |
+| **보안 스캔** | CVE/KSV 취약점 탐지 및 단계별 자동 수정 제안 (Tier 1–3) |
+| **성능 최적화** | 리소스 Right-sizing, HPA/VPA 튜닝, QoS 분석, 리소스 효율 점수 제공 |
+| **FinOps 비용 분석** | 유휴 리소스, 과다 할당 워크로드, 좀비 리소스 식별 및 절감 비용 추정 |
+| **클러스터 평가** | 노드, 네임스페이스, 오토스케일러, CNI, 서비스 메시, 워크로드 타입 전체 인벤토리 리포트 |
+| **멀티 전문가 종합** | 보안·성능·신뢰성 전문가 분석을 통합하여 우선순위별 리포트 생성 |
+| **커스텀 스킬** | 원하는 작업을 스킬로 만들어달라고 요청하면 DAIVE가 재사용 가능한 명령으로 만들어줍니다 |
+
+```
+사용자: "왜 파드가 계속 크래시하나요?"
+DAIVE: 로그 스캔 → 이벤트 확인 → 리소스 리밋 분석 → OOMKilled 발견
+     → 메모리 리밋 조정 권고 → 수정 적용 제안
+```
+
 ---
 
 ## 빠른 시작 (macOS / Linux)

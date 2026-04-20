@@ -59,6 +59,31 @@ K-Lens 将 Kubernetes 管理从终端切换的重复劳动转变为可视化、A
 | **Helm Chart 管理** | 安装、升级和回滚 Helm 发布 |
 | **资源编辑器** | 基于 Monaco Editor 的 YAML 编辑，支持实时应用 |
 
+### DAIVE — AI SRE 副驾驶
+
+> **Cursor 是代码的 AI，DAIVE 是 Kubernetes 的 AI — 先于你发现问题。**
+
+https://github.com/user-attachments/assets/85bb068e-c52d-475f-8914-68302af6d76a
+
+DAIVE 是 K-Lens 内置的 AI 引擎，如同资深 SRE 一样分析集群。基于 LangChain，支持多种模型（Claude、GPT、Gemini）。
+
+| 功能 | 说明 |
+|------|------|
+| **故障排查** | 自动检测 CrashLoopBackOff、OOMKilled、ImagePullBackOff、Pending 等故障及级联故障分析 |
+| **根因分析** | 5 Whys、RCA/Ishikawa、假设驱动测试等系统化诊断方法 |
+| **安全扫描** | CVE/KSV 漏洞检测及分级自动修复建议（Tier 1–3） |
+| **性能优化** | 资源 Right-sizing、HPA/VPA 调优、QoS 分析、资源效率评分 |
+| **FinOps 成本分析** | 识别闲置资源、过度分配的工作负载、僵尸资源，并预估节省成本 |
+| **集群评估** | 节点、命名空间、自动扩缩器、CNI、服务网格、工作负载类型的完整清单报告 |
+| **多专家综合** | 整合安全、性能、可靠性专家分析，生成按优先级排列的统一报告 |
+| **自定义技能** | 告诉 DAIVE 你需要的任务技能，它会为你创建可复用的命令 |
+
+```
+用户："为什么我的 Pod 一直崩溃？"
+DAIVE：扫描日志 → 检查事件 → 分析资源限制 → 发现 OOMKilled
+     → 建议调整内存限制 → 提供修复方案
+```
+
 ---
 
 ## 快速开始 (macOS / Linux)

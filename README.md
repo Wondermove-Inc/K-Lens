@@ -60,6 +60,31 @@ Built on [Open Lens](https://github.com/lensapp/lens), enhanced with AI-powered 
 | **Helm Chart Management** | Install, upgrade, and rollback Helm releases |
 | **Resource Editor** | Monaco Editor-based YAML editing with live apply |
 
+### DAIVE — Your AI SRE Co-pilot
+
+> **Like Cursor for code, DAIVE is for Kubernetes — it diagnoses before you even ask.**
+
+https://github.com/user-attachments/assets/85bb068e-c52d-475f-8914-68302af6d76a
+
+DAIVE is K-Lens's built-in AI engine that acts as a senior SRE on your team. Powered by LangChain with multi-model support (Claude, GPT, Gemini), it provides:
+
+| Capability | What it does |
+|------------|-------------|
+| **Troubleshooting** | Detects CrashLoopBackOff, OOMKilled, ImagePullBackOff, Pending pods — and cascading failures across layers |
+| **Root Cause Analysis** | Systematic diagnosis using 5 Whys, RCA/Ishikawa, and hypothesis-based methods |
+| **Security Scanning** | CVE/KSV vulnerability detection with tiered auto-fix proposals (Tier 1–3) |
+| **Performance Optimization** | Right-sizing recommendations, HPA/VPA tuning, QoS analysis, and resource efficiency scoring |
+| **FinOps & Cost Analysis** | Identifies idle resources, over-provisioned workloads, zombie resources with savings projections |
+| **Cluster Assessment** | Full inventory reports — nodes, namespaces, autoscalers, CNI, service meshes, workload types |
+| **Multi-Expert Synthesis** | Combines Security, Performance, and Reliability expert analyses into a unified prioritized report |
+| **Custom Skills** | Ask DAIVE to create a skill for any task you want, and it builds a reusable command on the spot |
+
+```
+You: "Why is my pod crashing?"
+DAIVE: Scans logs → checks events → analyzes resource limits → finds OOMKilled
+     → recommends memory limit adjustment → offers to apply the fix
+```
+
 ---
 
 ## Quick Start (macOS / Linux)
