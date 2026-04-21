@@ -33,7 +33,7 @@
 
 > **macOS注意**: K-LensはApple開発者証明書で署名されていないため、macOSでアプリがブロックされる場合があります。ダウンロード後、以下のコマンドを実行してください：
 > ```bash
-> xattr -dr com.apple.quarantine /パス/KLens.dmg
+> xattr -dr com.apple.quarantine /パス/KLens.app
 > ```
 
 ---

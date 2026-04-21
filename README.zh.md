@@ -33,7 +33,7 @@
 
 > **macOS 注意**: K-Lens 未使用 Apple 开发者证书签名，macOS 可能会阻止应用运行。下载后请执行以下命令：
 > ```bash
-> xattr -dr com.apple.quarantine /路径/KLens.dmg
+> xattr -dr com.apple.quarantine /路径/KLens.app
 > ```
 
 ---
