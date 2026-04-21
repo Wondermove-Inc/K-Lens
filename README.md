@@ -23,12 +23,13 @@
   <a href="README.zh.md">中文</a>
 </p>
 
+<h3 align="center">Download</h3>
 <p align="center">
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-arm64.dmg">macOS (Apple Silicon)</a> ·
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x64.exe">Windows (x64)</a> ·
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x86_64.AppImage">Linux (AppImage)</a> ·
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-amd64.deb">Linux (deb)</a> ·
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x86_64.rpm">Linux (rpm)</a>
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-arm64.dmg">macOS ARM64 (.dmg)</a> ·
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x64.exe">Windows x64 (.exe)</a> ·
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x86_64.AppImage">Linux x64 (.AppImage)</a> ·
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-amd64.deb">Linux x64 (.deb)</a> ·
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases/download/v0.6.5/KLens-0.6.5-x86_64.rpm">Linux x64 (.rpm)</a>
 </p>
 
 > **macOS Note**: Since K-Lens is not signed with an Apple Developer certificate, macOS may block the app. Run the following command after downloading:
