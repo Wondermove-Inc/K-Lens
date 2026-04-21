@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Wondermove-Inc/K-Lens/releases"><img src="https://img.shields.io/badge/version-0.6.5-blue.svg" alt="Version"></a>
+  <a href="https://github.com/Wondermove-Inc/K-Lens/releases"><img src="https://img.shields.io/github/v/release/Wondermove-Inc/K-Lens?label=version&color=blue" alt="Version"></a>
   <a href="https://github.com/Wondermove-Inc/K-Lens/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D22.0.0-brightgreen.svg" alt="Node.js"></a>
   <a href="https://www.electronjs.org/"><img src="https://img.shields.io/badge/electron-35.7.5-9feaf9.svg" alt="Electron"></a>
