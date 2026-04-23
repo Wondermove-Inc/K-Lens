@@ -94,7 +94,7 @@
     "@langchain/google-genai": "2.1.26",
     "@langchain/mcp-adapters": "^1.0.3",
     "@langchain/ollama": "1.2.6",
-    "@langchain/openai": "1.4.2",
+    "@langchain/openai": "1.4.4",
     "@langchain/openrouter": "0.2.0",
     "@mui/lab": "5.0.0-alpha.142",
     "@mui/material": "^5.17.1",
