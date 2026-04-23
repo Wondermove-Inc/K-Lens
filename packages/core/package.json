@@ -254,7 +254,7 @@
     "stoppable": "^1.1.0",
     "streamdown": "^2.0.1",
     "tailwind-merge": "^3.3.1",
-    "tar": "^7.4.4",
+    "tar": "^7.5.13",
     "tcp-port-used": "^1.0.2",
     "tempy": "1.0.1",
     "triple-beam": "^1.4.1",
