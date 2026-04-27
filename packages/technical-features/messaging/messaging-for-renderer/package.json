@@ -42,7 +42,7 @@
     "@k-lens/jest": "workspace:^",
     "@k-lens/typescript": "workspace:^",
     "@k-lens/webpack": "workspace:^",
-    "@ogre-tools/injectable-extension-for-mobx": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-mobx": "^23.0.1",
     "@types/webpack-env": "^1.18.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",

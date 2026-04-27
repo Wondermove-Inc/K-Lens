@@ -91,7 +91,7 @@
     "@ogre-tools/fp": "^17.11.1",
     "@ogre-tools/injectable": "^17.11.1",
     "@ogre-tools/injectable-extension-for-auto-registration": "^17.11.1",
-    "@ogre-tools/injectable-extension-for-mobx": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-mobx": "^23.0.1",
     "@k-lens/application": "workspace:^",
     "@k-lens/application-for-electron-main": "workspace:^",
     "@k-lens/core": "workspace:^",

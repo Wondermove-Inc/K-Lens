@@ -43,7 +43,7 @@
     "@k-lens/typescript": "workspace:^",
     "@k-lens/webpack": "workspace:^",
     "@ogre-tools/injectable": "^17.11.1",
-    "@ogre-tools/injectable-extension-for-mobx": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-mobx": "^23.0.1",
     "@testing-library/react": "^16.3.0",
     "@types/lodash": "^4.17.20",
     "identity-obj-proxy": "^3.0.0",

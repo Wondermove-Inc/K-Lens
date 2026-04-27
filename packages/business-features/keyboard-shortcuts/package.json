@@ -46,7 +46,7 @@
     "@k-lens/typescript": "workspace:^",
     "@k-lens/utilities": "workspace:^",
     "@k-lens/webpack": "workspace:^",
-    "@ogre-tools/injectable-extension-for-mobx": "^17.11.1",
+    "@ogre-tools/injectable-extension-for-mobx": "^23.0.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.3",
