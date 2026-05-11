@@ -174,7 +174,7 @@
     "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@electron/rebuild": "^4.0.1",
+    "@electron/rebuild": "^4.0.4",
     "@ogre-tools/injectable-react": "^17.11.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
     "@side/jest-runtime": "^1.1.0",
