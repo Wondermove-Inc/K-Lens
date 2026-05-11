@@ -327,7 +327,7 @@
     "logform": "^2.7.0",
     "memfs": "^4.17.1",
     "memorystream": "^0.3.1",
-    "mermaid": "^11.12.2",
+    "mermaid": "^11.15.0",
     "mini-css-extract-plugin": "^2.9.4",
     "mobx-observable-history": "^2.0.3",
     "mock-http": "^1.1.1",
