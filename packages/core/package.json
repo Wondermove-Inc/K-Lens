@@ -247,7 +247,7 @@
     "react-window": "^1.8.11",
     "recharts": "^3.2.1",
     "remark-gfm": "^4.0.1",
-    "rfc6902": "^5.1.2",
+    "rfc6902": "^5.2.0",
     "selfsigned": "^3.0.1",
     "semver": "^7.7.2",
     "sonner": "^2.0.7",
