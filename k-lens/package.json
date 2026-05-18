@@ -228,7 +228,7 @@
     "typescript-plugin-css-modules": "^5.2.0",
     "webpack": "^5.101.3",
     "webpack-cli": "^7.0.2",
-    "webpack-dev-server": "^5.2.2",
+    "webpack-dev-server": "^5.2.4",
     "webpack-node-externals": "^3.0.0"
   }
 }
